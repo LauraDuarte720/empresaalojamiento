@@ -1,0 +1,8 @@
+module co.edu.uniquindio.empresaalojamiento {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+
+    opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;
+    exports co.edu.uniquindio.empresaalojamiento;
+}
