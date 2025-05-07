@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" onAction="#IrInicioSesion" text="Iniciar Sesion">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" onAction="#irRegistro" text="Registrarse">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="378.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <HBox layoutX="116.0" layoutY="55.0" prefHeight="182.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <HBox layoutX="59.0" layoutY="47.0" prefHeight="181.5" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>
