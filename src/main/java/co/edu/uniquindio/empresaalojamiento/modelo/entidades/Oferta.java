@@ -13,4 +13,5 @@ public class Oferta {
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
     private double valorPorcentaje;
+    private String idAlojamiento;
 }

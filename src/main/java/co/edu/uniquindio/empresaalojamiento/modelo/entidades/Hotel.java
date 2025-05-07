@@ -8,12 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Setter
-@AllArgsConstructor
 @Getter
-public class Hotel {
-    private List<Habitacion> habitaciones;
-
-    public Hotel(){
-        this.habitaciones = new ArrayList<Habitacion>();
+public class Hotel extends Alojamiento{
+    Hotel(String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno) {
+        super(nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespedes, piscina, wifi, desayuno);
     }
 }
