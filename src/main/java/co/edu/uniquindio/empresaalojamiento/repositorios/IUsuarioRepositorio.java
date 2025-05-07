@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IUsuarioRepositorio {
-    public void agregar(Usuario usuario);
+    public void agregarUsuario(Usuario usuario);
 
-    public void eliminar(Usuario usuario);
+    public void eliminarUsuario(Usuario usuario);
 
-    public void actualizar(Usuario usuario);
+    public Usuario buscarUsuario(String id);
 
-    public Usuario buscarPorId(String id);
-
-    public List<Usuario> listarTodos();
+    public List<Usuario> listarUsuarios();
 
 }

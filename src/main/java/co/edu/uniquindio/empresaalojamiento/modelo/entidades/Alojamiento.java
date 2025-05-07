@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.modelo.entidades;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,8 @@ import java.util.List;
 @Getter
 @Builder
 public class Alojamiento {
+    private TipoAlojamiento tipoAlojamiento;
+    private String id;
     private String nombre;
     private String descripcion;
     private String ruta;
@@ -20,4 +23,5 @@ public class Alojamiento {
     private boolean piscina;
     private boolean wifi;
     private boolean desayuno;
+    private double costoAdicional;
 }

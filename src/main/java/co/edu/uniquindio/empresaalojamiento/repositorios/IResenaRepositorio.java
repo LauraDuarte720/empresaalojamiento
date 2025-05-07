@@ -9,5 +9,5 @@ public interface IResenaRepositorio {
 
     public void elimnarResena(Resena resena);
 
-    public List<Resena> obtenerResenasAlojamiento(int idAlojamiento);
+    public List<Resena> obtenerResenasAlojamiento(String idAlojamiento);
 }

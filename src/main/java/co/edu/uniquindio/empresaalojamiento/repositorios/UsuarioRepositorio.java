@@ -2,31 +2,34 @@ package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioRepositorio implements IUsuarioRepositorio {
-    @Override
-    public void agregar(Usuario usuario) {
 
+    private final ArrayList<Usuario> usuarios;
+
+    public UsuarioRepositorio() {
+        this.usuarios = new ArrayList<>();
     }
 
     @Override
-    public void eliminar(Usuario usuario) {
-
+    public void agregarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
     }
 
     @Override
-    public void actualizar(Usuario usuario) {
-
+    public void eliminarUsuario(Usuario usuario) {
+        usuarios.remove(usuario);
     }
 
     @Override
-    public Usuario buscarPorId(String id) {
-        return null;
+    public Usuario buscarUsuario(String id) {
+        return usuarios.stream().filter(c -> id.equalsIgnoreCase(c.getCedula())).findFirst().orElse(null);
     }
 
     @Override
-    public List<Usuario> listarTodos() {
-        return List.of();
+    public List<Usuario> listarUsuarios() {
+        return usuarios;
     }
 }

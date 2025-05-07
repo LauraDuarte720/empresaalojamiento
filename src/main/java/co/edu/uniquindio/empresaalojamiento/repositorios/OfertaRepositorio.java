@@ -2,21 +2,38 @@ package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OfertaRepositorio implements IOfertaRepositorio {
+
+    private final ArrayList<Oferta> ofertas;
+
+    public OfertaRepositorio() {
+        this.ofertas = new ArrayList<>();
+    }
+
+
     @Override
     public void agregarOferta(Oferta oferta) {
+        ofertas.add(oferta);
 
     }
 
     @Override
     public void eliminarOferta(Oferta oferta) {
+        ofertas.remove(oferta);
 
     }
 
     @Override
     public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) {
-        return List.of();
+
+        return ofertas
+                .stream()
+                .filter(c -> idAlojamiento.equalsIgnoreCase(c.getIdAlojamiento()))
+                .collect(Collectors.toList()
+                );
     }
 }

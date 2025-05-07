@@ -11,5 +11,5 @@ public class Resena {
     private String valoracion;
     private int calificacion;
     private Usuario usuario;
-    private String idAlojamientol;
+    private String idAlojamiento;
 }

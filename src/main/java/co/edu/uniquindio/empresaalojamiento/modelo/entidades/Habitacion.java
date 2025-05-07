@@ -9,6 +9,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class Habitacion {
+    private String id;
     private int numero;
     private double precioPorNoche;
     private int capacidadHuespedes;
