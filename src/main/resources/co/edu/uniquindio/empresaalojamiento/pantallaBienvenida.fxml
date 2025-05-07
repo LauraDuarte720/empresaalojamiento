@@ -7,15 +7,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="419.0" spacing="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="419.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Bienvenido a Book Your Stay">
+      <Label style="-fx-border-width: 1; -fx-border-color: #421404; -fx-padding: 5;" text="Bienvenido a Book Your Stay" textFill="#421404">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <ImageView fx:id="imgBienvenida" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <Button mnemonicParsing="false" onAction="#irPantallaInicio" text="Ir a pantalla de inicio" />
+      <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#irPantallaInicio" style="-fx-background-color: #421404;" text="Ir a pantalla de inicio" textFill="WHITE">
+         <font>
+            <Font name="Mali Regular" size="13.0" />
+         </font></Button>
    </children>
    <padding>
       <Insets top="40.0" />

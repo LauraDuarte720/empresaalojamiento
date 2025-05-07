@@ -10,22 +10,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="408.0" prefWidth="600.0">
+      <HBox prefHeight="503.0" prefWidth="723.0" style="-fx-background-color: #D3B49F;">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="394.0" prefWidth="247.0" spacing="25.0">
+            <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="247.0" spacing="25.0" style="-fx-background-color: #8C522D;">
                <children>
-                  <Label text="Menu Cliente">
+                  <Label text="Menu Cliente" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Ver alojamientos" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="197.0" text="Ver reservas" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="192.0" text="Recargar Billetera" />
-                  <MenuButton mnemonicParsing="false" text="Gestionar datos de la cuenta">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver alojamientos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="197.0" style="-fx-background-color: #421404;" text="Ver reservas" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="192.0" style="-fx-background-color: #421404;" text="Recargar Billetera" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <MenuButton mnemonicParsing="false" style="-fx-background-color: #421404;" text="Gestionar datos de la cuenta" textFill="WHITE">
                     <items>
                       <MenuItem mnemonicParsing="false">
                            <graphic>
@@ -38,6 +46,9 @@
                            </graphic>
                         </MenuItem>
                     </items>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
                   </MenuButton>
                </children>
                <HBox.margin>
@@ -47,7 +58,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <StackPane prefHeight="400.0" prefWidth="358.0" />
+            <StackPane prefHeight="501.0" prefWidth="525.0" />
          </children>
       </HBox>
    </children>
