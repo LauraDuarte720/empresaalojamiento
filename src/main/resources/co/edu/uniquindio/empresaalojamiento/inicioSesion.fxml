@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="589.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar>
+      <MenuBar style="-fx-background-color: #8C522D;">
         <menus>
-          <Menu mnemonicParsing="false" onAction="#IrInicioSesion" text="Iniciar Sesion">
+          <Menu mnemonicParsing="false" onAction="#IrInicioSesion" style="-fx-text-fill: white;" text="Iniciar Sesion">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
@@ -27,7 +27,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="378.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="373.0" prefWidth="564.0" style="-fx-background-color: #D3B49F;">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
@@ -38,8 +38,8 @@
                               <Insets bottom="15.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento1" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion1" text="Label" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
@@ -47,8 +47,8 @@
                               <Insets bottom="15.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento2" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion2" text="Label" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
@@ -56,8 +56,8 @@
                               <Insets bottom="15.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento3" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion3" text="Label" />
                            </children>
                         </VBox>
                      </children>
@@ -70,8 +70,8 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento4" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion4" text="Label" />
                            </children>
                            <padding>
                               <Insets bottom="15.0" />
@@ -82,8 +82,8 @@
                               <Insets bottom="15.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento5" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion5" text="Label" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
@@ -91,8 +91,8 @@
                               <Insets bottom="15.0" />
                            </padding>
                            <children>
-                              <ImageView fitHeight="126.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
+                              <ImageView fx:id="imgALojamiento6" fitHeight="120.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lblDescripcion6" text="Label" />
                            </children>
                         </VBox>
                      </children>

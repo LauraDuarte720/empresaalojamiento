@@ -3,19 +3,21 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="409.0" spacing="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="409.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Registrar Usuario">
+      <Label style="-fx-font-family: Vollkorn;" text="Registrar Usuario" textFill="#421404">
          <font>
-            <Font size="22.0" />
+            <Font name="Verdana" size="22.0" />
          </font>
          <VBox.margin>
             <Insets top="20.0" />
@@ -23,8 +25,8 @@
       </Label>
       <GridPane alignment="CENTER" prefHeight="180.0" prefWidth="205.0">
         <columnConstraints>
-          <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="189.0" minWidth="10.0" prefWidth="159.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="220.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="189.0" minWidth="10.0" prefWidth="144.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="185.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,45 +37,78 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" text="Cedula">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" text="Nombre" GridPane.rowIndex="1">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" text="Apellido" GridPane.rowIndex="2">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" text="Telefono" GridPane.rowIndex="3">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" text="Correo" GridPane.rowIndex="4">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" text="Contrasena" GridPane.rowIndex="5">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtCedula" prefWidth="147.0" GridPane.columnIndex="1" />
-            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtApellido" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtCorreo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txtContrasena" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtCedula" prefWidth="147.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtApellido" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtTelefono" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtCorreo" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="imgIconoCedula" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" style="-fx-font-family: Vollkorn;" text="Cedula">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="imgIconoNombre" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" text="Nombre">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="imgIconoApellido" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" text="Apellido">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="3">
+               <children>
+                  <ImageView fx:id="imgIconoTelefono" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" text="Telefono">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fx:id="imgIconoCorreo" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" text="Correo">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="5">
+               <children>
+                  <ImageView fx:id="imgIconoContrasena" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" text="Contrasena">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <PasswordField fx:id="txtContrasena" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" onAction="#registrarUsuario" text="Registrarse" />
+      <Button mnemonicParsing="false" onAction="#registrarUsuario" style="-fx-background-color: #421404; -fx-font-family: vollkorn;" text="Registrarse" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name=".PingFang UI Text SC" size="13.0" />
+         </font></Button>
    </children>
    <padding>
       <Insets left="40.0" right="40.0" />
