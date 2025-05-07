@@ -14,4 +14,5 @@ public class Habitacion {
     private int capacidadHuespedes;
     private String rutaImagen;
     private String descripcion;
+    private String idHotel;
 }

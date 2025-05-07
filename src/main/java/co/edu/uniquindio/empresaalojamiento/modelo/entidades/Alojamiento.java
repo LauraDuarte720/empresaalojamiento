@@ -20,12 +20,4 @@ public class Alojamiento {
     private boolean piscina;
     private boolean wifi;
     private boolean desayuno;
-    private List<Resena> resenas;
-    private List<Oferta> ofertas;
-
-    public Alojamiento() {
-        this.resenas = new ArrayList<>();
-        this.ofertas = new ArrayList<>();
-    }
-
 }
