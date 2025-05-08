@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
 
         Font vollkorn = Font.loadFont(getClass().getResourceAsStream("/fuente/Vollkorn.ttf"), 14);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menuCliente.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
