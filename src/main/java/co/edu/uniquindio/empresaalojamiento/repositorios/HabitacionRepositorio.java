@@ -1,9 +1,9 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
+import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IHabitacionRepositorio;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 

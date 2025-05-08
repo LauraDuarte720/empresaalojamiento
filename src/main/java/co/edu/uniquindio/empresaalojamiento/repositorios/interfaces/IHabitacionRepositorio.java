@@ -1,4 +1,4 @@
-package co.edu.uniquindio.empresaalojamiento.repositorios;
+package co.edu.uniquindio.empresaalojamiento.repositorios.interfaces;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
 
