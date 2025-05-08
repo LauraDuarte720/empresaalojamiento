@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
    <children>
       <HBox prefHeight="503.0" prefWidth="723.0" style="-fx-background-color: #D3B49F;">
          <children>
@@ -58,7 +58,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <StackPane prefHeight="501.0" prefWidth="525.0" />
+            <StackPane fx:id="panelPrincipal" prefHeight="501.0" prefWidth="525.0" />
          </children>
       </HBox>
    </children>

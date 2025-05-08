@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="scrPareserva" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 15; -fx-background-color: #D3B49F;" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="375.0" prefWidth="563.0" style="-fx-background-color: #D3B49F;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="44.0" prefWidth="563.0" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="cmbFiltroCiudad" prefHeight="26.0" prefWidth="122.0" promptText="ciudad" style="-fx-background-color: #C16804; -fx-border-color: #421404;" />
+                  <ComboBox fx:id="cmbFiltroTipoAlojamiento" prefHeight="26.0" prefWidth="139.0" promptText="Tipo Alojamiento" style="-fx-background-color: #C16804; -fx-border-color: #421404;" />
+                  <TextField fx:id="txtFiltroNombre" editable="false" prefHeight="26.0" prefWidth="136.0" promptText="Nombre" />
+                  <TextField fx:id="txtFiltroPrecioMin" prefHeight="26.0" prefWidth="48.0" promptText="preMinimo" />
+                  <TextField fx:id="txtFiltroPrecioMax" prefHeight="26.0" prefWidth="48.0" promptText="preMaxi" />
+               </children>
+            </HBox>
+         </children></VBox>
+   </content>
+</ScrollPane>

@@ -6,4 +6,8 @@ module co.edu.uniquindio.empresaalojamiento {
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;
     exports co.edu.uniquindio.empresaalojamiento;
+
+
+    opens co.edu.uniquindio.empresaalojamiento.controladores to javafx.fxml;
+    exports co.edu.uniquindio.empresaalojamiento.controladores;
 }
