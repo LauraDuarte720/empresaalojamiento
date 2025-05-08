@@ -8,8 +8,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Resena {
+    private String id;
     private String valoracion;
     private int calificacion;
-    private Usuario usuario;
+    private String idUsuario;
     private String idAlojamiento;
 }

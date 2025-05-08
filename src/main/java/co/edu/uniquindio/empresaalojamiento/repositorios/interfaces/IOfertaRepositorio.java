@@ -1,4 +1,4 @@
-package co.edu.uniquindio.empresaalojamiento.repositorios;
+package co.edu.uniquindio.empresaalojamiento.repositorios.interfaces;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 
@@ -8,6 +8,8 @@ public interface IOfertaRepositorio {
     public void agregarOferta(Oferta oferta);
 
     public void eliminarOferta(Oferta oferta);
+
+    public Oferta buscarOferta(String id);
 
     public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento);
 }

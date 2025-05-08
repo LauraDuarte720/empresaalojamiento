@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 public class Oferta {
+    private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
     private double valorPorcentaje;

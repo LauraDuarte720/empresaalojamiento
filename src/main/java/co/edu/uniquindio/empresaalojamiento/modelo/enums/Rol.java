@@ -1,18 +1,17 @@
 package co.edu.uniquindio.empresaalojamiento.modelo.enums;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public enum Rol {
     CLIENTE("Cliente"), ADMINISTRADOR("Administrador");
 
     private final String nombre;
     Rol(String nombre){
         this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public static List<String> getListaDeNombres() {

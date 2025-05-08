@@ -2,7 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
-import javafx.collections.FXCollections;
+import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 
 
 import java.util.ArrayList;

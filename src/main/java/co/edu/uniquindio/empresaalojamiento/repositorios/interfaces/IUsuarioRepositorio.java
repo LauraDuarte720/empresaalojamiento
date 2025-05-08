@@ -1,8 +1,7 @@
-package co.edu.uniquindio.empresaalojamiento.repositorios;
+package co.edu.uniquindio.empresaalojamiento.repositorios.interfaces;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface IUsuarioRepositorio {

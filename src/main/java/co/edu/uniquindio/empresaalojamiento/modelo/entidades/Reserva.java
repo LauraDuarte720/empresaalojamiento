@@ -10,9 +10,10 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 public class Reserva {
+    private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
     private int numeroHuespedes;
-    private Alojamiento alojamiento;
+    private String idAlojamiento;
     private Factura factura;
 }

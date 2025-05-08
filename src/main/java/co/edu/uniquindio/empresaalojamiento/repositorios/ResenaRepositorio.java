@@ -1,6 +1,8 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
+import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IResenaRepositorio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,11 @@ public class ResenaRepositorio implements IResenaRepositorio {
     @Override
     public void elimnarResena(Resena resena) {
         resenas.remove(resena);
+    }
+
+    @Override
+    public Resena buscarResena(String id) {
+        return resenas.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().orElse(null);
     }
 
     @Override
