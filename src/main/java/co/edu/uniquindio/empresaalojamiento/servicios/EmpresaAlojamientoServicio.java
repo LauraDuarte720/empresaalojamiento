@@ -83,4 +83,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     public void cancelarReserva(String idReserva) throws Exception {
 
     }
+
+    @Override
+    public void recargarBilletera(String cedula, double monto) throws Exception {
+
+    }
 }
