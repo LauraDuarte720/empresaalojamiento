@@ -36,11 +36,13 @@ public interface IEmpresaAlojamiento {
     public void eliminarHabitacion(int idHabitacion) throws Exception;
 
     public void actualizarHabitacion(String idHabitacionActualizar, int numero, double precioPorNoche, int capacidadHuespedes,
-                                    String rutaImagen, String descripcion, String idHotel) throws Exception;
+                                     String rutaImagen, String descripcion, String idHotel) throws Exception;
 
     public void crearResena(String valoracion, int calificacion, String idUsuario, String idAlojamiento) throws Exception;
 
     public void registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento) throws Exception;
 
     public void cancelarReserva(String idReserva) throws Exception;
+
+    public void recargarBilletera(String cedula, double monto) throws Exception;
 }
