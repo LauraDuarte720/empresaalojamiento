@@ -1,10 +1,12 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IHabitacionRepositorio;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -17,7 +19,7 @@ public class HabitacionServicio {
         this.habitacionRepositorio = habitacionRepositorio;
     }
 
-    public Habitacion crearHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion)throws Exception{
+    public Habitacion crearHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion, String idHotel, String rutaImagen)throws Exception{
         if (numeroHabitacion<0){
             throw new Exception("El numero de habitacion debe ser mayor a 0");
         }
@@ -36,6 +38,8 @@ public class HabitacionServicio {
                 .precioPorNoche(precioPorNoche)
                 .capacidadHuespedes(capacidadHuespedes)
                 .descripcion(descripcion)
+                .idHotel(idHotel)
+                .rutaImagen(rutaImagen)
                 .build();
 
         habitacionRepositorio.agregarHabitacion(habitacion);
@@ -49,5 +53,9 @@ public class HabitacionServicio {
             throw new Exception("La habitacion no existe");
         }
         habitacionRepositorio.eliminarHabitacion(habitacionEliminar);
+    }
+
+    public List<Habitacion> obtenerHabitacionesHotel(String idHotel){
+        return habitacionRepositorio.obtenerHabitacionesHotel(idHotel);
     }
 }

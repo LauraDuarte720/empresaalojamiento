@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class OfertaRepositorio implements IOfertaRepositorio {
 
-    private final ArrayList<Oferta> ofertas;
+    private final List<Oferta> ofertas;
 
     public OfertaRepositorio() {
         this.ofertas = new ArrayList<>();

@@ -16,4 +16,5 @@ public class Reserva {
     private int numeroHuespedes;
     private String idAlojamiento;
     private Factura factura;
+    private String idUsuario;
 }

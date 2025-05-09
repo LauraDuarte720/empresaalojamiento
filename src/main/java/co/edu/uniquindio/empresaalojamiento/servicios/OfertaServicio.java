@@ -1,11 +1,14 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
+import co.edu.uniquindio.empresaalojamiento.repositorios.OfertaRepositorio;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IOfertaRepositorio;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -22,6 +25,13 @@ public class OfertaServicio {
 
         if (fechaInicio==null||fechaFin==null){
             throw new Exception("Las fechas son obligatorias");
+        }
+        if(fechaFin.isBefore(fechaInicio)){
+            throw new Exception("La fecha final debe ser posterior a la de inicio");
+        }
+
+        if(fechaInicio.isBefore(LocalDate.now())){
+            throw new Exception("La fecha ingresada debe ser posterior a la de hoy");
         }
         if (ofertaValor<=0 || ofertaValor>100){
             throw new Exception("La oferta debe ser mayor a 0 y menor a 100");
@@ -74,5 +84,9 @@ public class OfertaServicio {
             throw new Exception("La oferta no existe");
         }
         ofertaRepositorio.eliminarOferta(ofertaEliminar);
+    }
+
+    public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) throws Exception{
+        return ofertaRepositorio.obtenerOfertasAlojamiento(idAlojamiento);
     }
 }

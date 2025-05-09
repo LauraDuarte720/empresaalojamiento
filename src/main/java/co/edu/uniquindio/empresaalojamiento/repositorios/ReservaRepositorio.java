@@ -1,11 +1,13 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Reserva;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IReservaRepositorio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReservaRepositorio implements IReservaRepositorio {
 
@@ -35,4 +37,25 @@ public class ReservaRepositorio implements IReservaRepositorio {
     public List<Reserva> obtenerReservas() {
         return reservas;
     }
+
+    @Override
+    public List<Reserva> obtenerReservasUsuario(String idUsuario) {
+
+        return reservas
+                .stream()
+                .filter(c -> idUsuario.equalsIgnoreCase(c.getIdUsuario()))
+                .collect(Collectors.toList()
+                );
+    }
+
+    @Override
+    public List<Reserva> obtenerReservasAlojamiento(String idAlojamiento) {
+
+        return reservas
+                .stream()
+                .filter(c -> idAlojamiento.equalsIgnoreCase(c.getIdAlojamiento()))
+                .collect(Collectors.toList()
+                );
+    }
 }
+

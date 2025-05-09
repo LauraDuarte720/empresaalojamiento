@@ -12,4 +12,8 @@ public interface IReservaRepositorio {
     public void eliminarReserva(Reserva reserva);
 
     public List<Reserva> obtenerReservas();
+
+    public List<Reserva> obtenerReservasUsuario(String idUsuario);
+
+    public List<Reserva> obtenerReservasAlojamiento(String idAlojamiento);
 }
