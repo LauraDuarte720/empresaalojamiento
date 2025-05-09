@@ -5,6 +5,8 @@ import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IHabitacionR
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public class HabitacionServicio {
@@ -15,7 +17,37 @@ public class HabitacionServicio {
         this.habitacionRepositorio = habitacionRepositorio;
     }
 
-    public Habitacion crearHabitacion(){
-        return null;
+    public Habitacion crearHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion)throws Exception{
+        if (numeroHabitacion<0){
+            throw new Exception("El numero de habitacion debe ser mayor a 0");
+        }
+        if (precioPorNoche<0){
+            throw new Exception("El precio por noche debe ser mayor a 0");
+        }
+        if (capacidadHuespedes<0){
+            throw new Exception("La capacidad de huespedes debe ser mayor a 0");
+        }
+        if (descripcion.isEmpty()){
+            throw new Exception("La descripcion no puede estar vacia");
+        }
+        Habitacion habitacion=Habitacion.builder()
+                .id(UUID.randomUUID().toString())
+                .numero(numeroHabitacion)
+                .precioPorNoche(precioPorNoche)
+                .capacidadHuespedes(capacidadHuespedes)
+                .descripcion(descripcion)
+                .build();
+
+        habitacionRepositorio.agregarHabitacion(habitacion);
+        return habitacion;
+
+    }
+
+    public void eliminarHabitacion(String idHabitacion)throws Exception{
+        Habitacion habitacionEliminar = habitacionRepositorio.buscarHabitacion(idHabitacion);
+        if(habitacionEliminar==null){
+            throw new Exception("La habitacion no existe");
+        }
+        habitacionRepositorio.eliminarHabitacion(habitacionEliminar);
     }
 }
