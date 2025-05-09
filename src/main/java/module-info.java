@@ -2,6 +2,8 @@ module co.edu.uniquindio.empresaalojamiento {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
+    requires org.simplejavamail.core;
+    requires org.simplejavamail;
 
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;
