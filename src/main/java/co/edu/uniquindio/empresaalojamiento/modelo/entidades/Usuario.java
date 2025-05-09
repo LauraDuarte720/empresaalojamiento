@@ -18,4 +18,5 @@ public class Usuario {
     private String contrasena;
     private Billetera billetera;
     private Rol rol;
+    private Boolean activo;
 }

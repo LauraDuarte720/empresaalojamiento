@@ -16,7 +16,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="247.0" spacing="25.0" style="-fx-background-color: #8C522D;">
                <children>
-                  <Label text="Menu Cliente" textFill="WHITE">
+                  <Label style="-fx-font-family: Vollkorn;" text="Menu Cliente" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>

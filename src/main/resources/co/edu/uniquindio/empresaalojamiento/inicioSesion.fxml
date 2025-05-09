@@ -39,7 +39,7 @@
                            </padding>
                            <children>
                               <ImageView fx:id="imgALojamiento1" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="lblDescripcion1" text="Label" />
+                              <Label fx:id="lblDescripcion1" style="-fx-font-family: Vollkorn;" text="Label" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="182.0" prefWidth="193.0" spacing="15.0">
