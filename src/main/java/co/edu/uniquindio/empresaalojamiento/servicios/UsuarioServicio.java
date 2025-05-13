@@ -42,7 +42,7 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
             }
 
 
-    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
+    public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
         if (cedula == null || cedula.isEmpty()) throw new Exception("La cedula es obligatoria");
         if (nombre == null || nombre.isEmpty()) throw new Exception("El nombre es obligatorio ");
@@ -145,6 +145,9 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
         usuarioActivar.setActivo(true);
     }
 
+    public List<Usuario> obtenerUsuarios(){
+        return usuarioRepositorio.listarUsuarios();
+    }
 
 
 }

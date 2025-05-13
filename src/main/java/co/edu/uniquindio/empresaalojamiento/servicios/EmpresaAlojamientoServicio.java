@@ -37,13 +37,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         this.alojamientoRepositorio = new AlojamientoRepositorio();
         this.alojamientoServicio = new AlojamientoServicio(alojamientoRepositorio);
 
-
     }
 
     @Override
     public void registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
 
     }
+
     @Override
     public void eliminarAlojamiento(String idAlojamiento) throws Exception {
 
@@ -55,8 +55,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
-        return usuarioServicio.registrarUsuario(cedula, nombre, apellido, telefono, email, contrasena);
+    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
     }
 
@@ -210,4 +209,54 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     public void enviarCodigo(String cedula) throws Exception {
         usuarioServicio.enviarCodigo(cedula);
     }
+
+    public double obtenerGananciasTotales(String idAlojamiento) {
+        double gananciasTotales = 0;
+
+        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+
+        for (Reserva reserva : reservasAlojamiento) {
+            if (reserva.getFactura() != null) {
+                gananciasTotales += reserva.getFactura().getTotal();
+            }
+        }
+
+        return gananciasTotales;
+    }
+
+    public List<Alojamiento> ordenarAlojamientosMasRentable(List<Alojamiento> alojamientos) {
+        alojamientos.sort((a1, a2) -> {
+            double ganancias1 = obtenerGananciasTotales(a1.getId());
+            double ganancias2 = obtenerGananciasTotales(a2.getId());
+            return Double.compare(ganancias2, ganancias1); // orden descendente
+        });
+        return alojamientos;
+    }
+
+    public List<Alojamiento> ordenarAlojamientosMasRentableTipo(TipoAlojamiento tipo){
+        List<Alojamiento> alojamientosTipo = alojamientoServicio.obtenerAlojamientos().stream()
+                .filter(a -> a.getTipoAlojamiento().equals(tipo))
+                .collect(Collectors.toList());
+
+        return ordenarAlojamientosMasRentable(alojamientosTipo);
+    }
+
+    public Usuario iniciarSesion(String correo, String contrasena) throws Exception{
+        Usuario usuarioEncontrado = null;
+        for(Usuario usuario : usuarioServicio.obtenerUsuarios()){
+
+            if(usuario.getEmail().equals(correo) && usuario.getContrasena().equals(contrasena)){
+                usuarioEncontrado = usuario;
+                if(!usuarioEncontrado.getActivo()){
+                    throw new IllegalAccessException("Usuario inactivo");
+                }
+            }
+        }
+        if(usuarioEncontrado == null){
+            throw new Exception("Usuario o contraseña incorrecta");
+        }
+        return usuarioEncontrado;
+    }
+
+
 }
