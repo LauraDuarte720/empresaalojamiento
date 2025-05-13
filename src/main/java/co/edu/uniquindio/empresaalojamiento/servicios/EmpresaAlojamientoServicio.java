@@ -3,6 +3,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Reserva;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
@@ -232,6 +233,22 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ordenarAlojamientosMasRentable(alojamientosTipo);
     }
 
+    public Usuario iniciarSesion(String correo, String contrasena) throws Exception{
+        Usuario usuarioEncontrado = null;
+        for(Usuario usuario : usuarioServicio.obtenerUsuarios()){
+
+            if(usuario.getEmail().equals(correo) && usuario.getContrasena().equals(contrasena)){
+                usuarioEncontrado = usuario;
+                if(!usuarioEncontrado.getActivo()){
+                    throw new IllegalAccessException("Usuario inactivo");
+                }
+            }
+        }
+        if(usuarioEncontrado == null){
+            throw new Exception("Usuario o contraseña incorrecta");
+        }
+        return usuarioEncontrado;
+    }
 
 
 }

@@ -14,33 +14,13 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class UsuarioServicio  implements IUsuarioRepositorio {
+public class UsuarioServicio {
 
     private IUsuarioRepositorio usuarioRepositorio;
 
     public UsuarioServicio(IUsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
-            @Override
-            public void agregarUsuario(Usuario usuario) {
-
-            }
-
-            @Override
-            public void eliminarUsuario(Usuario usuario) {
-
-            }
-
-            @Override
-            public Usuario buscarUsuario(String id) {
-                return null;
-            }
-
-            @Override
-            public List<Usuario> listarUsuarios() {
-                return List.of();
-            }
-
 
     public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
@@ -130,4 +110,7 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
         usuarioActivar.setActivo(true);
     }
 
+    public List<Usuario> obtenerUsuarios(){
+        return usuarioRepositorio.listarUsuarios();
+    }
 }
