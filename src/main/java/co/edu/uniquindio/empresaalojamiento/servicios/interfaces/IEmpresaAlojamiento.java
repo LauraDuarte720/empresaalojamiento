@@ -23,8 +23,7 @@ public interface IEmpresaAlojamiento {
 
     public void eliminarUsuario(String cedula) throws Exception;
 
-    public void actualizarUsuario(String cedulaActualizar, String nombre, String apellido, String telefono,
-                                  String email, String contrasena, Billetera billetera, Rol rol) throws Exception;
+    public void actualizarUsuario(String cedulaAntigua, String cedulaNueva, String nombre, String apellido, String telefono, String email) throws Exception;
 
     public void registrarOferta(LocalDate fechaInicio, LocalDate fechaFinal, double valorPorcentaje, String idAlojamiento) throws Exception;
 

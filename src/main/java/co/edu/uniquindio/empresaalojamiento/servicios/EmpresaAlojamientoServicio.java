@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
@@ -7,8 +8,16 @@ import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamiento
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
+
+    private final UsuarioServicio usuarioServicio;
+
+    public EmpresaAlojamientoServicio() {
+        this.usuarioServicio = new UsuarioServicio();
+    }
+
     @Override
     public void registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
 
@@ -35,8 +44,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void actualizarUsuario(String cedulaActualizar, String nombre, String apellido, String telefono, String email, String contrasena, Billetera billetera, Rol rol) throws Exception {
-
+    public void actualizarUsuario(String cedulaAntigua, String cedulaNueva, String nombre, String apellido, String telefono, String email) throws Exception {
+        usuarioServicio.actualizarUsuario(cedulaAntigua, cedulaNueva,nombre,apellido,telefono,email);
     }
 
     @Override
@@ -87,5 +96,10 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     @Override
     public void recargarBilletera(String cedula, double monto) throws Exception {
 
+    }
+
+    @Override
+    public List<Alojamiento> obtenerAlojamientosAleatorios() throws Exception {
+        return List.of();
     }
 }

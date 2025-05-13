@@ -34,7 +34,7 @@ public class ControladorPrincipal {
     }
 
 
-    public void crearAlerta(String mensaje, Alert.AlertType tipo){
+    public static void crearAlerta(String mensaje, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);
         alert.setHeight(300);
         alert.setWidth(500);

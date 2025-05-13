@@ -8,6 +8,7 @@ import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -16,8 +17,28 @@ public class UsuarioServicio {
 
     private IUsuarioRepositorio usuarioRepositorio;
 
-    public UsuarioServicio(IUsuarioRepositorio usuarioRepositorio) {
-        this.usuarioRepositorio = usuarioRepositorio;
+    public UsuarioServicio() {
+        this.usuarioRepositorio = new IUsuarioRepositorio() {
+            @Override
+            public void agregarUsuario(Usuario usuario) {
+
+            }
+
+            @Override
+            public void eliminarUsuario(Usuario usuario) {
+
+            }
+
+            @Override
+            public Usuario buscarUsuario(String id) {
+                return null;
+            }
+
+            @Override
+            public List<Usuario> listarUsuarios() {
+                return List.of();
+            }
+        };
     }
 
     public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
