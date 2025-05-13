@@ -11,6 +11,8 @@ public interface IUsuarioRepositorio {
 
     public Usuario buscarUsuario(String id);
 
+    public Usuario buscarUsuarioCorreo(String correo);
+
     public List<Usuario> listarUsuarios();
 
 }

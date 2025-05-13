@@ -25,6 +25,8 @@ public class CodigoRegistroControlador {
 
     @FXML
     void cancelar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtCodigoVerificacion, getClass());
+        Sesion.getInstancia().getUsuario().setCodigoEnviado("");
 
     }
 

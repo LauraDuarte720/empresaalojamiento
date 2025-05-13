@@ -30,6 +30,12 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
     }
 
     @Override
+    public Usuario buscarUsuarioCorreo(String correo) {
+        return usuarios.stream().filter(c -> correo.equalsIgnoreCase(c.getEmail())).findFirst().orElse(null);
+    }
+
+
+    @Override
     public List<Usuario> listarUsuarios() {
         return usuarios;
     }

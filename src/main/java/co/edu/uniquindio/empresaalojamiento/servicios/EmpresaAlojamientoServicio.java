@@ -55,8 +55,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
-
+    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
+        return usuarioServicio.registarUsuario(cedula, nombre, apellido, telefono, email, contrasena);
     }
 
     @Override
@@ -206,7 +206,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
-    public void enviarCodigo(String cedula) throws Exception {
+    public void enviarCodigo(String cedula){
         usuarioServicio.enviarCodigo(cedula);
     }
 
@@ -256,6 +256,10 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
             throw new Exception("Usuario o contraseña incorrecta");
         }
         return usuarioEncontrado;
+    }
+
+    public Usuario buscarUsuarioCorreo(String correo){
+        return usuarioServicio.buscarUsuarioCorreo(correo);
     }
 
 
