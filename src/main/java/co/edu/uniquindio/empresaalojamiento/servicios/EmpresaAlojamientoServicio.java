@@ -4,6 +4,8 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
+import co.edu.uniquindio.empresaalojamiento.repositorios.AlojamientoRepositorio;
+import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 
@@ -13,9 +15,16 @@ import java.util.List;
 public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     private final UsuarioServicio usuarioServicio;
+    private final AlojamientoRepositorio alojamientoRepositorio;
+    private final AlojamientoServicio alojamientoServicio;
+    private final UsuarioRepositorio usuarioRepositorio;
+
 
     public EmpresaAlojamientoServicio() {
-        this.usuarioServicio = new UsuarioServicio();
+        this.usuarioRepositorio = new UsuarioRepositorio();
+        this.alojamientoRepositorio = new AlojamientoRepositorio();
+        this.alojamientoServicio = new AlojamientoServicio(alojamientoRepositorio);
+        this.usuarioServicio = new UsuarioServicio(usuarioRepositorio);
     }
 
     @Override

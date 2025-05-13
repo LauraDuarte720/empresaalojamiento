@@ -3,6 +3,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
+import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IUsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import lombok.Getter;
@@ -13,12 +14,13 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class UsuarioServicio {
+public class UsuarioServicio  implements IUsuarioRepositorio {
 
     private IUsuarioRepositorio usuarioRepositorio;
 
-    public UsuarioServicio() {
-        this.usuarioRepositorio = new IUsuarioRepositorio() {
+    public UsuarioServicio(IUsuarioRepositorio usuarioRepositorio) {
+        this.usuarioRepositorio = usuarioRepositorio;
+    }
             @Override
             public void agregarUsuario(Usuario usuario) {
 
@@ -38,8 +40,7 @@ public class UsuarioServicio {
             public List<Usuario> listarUsuarios() {
                 return List.of();
             }
-        };
-    }
+
 
     public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
