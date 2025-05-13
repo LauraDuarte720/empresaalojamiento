@@ -3,6 +3,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Reserva;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
@@ -36,13 +37,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         this.alojamientoRepositorio = new AlojamientoRepositorio();
         this.alojamientoServicio = new AlojamientoServicio(alojamientoRepositorio);
 
+
     }
 
     @Override
     public void registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
 
     }
-
     @Override
     public void eliminarAlojamiento(String idAlojamiento) throws Exception {
 
@@ -54,7 +55,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
+    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
+        return usuarioServicio.registrarUsuario(cedula, nombre, apellido, telefono, email, contrasena);
 
     }
 
@@ -199,5 +201,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
                 .filter(a -> a.getCiudad().equals(ciudad))
                 .toList();
         return ordenarAlojamientosPopulares(alojamientosCiudad);
+    }
+
+    public void activarUsuario(String cedula, String codigo) throws Exception{
+        usuarioServicio.activarUsuario(cedula, codigo);
+    }
+
+    public void enviarCodigo(String cedula) throws Exception {
+        usuarioServicio.enviarCodigo(cedula);
     }
 }

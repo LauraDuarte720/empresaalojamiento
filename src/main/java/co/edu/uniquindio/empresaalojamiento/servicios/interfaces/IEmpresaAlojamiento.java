@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios.interfaces;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 
@@ -18,8 +19,8 @@ public interface IEmpresaAlojamiento {
     public void actualizarAlojamiento(String idActualizar, TipoAlojamiento tipoAlojamiento, String nombre, String descripcion,
                                       String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception;
 
-    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono,
-                                 String email, String contrasena) throws Exception;
+    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono,
+                                    String email, String contrasena) throws Exception;
 
     public void eliminarUsuario(String cedula) throws Exception;
 

@@ -2,12 +2,13 @@ package co.edu.uniquindio.empresaalojamiento.modelo.entidades;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Builder
 
 public class Usuario {
     private String cedula;
@@ -19,4 +20,5 @@ public class Usuario {
     private Billetera billetera;
     private Rol rol;
     private Boolean activo;
+    private String codigoEnviado;
 }

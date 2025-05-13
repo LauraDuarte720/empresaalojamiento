@@ -42,7 +42,7 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
             }
 
 
-    public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
+    public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
         if (cedula == null || cedula.isEmpty()) throw new Exception("La cedula es obligatoria");
         if (nombre == null || nombre.isEmpty()) throw new Exception("El nombre es obligatorio ");
@@ -63,7 +63,17 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
                     "Solo permite letras, números y los símbolos");
 
         Billetera billetera = new Billetera(0, UUID.randomUUID().toString());
-        Usuario usuario = new Usuario(cedula, nombre, apellido, telefono, email, contrasena, billetera, Rol.CLIENTE, false);
+        Usuario usuario = Usuario.builder().
+                cedula(cedula).
+                nombre(nombre).
+                apellido(apellido).
+                telefono(telefono).
+                email(email).
+                contrasena(contrasena).
+                billetera(billetera).
+                rol(Rol.CLIENTE).
+                activo(false).
+                build();
 
         usuarioRepositorio.agregarUsuario(usuario);
         return usuario;
@@ -120,14 +130,21 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void activarUsuario(String cedula, String codigoIngresado) throws Exception {
+    public void enviarCodigo(String cedula) throws Exception {
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
         Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
-        if (!codigoIngresado.equals(codigoGenerado)) {
+        usuarioActivar.setCodigoEnviado(codigoGenerado);
+    }
+
+    public void activarUsuario(String cedula, String codigoIngresado) throws Exception {
+        Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
+        if (!codigoIngresado.equals(usuarioActivar.getCodigoEnviado())) {
             throw new Exception("El codigo es incorrecto");
         }
         usuarioActivar.setActivo(true);
     }
+
+
 
 }
