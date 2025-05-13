@@ -153,7 +153,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ((double) diasOcupados / diasTotales) * 100;
     }
 
-    public double obtenerGananciasTotales(int ano, String idAlojamiento){
+    public double obtenerGananciasTotalesAno(int ano, String idAlojamiento){
         LocalDate inicioAno = LocalDate.of(ano, 1, 1);
         LocalDate finAno = LocalDate.of(ano, 12, 31);
         double gananciasTotales = 0;
@@ -200,4 +200,38 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
                 .toList();
         return ordenarAlojamientosPopulares(alojamientosCiudad);
     }
+
+    public double obtenerGananciasTotales(String idAlojamiento) {
+        double gananciasTotales = 0;
+
+        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+
+        for (Reserva reserva : reservasAlojamiento) {
+            if (reserva.getFactura() != null) {
+                gananciasTotales += reserva.getFactura().getTotal();
+            }
+        }
+
+        return gananciasTotales;
+    }
+
+    public List<Alojamiento> ordenarAlojamientosMasRentable(List<Alojamiento> alojamientos) {
+        alojamientos.sort((a1, a2) -> {
+            double ganancias1 = obtenerGananciasTotales(a1.getId());
+            double ganancias2 = obtenerGananciasTotales(a2.getId());
+            return Double.compare(ganancias2, ganancias1); // orden descendente
+        });
+        return alojamientos;
+    }
+
+    public List<Alojamiento> ordenarAlojamientosMasRentableTipo(TipoAlojamiento tipo){
+        List<Alojamiento> alojamientosTipo = alojamientoServicio.obtenerAlojamientos().stream()
+                .filter(a -> a.getTipoAlojamiento().equals(tipo))
+                .collect(Collectors.toList());
+
+        return ordenarAlojamientosMasRentable(alojamientosTipo);
+    }
+
+
+
 }
