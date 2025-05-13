@@ -6,11 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String cedula;
     private String nombre;
     private String apellido;
