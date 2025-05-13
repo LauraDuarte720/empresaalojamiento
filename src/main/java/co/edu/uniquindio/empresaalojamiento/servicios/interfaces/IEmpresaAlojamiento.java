@@ -1,10 +1,12 @@
 package co.edu.uniquindio.empresaalojamiento.servicios.interfaces;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface IEmpresaAlojamiento {
     public void registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion,
@@ -45,4 +47,6 @@ public interface IEmpresaAlojamiento {
     public void cancelarReserva(String idReserva) throws Exception;
 
     public void recargarBilletera(String cedula, double monto) throws Exception;
+
+    public List<Alojamiento> obtenerAlojamientosAleatorios() throws Exception;
 }
