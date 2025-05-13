@@ -11,8 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="432.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.ActualizarUsuarioControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="432.0" spacing="10.0" style="-fx-padding: 20; -fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.ActualizarUsuarioControlador">
    <children>
+      <HBox prefHeight="26.0" prefWidth="94.0">
+         <children>
+            <Button fx:id="regresar" mnemonicParsing="false" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
       <Label text="Actualizar Datos">
          <font>
             <Font size="25.0" />
@@ -31,7 +40,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="txtCedulaAct" maxWidth="-Infinity" prefHeight="26.0" prefWidth="159.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+            <TextField fx:id="txtCedulaAct" maxWidth="-Infinity" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
             <TextField fx:id="txtNombreAct" maxWidth="-Infinity" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtApellidoAct" maxWidth="-Infinity" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtTelefonoAct" maxWidth="-Infinity" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />

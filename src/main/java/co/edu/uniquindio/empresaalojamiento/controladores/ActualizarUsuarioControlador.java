@@ -69,4 +69,9 @@ public class ActualizarUsuarioControlador {
         }
     }
 
+    @FXML
+    void regresar() {
+
+    }
+
 }

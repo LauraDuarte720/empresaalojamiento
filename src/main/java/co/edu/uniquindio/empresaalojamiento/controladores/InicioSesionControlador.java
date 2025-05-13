@@ -54,13 +54,13 @@ public class InicioSesionControlador {
     }
 
     @FXML
-    void IrInicioSesion(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("IniciarSesion.fxml", "Iniciar Sesion", imgALojamiento1, getClass());
+    void irIniciarSesion(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Iniciar Sesion", imgALojamiento1, getClass());
     }
 
     @FXML
-    void irRegistro(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("RegistrarUsuario.fxml", "Registrar Usuario", imgALojamiento1, getClass());
+    void irRegistrarse(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/registrarUsuario.fxml", "Registrar Usuario", imgALojamiento1, getClass());
 
     }
 
