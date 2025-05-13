@@ -19,7 +19,7 @@ public interface IEmpresaAlojamiento {
                                       String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception;
 
     public void registrarUsuario(String cedula, String nombre, String apellido, String telefono,
-                                 String email, String contrasena, Billetera billetera, Rol rol) throws Exception;
+                                 String email, String contrasena) throws Exception;
 
     public void eliminarUsuario(String cedula) throws Exception;
 

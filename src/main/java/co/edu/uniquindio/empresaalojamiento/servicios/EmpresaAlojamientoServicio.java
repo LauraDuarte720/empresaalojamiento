@@ -43,7 +43,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena, Billetera billetera, Rol rol) throws Exception {
+    public void registrarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
     }
 
