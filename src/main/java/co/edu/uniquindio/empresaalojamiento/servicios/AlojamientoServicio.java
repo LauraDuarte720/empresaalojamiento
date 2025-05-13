@@ -72,6 +72,10 @@ public class AlojamientoServicio {
         return FiltroDinamico.filtrar(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax, alojamientoRepositorio.obtenerAlojamientos());
     }
 
+    public List<Alojamiento> obtenerAlojamientos(){
+        return alojamientoRepositorio.obtenerAlojamientos();
+    }
+
 
 }
 
