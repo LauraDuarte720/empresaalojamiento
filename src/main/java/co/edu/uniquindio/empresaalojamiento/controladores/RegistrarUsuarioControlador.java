@@ -61,6 +61,11 @@ public class RegistrarUsuarioControlador {
         }
     }
 
+    @FXML
+    void regresar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtTelefono, getClass());
+    }
+
 }
 
 
