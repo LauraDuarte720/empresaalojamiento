@@ -30,9 +30,9 @@ public class CambioContrasenaControlador {
 
     @FXML
     void enviarCodigo(ActionEvent event) {
-        empresaAlojamientoServicio.enviarCodigo(txtCorreo.getText());
         txtCodigo.setVisible(true);
         lblCodigo.setVisible(true);
+        empresaAlojamientoServicio.enviarCodigo(txtCorreo.getText());
     }
 
     @FXML

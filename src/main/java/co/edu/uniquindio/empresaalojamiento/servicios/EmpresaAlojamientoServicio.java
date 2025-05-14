@@ -304,7 +304,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.cambiarCodigoEnviado(cedula, codigoEnviado);
     }
 
-    public void cambiarContrasena(Usuario usuario, String contrasena) throws Exception{
-        usuarioServicio.cambiarContrasena(usuario, contrasena);
+    public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception{
+        usuarioServicio.cambiarContrasena(usuario, contrasena, contrasenaConfirmar);
     }
 }

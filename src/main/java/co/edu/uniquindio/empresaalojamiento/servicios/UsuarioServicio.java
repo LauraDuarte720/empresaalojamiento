@@ -3,7 +3,6 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
-import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IUsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class UsuarioServicio{
+public class UsuarioServicio {
 
     private IUsuarioRepositorio usuarioRepositorio;
 
@@ -115,7 +114,7 @@ public class UsuarioServicio{
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void enviarCodigo(String correo){
+    public void enviarCodigo(String correo) {
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuarioCorreo(correo);
@@ -131,17 +130,17 @@ public class UsuarioServicio{
         usuarioRepositorio.activarUsuario(usuarioActivar);
     }
 
-    public List<Usuario> obtenerUsuarios(){
+    public List<Usuario> obtenerUsuarios() {
         return usuarioRepositorio.listarUsuarios();
     }
 
-    public Usuario buscarUsuarioCorreo(String correo){
+    public Usuario buscarUsuarioCorreo(String correo) {
         return usuarioRepositorio.buscarUsuarioCorreo(correo);
     }
 
     public void validarCambioContrasena(String codigoIngresado, String correo) throws Exception {
         Usuario usuario = buscarUsuarioCorreo(correo);
-        if(!usuario.getCodigoEnviado().equals(codigoIngresado)){
+        if (!usuario.getCodigoEnviado().equals(codigoIngresado)) {
             throw new Exception("El código es incorrecto");
         }
     }
@@ -151,7 +150,7 @@ public class UsuarioServicio{
         usuarioRepositorio.cambiarCodigoEnviado(usuario, codigoEnviado);
     }
 
-    public void cambiarContrasena(Usuario usuario, String contrasena) throws Exception {
+    public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception {
         if (!contrasena.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._\\-])[A-Za-z\\d@$!%*?&._\\-]{8,}$"))
             throw new Exception("La contrasena debe tener:\n" +
                     "Al menos una letra minúscula\n" +
@@ -160,7 +159,10 @@ public class UsuarioServicio{
                     "Al menos un carácter especial\n" +
                     "Mínimo 8 caracteres\n" +
                     "Solo permite letras, números y los símbolos");
-        usuarioRepositorio.cambiarContrasena(usuario, contrasena);
+        if (contrasena.equals(contrasenaConfirmar)) {
+            usuarioRepositorio.cambiarContrasena(usuario, contrasena);
+        }
+
     }
 
 }

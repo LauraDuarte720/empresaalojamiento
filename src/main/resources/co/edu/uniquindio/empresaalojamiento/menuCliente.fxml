@@ -18,35 +18,27 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="463.0" prefWidth="247.0" spacing="25.0" style="-fx-background-color: #8C522D;">
                <children>
-                  <Label style="-fx-font-family: Vollkorn;" text="Menu Cliente" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="44.0" prefWidth="193.0" style="-fx-font-family: Vollkorn; -fx-border-color: #D3B49F; -fx-padding: 5;" text="Menu Cliente" textFill="WHITE">
                      <font>
-                        <Font size="19.0" />
+                        <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver alojamientos" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#verAlojamientos" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver alojamientos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver reservas" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#verReservas" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver reservas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Recargar Billetera" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#recargarBilletera" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Recargar Billetera" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
                   <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Gestionar datos de la cuenta" textFill="WHITE">
                     <items>
-                      <MenuItem mnemonicParsing="false">
-                           <graphic>
-                              <Button mnemonicParsing="false" text="Actualizar Datos " />
-                           </graphic>
-                        </MenuItem>
-                      <MenuItem mnemonicParsing="false">
-                           <graphic>
-                              <Button mnemonicParsing="false" text="Eliminiar Cuenta " />
-                           </graphic>
-                        </MenuItem>
+                      <MenuItem mnemonicParsing="false" onAction="#actualizaDatos" text="Actualizar datos" />
+                      <MenuItem mnemonicParsing="false" onAction="#eliminarCuenta" text="Eliminar datos" />
                     </items>
                      <font>
                         <Font name="System Bold" size="13.0" />

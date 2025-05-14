@@ -13,12 +13,15 @@ public class NuevaContrasenaControlador {
     @FXML
     private PasswordField txtNuevaContrasena;
 
+    @FXML
+    private PasswordField txtNuevaContrasenaCambiar;
+
     private final EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
 
     @FXML
-    void cambiarConstrasena(ActionEvent event) {
+    void cambiarContrasena(ActionEvent event) {
         try{
-            empresaAlojamientoServicio.cambiarContrasena(Sesion.getInstancia().getUsuario(), txtNuevaContrasena.getText());
+            empresaAlojamientoServicio.cambiarContrasena(Sesion.getInstancia().getUsuario(), txtNuevaContrasena.getText(), txtNuevaContrasenaCambiar.getText());
             ControladorPrincipal.crearAlerta("Se ha cambiado la contraseña correctamente", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtNuevaContrasena, getClass());
         }
