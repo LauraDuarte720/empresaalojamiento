@@ -9,6 +9,7 @@ public class ItemAlojamientoControlador {
     public Label tituloAlojamiento;
 
     public void reservar(ActionEvent actionEvent) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/reservarAlojamiento.fxml", "Reservar Alojamiento", tituloAlojamiento, getClass());
     }
 
     public void setAlojamiento(Alojamiento a) {

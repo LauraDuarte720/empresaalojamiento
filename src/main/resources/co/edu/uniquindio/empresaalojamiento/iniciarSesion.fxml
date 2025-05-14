@@ -17,7 +17,7 @@
    <children>
       <HBox>
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#regresar" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

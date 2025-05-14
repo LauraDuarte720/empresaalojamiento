@@ -49,5 +49,10 @@ public class IniciarSesionControlador {
 
     }
 
+    @FXML
+    void regresar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtContrasenaSesion, getClass());
+    }
+
 }
 
