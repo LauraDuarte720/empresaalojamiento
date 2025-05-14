@@ -1,13 +1,11 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Sesion;
+import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
@@ -27,7 +25,7 @@ public class IniciarSesionControlador {
 
     @FXML
     void cambiarContrasena(ActionEvent event) {
-
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/cambiarContrasenaCorreo.fxml", "Usuario", txtCorreoIniciarSesion, getClass());
     }
 
     @FXML
@@ -41,10 +39,10 @@ public class IniciarSesionControlador {
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
             Usuario usuario = empresaAlojamientoServicio.buscarUsuarioCorreo(txtCorreoIniciarSesion.getText());
             Sesion.getInstancia().setUsuario(usuario);
-            empresaAlojamientoServicio.enviarCodigo(usuario.getCedula());
+            empresaAlojamientoServicio.enviarCodigo(usuario.getEmail());
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/codigoRegistro.fxml", "Codigo registro", txtCorreoIniciarSesion, getClass());
-
         }
+
         catch(Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }

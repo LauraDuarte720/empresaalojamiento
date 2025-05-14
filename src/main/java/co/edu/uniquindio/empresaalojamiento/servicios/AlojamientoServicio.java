@@ -56,15 +56,8 @@ public class AlojamientoServicio {
         if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
         if (capacidadMaximaHuespede <= 0) throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
 
-        alojamientoActualizar.setNombre(nombre);
-        alojamientoActualizar.setDescripcion(descripcion);
-        alojamientoActualizar.setRuta(ruta);
-        alojamientoActualizar.setPrecioPorNoche(precioPorNoche);
-        alojamientoActualizar.setCapacidadMaximaHuespedes(capacidadMaximaHuespede);
-        alojamientoActualizar.setPiscina(piscina);
-        alojamientoActualizar.setWifi(wifi);
-        alojamientoActualizar.setDesayuno(desayuno);
-        alojamientoActualizar.setCostoAdicional(costoAdicional);
+        alojamientoRepositorio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina,
+                wifi, desayuno, costoAdicional);
 
     }
 

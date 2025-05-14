@@ -53,6 +53,34 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         }
     }
 
+    @Override
+    public void activarUsuario(Usuario usuario) {
+        usuario.setActivo(true);
+        guardarDatos(usuarios);
+    }
+
+    @Override
+    public void cambiarContrasena(Usuario usuario, String contrasena) {
+        usuario.setContrasena(contrasena);
+        guardarDatos(usuarios);
+    }
+
+    @Override
+    public void cambiarCodigoEnviado(Usuario usuario, String codigoEnviado) {
+        usuario.setCodigoEnviado(codigoEnviado);
+        guardarDatos(usuarios);
+    }
+
+    public void actualizarUsuario(String cedulaAntiguo,  String cedulaNueva, String nombre, String apellido, String telefono, String email){
+        Usuario usuario = buscarUsuario(cedulaAntiguo);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setTelefono(telefono);
+        usuario.setEmail(email);
+        usuario.setCedula(cedulaNueva);
+        guardarDatos(usuarios);
+    }
+
 
     public List<Usuario> leerDatos() {
         try {
@@ -64,11 +92,6 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
             System.err.println("Error cargando pacientes: " + e.getMessage());
         }
         return new ArrayList<>();
-    }
-
-    public void activarUsuario(Usuario usuario){
-        usuario.setActivo(true);
-        guardarDatos(usuarios);
     }
 
 }

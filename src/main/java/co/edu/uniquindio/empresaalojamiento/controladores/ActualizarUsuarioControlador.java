@@ -1,6 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Sesion;
+import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import javafx.event.ActionEvent;

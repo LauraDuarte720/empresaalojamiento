@@ -1,5 +1,6 @@
-package co.edu.uniquindio.empresaalojamiento.modelo.entidades;
+package co.edu.uniquindio.empresaalojamiento.singleton;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 

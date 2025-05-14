@@ -46,4 +46,18 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
                 );
     }
 
+    public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional){
+        Alojamiento alojamientoActualizar = buscarAlojamiento(idAlojamiento);
+        alojamientoActualizar.setNombre(nombre);
+        alojamientoActualizar.setDescripcion(descripcion);
+        alojamientoActualizar.setRuta(ruta);
+        alojamientoActualizar.setPrecioPorNoche(precioPorNoche);
+        alojamientoActualizar.setCapacidadMaximaHuespedes(capacidadMaximaHuespede);
+        alojamientoActualizar.setPiscina(piscina);
+        alojamientoActualizar.setWifi(wifi);
+        alojamientoActualizar.setDesayuno(desayuno);
+        alojamientoActualizar.setCostoAdicional(costoAdicional);
+    }
+
 }

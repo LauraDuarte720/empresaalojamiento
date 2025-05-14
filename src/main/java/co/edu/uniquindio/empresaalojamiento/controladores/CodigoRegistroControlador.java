@@ -1,6 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Sesion;
+import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
+import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,10 +12,12 @@ public class CodigoRegistroControlador {
     @FXML
     private TextField txtCodigoVerificacion;
 
+    private final EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
+
     @FXML
     void aceptar(ActionEvent event){
         try {
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().activarUsuario(Sesion.getInstancia().getUsuario().getCedula(), txtCodigoVerificacion.getText());
+            empresaAlojamientoServicio.activarUsuario(Sesion.getInstancia().getUsuario().getCedula(), txtCodigoVerificacion.getText());
             ControladorPrincipal.crearAlerta("Se ha registrado el usuario correctamente", Alert.AlertType.INFORMATION);
             Sesion.getInstancia().setUsuario(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtCodigoVerificacion, getClass());
@@ -26,8 +29,7 @@ public class CodigoRegistroControlador {
     @FXML
     void cancelar(ActionEvent event) {
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", txtCodigoVerificacion, getClass());
-        Sesion.getInstancia().getUsuario().setCodigoEnviado("");
-
+        empresaAlojamientoServicio.cambiarCodigoEnviado(Sesion.getInstancia().getUsuario().getCedula(), "");
     }
 
 }
