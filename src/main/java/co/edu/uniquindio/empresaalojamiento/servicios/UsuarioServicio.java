@@ -121,6 +121,7 @@ public class UsuarioServicio{
 
     public void enviarCodigo(String cedula){
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
+        System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
         Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
         usuarioActivar.setCodigoEnviado(codigoGenerado);
@@ -131,7 +132,7 @@ public class UsuarioServicio{
         if (!codigoIngresado.equals(usuarioActivar.getCodigoEnviado())) {
             throw new Exception("El codigo es incorrecto");
         }
-        usuarioActivar.setActivo(true);
+        usuarioRepositorio.activarUsuario(usuarioActivar);
     }
 
     public List<Usuario> obtenerUsuarios(){

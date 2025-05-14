@@ -15,4 +15,5 @@ public interface IUsuarioRepositorio {
 
     public List<Usuario> listarUsuarios();
 
+    void activarUsuario(Usuario usuarioActivar);
 }
