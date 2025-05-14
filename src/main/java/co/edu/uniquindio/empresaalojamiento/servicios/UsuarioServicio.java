@@ -14,33 +14,13 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class UsuarioServicio  implements IUsuarioRepositorio {
+public class UsuarioServicio{
 
     private IUsuarioRepositorio usuarioRepositorio;
 
     public UsuarioServicio(IUsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
-            @Override
-            public void agregarUsuario(Usuario usuario) {
-
-            }
-
-            @Override
-            public void eliminarUsuario(Usuario usuario) {
-
-            }
-
-            @Override
-            public Usuario buscarUsuario(String id) {
-                return null;
-            }
-
-            @Override
-            public List<Usuario> listarUsuarios() {
-                return List.of();
-            }
-
 
     public Usuario registarUsuario(String cedula, String nombre, String apellido, String telefono, String email, String contrasena) throws Exception {
 
@@ -62,8 +42,30 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
                     "Mínimo 8 caracteres\n" +
                     "Solo permite letras, números y los símbolos");
 
+        for (Usuario usuario : usuarioRepositorio.listarUsuarios()) {
+            if (usuario.getCedula().equals(cedula)) {
+                throw new Exception("Ya existe un usuario con esa cédula");
+            }
+
+            if (usuario.getEmail().equals(email)) {
+                throw new Exception("Ya existe un usuario con ese correo");
+            }
+
+
+        }
+
         Billetera billetera = new Billetera(0, UUID.randomUUID().toString());
-        Usuario usuario = new Usuario(cedula, nombre, apellido, telefono, email, contrasena, billetera, Rol.CLIENTE, false);
+        Usuario usuario = Usuario.builder().
+                cedula(cedula).
+                nombre(nombre).
+                apellido(apellido).
+                telefono(telefono).
+                email(email).
+                contrasena(contrasena).
+                billetera(billetera).
+                rol(Rol.CLIENTE).
+                activo(false).
+                build();
 
         usuarioRepositorio.agregarUsuario(usuario);
         return usuario;
@@ -85,9 +87,6 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
             if (usuario.getCedula().equals(cedulaNueva) && usuario != usuarioActualizar) {
                 throw new Exception("La cedula ya existe en la lista clientes");
             }
-        }
-        if (!usuarioActualizar.getActivo()) {
-            throw new Exception("El usuario esta inactivo");
         }
 
         usuarioActualizar.setCedula(cedulaNueva);
@@ -120,14 +119,29 @@ public class UsuarioServicio  implements IUsuarioRepositorio {
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void activarUsuario(String cedula, String codigoIngresado) throws Exception {
+    public void enviarCodigo(String cedula){
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
+        System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
         Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
-        if (!codigoIngresado.equals(codigoGenerado)) {
+        usuarioActivar.setCodigoEnviado(codigoGenerado);
+    }
+
+    public void activarUsuario(String cedula, String codigoIngresado) throws Exception {
+        Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
+        if (!codigoIngresado.equals(usuarioActivar.getCodigoEnviado())) {
             throw new Exception("El codigo es incorrecto");
         }
-        usuarioActivar.setActivo(true);
+        usuarioRepositorio.activarUsuario(usuarioActivar);
     }
+
+    public List<Usuario> obtenerUsuarios(){
+        return usuarioRepositorio.listarUsuarios();
+    }
+
+    public Usuario buscarUsuarioCorreo(String correo){
+        return usuarioRepositorio.buscarUsuarioCorreo(correo);
+    }
+
 
 }

@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="362.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CodigoRegistroControlador" >
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="362.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CodigoRegistroControlador">
     <children>
         <Label text="Ingrese el código de verificación">
             <font>
@@ -29,8 +30,14 @@
                 <TextField fx:id="txtCodigoVerificacion" maxWidth="-Infinity" prefHeight="26.0" prefWidth="182.0" style="-fx-background-color: white;" GridPane.hgrow="NEVER" />
             </children>
         </GridPane>
-        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="393.0" spacing="20.0">
+        <HBox prefHeight="38.0" prefWidth="393.0" spacing="20.0">
             <children>
+            <Button mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #421404;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Pane prefHeight="25.0" prefWidth="40.0" />
                 <Button mnemonicParsing="false" onAction="#aceptar" style="-fx-background-color: #421404;" text="Aceptar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
