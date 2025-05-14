@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="336.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.IniciarSesionControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="336.0" spacing="40.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.IniciarSesionControlador">
    <children>
-      <Label text="Iniciar Sesion" textFill="#421404">
+      <Label style="-fx-border-color: #421404; -fx-padding: 5;" text="Iniciar Sesion" textFill="#421404">
          <font>
             <Font size="25.0" />
          </font>
@@ -29,11 +30,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="txtCorreoIniciarSesion" style="-fx-background-color: white;" GridPane.columnIndex="1" />
-            <TextField fx:id="txtContrasenaSesion" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <TextField fx:id="txtCorreoIniciarSesion" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" />
+            <TextField fx:id="txtContrasenaSesion" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <ImageView fx:id="imgIconoCorreo" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoCorreo" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Downloads/correo-electronico.png" />
+                     </image></ImageView>
                   <Label style="-fx-font-family: Vollkorn;" text="Correo ">
                      <font>
                         <Font size="18.0" />
@@ -41,9 +45,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
                <children>
-                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Downloads/contrasena-2.png" />
+                     </image></ImageView>
                   <Label text="Contrasena">
                      <font>
                         <Font size="18.0" />
