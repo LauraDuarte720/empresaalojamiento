@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,12 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="397.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="397.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Recargar Billetera">
+      <Label alignment="CENTER" prefHeight="41.0" prefWidth="257.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Recargar Billetera" textFill="#421404">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <GridPane prefHeight="30.0" prefWidth="343.0">
@@ -30,7 +30,10 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/billete-de-banco.png" />
+                     </image></ImageView>
                   <Label text="Monto ">
                      <font>
                         <Font size="16.0" />
@@ -38,7 +41,7 @@
                   </Label>
                </children>
             </HBox>
-            <TextField fx:id="txtMontoRecargar" maxWidth="-Infinity" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+            <TextField fx:id="txtMontoRecargar" maxWidth="-Infinity" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Button mnemonicParsing="false" onAction="#recargarBilletera" style="-fx-background-color: #421404;" text="Recargar" textFill="WHITE">

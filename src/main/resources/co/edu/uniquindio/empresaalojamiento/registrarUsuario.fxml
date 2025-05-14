@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,17 +14,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="409.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.RegistrarUsuarioControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="409.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.RegistrarUsuarioControlador">
    <children>
-      <Label style="-fx-font-family: Vollkorn;" text="Registrar Usuario" textFill="#421404">
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#regresar" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="243.0" style="-fx-font-family: Vollkorn; -fx-border-color: #421404; -fx-padding: 5;" text="Registrar Usuario" textFill="#421404">
          <font>
-            <Font name="Verdana" size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets />
          </VBox.margin>
       </Label>
-      <GridPane alignment="CENTER" prefHeight="180.0" prefWidth="205.0">
+      <GridPane alignment="CENTER" maxWidth="-Infinity" prefHeight="182.0" prefWidth="341.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="189.0" minWidth="10.0" prefWidth="144.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="185.0" />
@@ -37,14 +47,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="txtCedula" prefWidth="147.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
-            <TextField fx:id="txtNombre" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtApellido" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtTelefono" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtCorreo" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCedula" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtApellido" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtTelefono" prefWidth="182.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtCorreo" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <ImageView fx:id="imgIconoCedula" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoCedula" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/licencia-de-conducir.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" style="-fx-font-family: Vollkorn;" text="Cedula">
                      <font>
                         <Font size="17.0" />
@@ -54,7 +67,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="imgIconoNombre" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoNombre" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/usuario.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" text="Nombre">
                      <font>
                         <Font size="17.0" />
@@ -64,7 +80,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="imgIconoApellido" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoApellido" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/usuario-2.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" text="Apellido">
                      <font>
                         <Font size="17.0" />
@@ -74,7 +93,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="3">
                <children>
-                  <ImageView fx:id="imgIconoTelefono" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoTelefono" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/llamada-telefonica.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" text="Telefono">
                      <font>
                         <Font size="17.0" />
@@ -84,7 +106,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="4">
                <children>
-                  <ImageView fx:id="imgIconoCorreo" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoCorreo" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/a.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" text="Correo">
                      <font>
                         <Font size="17.0" />
@@ -94,7 +119,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="5">
                <children>
-                  <ImageView fx:id="imgIconoContrasena" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgIconoContrasena" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Imagenes/contrasena-2.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" text="Contrasena">
                      <font>
                         <Font size="17.0" />
@@ -102,12 +130,12 @@
                   </Label>
                </children>
             </HBox>
-            <PasswordField fx:id="txtContrasena" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <PasswordField fx:id="txtContrasena" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" onAction="#registrarUsuario" style="-fx-background-color: #421404; -fx-font-family: vollkorn;" text="Registrarse" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#registrarUsuario" style="-fx-font-family: vollkorn; -fx-background-color: #421404;" text="Registrarse" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
-            <Font name=".PingFang UI Text SC" size="13.0" />
+            <Font name="System Bold" size="13.0" />
          </font></Button>
    </children>
    <padding>
