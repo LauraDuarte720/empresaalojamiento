@@ -15,5 +15,12 @@ public interface IUsuarioRepositorio {
 
     public List<Usuario> listarUsuarios();
 
-    void activarUsuario(Usuario usuarioActivar);
+    public void activarUsuario(Usuario usuarioActivar);
+
+    public void cambiarContrasena(Usuario usuario, String contrasena);
+
+    public void cambiarCodigoEnviado(Usuario usuario, String codigoEnviado);
+
+    public void actualizarUsuario(String cedulaAntiguo,  String cedulaNueva, String nombre, String apellido, String telefono, String email);
+
 }

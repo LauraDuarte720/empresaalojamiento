@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="480.0" spacing="40.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="221.0" prefWidth="480.0" spacing="40.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CambioContrasenaControlador">
    <children>
       <Label text="Ingrese su nueva contrasena">
          <font>
-            <Font size="21.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
       <GridPane prefHeight="87.0" prefWidth="393.0">
@@ -28,15 +28,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Nueva contrasena" />
-            <Label prefHeight="29.0" prefWidth="211.0" text="Ingrese de nuevo su nueva contrasena" GridPane.rowIndex="1" />
+            <Label text="Nueva contraseña" />
+            <Label prefHeight="29.0" prefWidth="211.0" text="Ingrese de nuevo su nueva contraseña" GridPane.rowIndex="1" />
             <PasswordField fx:id="txtNuevaContrasena" GridPane.columnIndex="1" />
-            <PasswordField fx:id="txtNueaContrasena" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="txtNuevaContrasena" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="393.0" spacing="20.0">
          <children>
-            <Button fx:id="cambiarContrasena" mnemonicParsing="false" text="Cambiar Contrasena" />
+            <Button mnemonicParsing="false" onAction="#cambiarConstrasena" style="-fx-background-color: #421404;" text="Cambiar Contrasena" textFill="WHITE" />
          </children>
       </HBox>
    </children>

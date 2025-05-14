@@ -89,11 +89,7 @@ public class UsuarioServicio{
             }
         }
 
-        usuarioActualizar.setCedula(cedulaNueva);
-        usuarioActualizar.setNombre(nombre);
-        usuarioActualizar.setApellido(apellido);
-        usuarioActualizar.setTelefono(telefono);
-        usuarioActualizar.setEmail(email);
+        usuarioRepositorio.actualizarUsuario(cedulaAntigua, cedulaNueva, nombre, apellido, telefono, email);
 
     }
 
@@ -119,10 +115,10 @@ public class UsuarioServicio{
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void enviarCodigo(String cedula){
+    public void enviarCodigo(String correo){
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         System.out.println(codigoGenerado);
-        Usuario usuarioActivar = usuarioRepositorio.buscarUsuario(cedula);
+        Usuario usuarioActivar = usuarioRepositorio.buscarUsuarioCorreo(correo);
         Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
         usuarioActivar.setCodigoEnviado(codigoGenerado);
     }
@@ -143,5 +139,28 @@ public class UsuarioServicio{
         return usuarioRepositorio.buscarUsuarioCorreo(correo);
     }
 
+    public void validarCambioContrasena(String codigoIngresado, String correo) throws Exception {
+        Usuario usuario = buscarUsuarioCorreo(correo);
+        if(!usuario.getCodigoEnviado().equals(codigoIngresado)){
+            throw new Exception("El código es incorrecto");
+        }
+    }
+
+    public void cambiarCodigoEnviado(String cedula, String codigoEnviado) {
+        Usuario usuario = usuarioRepositorio.buscarUsuario(cedula);
+        usuarioRepositorio.cambiarCodigoEnviado(usuario, codigoEnviado);
+    }
+
+    public void cambiarContrasena(Usuario usuario, String contrasena) throws Exception {
+        if (!contrasena.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&._\\-])[A-Za-z\\d@$!%*?&._\\-]{8,}$"))
+            throw new Exception("La contrasena debe tener:\n" +
+                    "Al menos una letra minúscula\n" +
+                    "Al menos una letra mayúscula\n" +
+                    "Al menos un número\n" +
+                    "Al menos un carácter especial\n" +
+                    "Mínimo 8 caracteres\n" +
+                    "Solo permite letras, números y los símbolos");
+        usuarioRepositorio.cambiarContrasena(usuario, contrasena);
+    }
 
 }

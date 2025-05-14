@@ -1,7 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Sesion;
+import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +53,7 @@ public class RegistrarUsuarioControlador {
         try {
             Usuario usuario = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarUsuario(txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtCorreo.getText(), txtContrasena.getText());
             ControladorPrincipal.crearAlerta("Se ha registrado el usuario correctamente", Alert.AlertType.INFORMATION);
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().enviarCodigo(txtCedula.getText());
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().enviarCodigo(txtCorreo.getText());
             Sesion.getInstancia().setUsuario(usuario);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/codigoRegistro.fxml", "Inicio Sesion", txtTelefono, getClass());
         } catch (Exception e) {

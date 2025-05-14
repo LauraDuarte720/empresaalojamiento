@@ -240,8 +240,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
-    public void enviarCodigo(String cedula){
-        usuarioServicio.enviarCodigo(cedula);
+    public void enviarCodigo(String correo){
+        usuarioServicio.enviarCodigo(correo);
     }
 
     public double obtenerGananciasTotales(String idAlojamiento) {
@@ -296,5 +296,15 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return usuarioServicio.buscarUsuarioCorreo(correo);
     }
 
+    public void validarCambioContrasena(String codigoIngresado, String contrasena) throws Exception{
+        usuarioServicio.validarCambioContrasena(codigoIngresado, contrasena);
+    }
 
+    public void cambiarCodigoEnviado(String cedula, String codigoEnviado) {
+        usuarioServicio.cambiarCodigoEnviado(cedula, codigoEnviado);
+    }
+
+    public void cambiarContrasena(Usuario usuario, String contrasena) throws Exception{
+        usuarioServicio.cambiarContrasena(usuario, contrasena);
+    }
 }
