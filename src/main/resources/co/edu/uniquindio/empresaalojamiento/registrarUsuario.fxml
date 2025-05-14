@@ -56,7 +56,7 @@
                <children>
                   <ImageView fx:id="imgIconoCedula" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/licencia-de-conducir.png" />
+                        <Image url="@Imagenes/licencia-de-conducir.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" style="-fx-font-family: Vollkorn;" text="Cedula">
                      <font>
@@ -69,7 +69,7 @@
                <children>
                   <ImageView fx:id="imgIconoNombre" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/usuario.png" />
+                        <Image url="@Imagenes/usuario.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Nombre">
                      <font>
@@ -82,7 +82,7 @@
                <children>
                   <ImageView fx:id="imgIconoApellido" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/usuario-2.png" />
+                        <Image url="@Imagenes/usuario-2.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Apellido">
                      <font>
@@ -95,7 +95,7 @@
                <children>
                   <ImageView fx:id="imgIconoTelefono" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/llamada-telefonica.png" />
+                        <Image url="@Imagenes/llamada-telefonica.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Telefono">
                      <font>
@@ -108,7 +108,7 @@
                <children>
                   <ImageView fx:id="imgIconoCorreo" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/a.png" />
+                        <Image url="@Imagenes/a.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Correo">
                      <font>
@@ -121,7 +121,7 @@
                <children>
                   <ImageView fx:id="imgIconoContrasena" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/contrasena-2.png" />
+                        <Image url="@Imagenes/contrasena-2.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Contrasena">
                      <font>

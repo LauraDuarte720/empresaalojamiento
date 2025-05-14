@@ -33,7 +33,7 @@
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/contrasena.png" />
+                        <Image url="@Imagenes/contrasena.png" />
                      </image>
                   </ImageView>
                       <TextField fx:id="txtCodigoVerificacion" maxWidth="-Infinity" prefHeight="26.0" prefWidth="182.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" />

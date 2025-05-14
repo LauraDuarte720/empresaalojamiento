@@ -34,7 +34,7 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/cinco-estrellas.png" />
+                        <Image url="@Imagenes/cinco-estrellas.png" />
                      </image></ImageView>
                   <Label text="Calificacion ">
                      <font>
@@ -48,7 +48,7 @@
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/comentario.png" />
+                        <Image url="@Imagenes/comentario.png" />
                      </image></ImageView>
                   <Label text="Valoracion ">
                      <font>
