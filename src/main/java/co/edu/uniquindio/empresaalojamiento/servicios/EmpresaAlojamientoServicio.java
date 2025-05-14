@@ -1,15 +1,10 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Reserva;
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.*;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
-import co.edu.uniquindio.empresaalojamiento.repositorios.AlojamientoRepositorio;
-import co.edu.uniquindio.empresaalojamiento.repositorios.ReservaRepositorio;
-import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
+import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 
@@ -26,10 +21,23 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final UsuarioRepositorio usuarioRepositorio;
     private final ReservaServicio reservaServicio;
     private final ReservaRepositorio reservaRepositorio;
+    private final OfertaServicio ofertaServicio;
+    private final OfertaRepositorio ofertaRepositorio;
+    private final HabitacionServicio habitacionServicio;
+    private final HabitacionRepositorio habitacionRepositorio;
+    private final ResenaServicio resenaServicio;
+    private final ResenaRepositorio resenaRepositorio;
+
 
 
     public EmpresaAlojamientoServicio() {
 
+        this.resenaRepositorio = new ResenaRepositorio();
+        this.resenaServicio = new ResenaServicio(resenaRepositorio);
+        this.habitacionRepositorio = new HabitacionRepositorio();
+        this.habitacionServicio = new HabitacionServicio(habitacionRepositorio);
+        this.ofertaRepositorio = new OfertaRepositorio();
+        this.ofertaServicio = new OfertaServicio(ofertaRepositorio);
         this.reservaRepositorio = new ReservaRepositorio();
         this.reservaServicio = new ReservaServicio(reservaRepositorio);
         this.usuarioRepositorio = new UsuarioRepositorio();
@@ -40,18 +48,20 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
-
+    public Alojamiento registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
+                                     double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception {
+        return alojamientoServicio.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad);
     }
 
     @Override
     public void eliminarAlojamiento(String idAlojamiento) throws Exception {
-
+        alojamientoServicio.eliminarAlojamiento(idAlojamiento);
     }
 
     @Override
-    public void actualizarAlojamiento(String idActualizar, TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta, double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
-
+    public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
+        alojamientoServicio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional);
     }
 
     @Override
@@ -61,7 +71,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public void eliminarUsuario(String cedula) throws Exception {
-
+        usuarioServicio.eliminarUsuario(cedula);
     }
 
     @Override
@@ -70,53 +80,77 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void registrarOferta(LocalDate fechaInicio, LocalDate fechaFinal, double valorPorcentaje, String idAlojamiento) throws Exception {
-
+    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
+        return ofertaServicio.crearOferta(fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
     }
 
     @Override
     public void eliminarOferta(String idOferta) throws Exception {
-
+        ofertaServicio.eliminarOferta(idOferta);
     }
 
     @Override
-    public void actualizarOferta(String ofertaActualizar, LocalDate fechaInicio, LocalDate fechaFinal, double valorPorcentaje, String idAlojamiento) throws Exception {
-
+    public void actualizarOferta(String idOferta, LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
+        ofertaServicio.modificarOferta(idOferta, fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
     }
 
     @Override
-    public void registrarHabitacion(int numero, double precioPorNoche, int capacidadHuespedes, String rutaImagen, String descripcion, String idHotel) throws Exception {
-
+    public Habitacion registrarHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion, String idHotel, String rutaImagen) throws Exception {
+        return habitacionServicio.crearHabitacion(numeroHabitacion,precioPorNoche,capacidadHuespedes,descripcion,idHotel,rutaImagen);
     }
 
     @Override
-    public void eliminarHabitacion(int idHabitacion) throws Exception {
-
+    public void eliminarHabitacion(String idHabitacion) throws Exception {
+        habitacionServicio.eliminarHabitacion(idHabitacion);
     }
 
     @Override
-    public void actualizarHabitacion(String idHabitacionActualizar, int numero, double precioPorNoche, int capacidadHuespedes, String rutaImagen, String descripcion, String idHotel) throws Exception {
-
+    public Resena crearResena(String valoracion, Integer calificacion, String idUsuario, String idAlojamiento) throws Exception {
+        return resenaServicio.crearResena(valoracion, calificacion, idUsuario, idAlojamiento);
     }
 
     @Override
-    public void crearResena(String valoracion, int calificacion, String idUsuario, String idAlojamiento) throws Exception {
+    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception {
+        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario);
+        Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
+        if (alojamientoReserva.getCapacidadMaximaHuespedes()<numeroHuespedes){
+            throw new Exception("El numero de huespedes supera la capacidad maxima del alojamiento");
+        }
+        for (Reserva reservaAlojamiento : reservaServicio.obtenerReservasAlojamiento(idAlojamiento)) {
+            LocalDate existenteInicio = reservaAlojamiento.getFechaInicio();
+            LocalDate existenteFin = reservaAlojamiento.getFechaFinal();
 
+            boolean seCruzanFechas = !(fechaFinal.isBefore(existenteInicio) || fechaInicio.isAfter(existenteFin));
+
+            if (seCruzanFechas) {
+                throw new Exception("Las fechas de la reserva no se pueden cruzar");
+            }
+        }
+
+        int diasReserva = (int) ChronoUnit.DAYS.between(fechaInicio, fechaFinal.plusDays(1));
+        double subtotal = (alojamientoReserva.getPrecioPorNoche() * diasReserva) + alojamientoReserva.getCostoAdicional();
+        double total = subtotal;
+        for (Oferta oferta : ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento)) {
+            if (oferta.getFechaInicio().isBefore(fechaInicio) && oferta.getFechaFinal().isAfter(fechaFinal)) {
+                total = subtotal-(subtotal * oferta.getValorPorcentaje());
+            }
+        }
+
+        reserva.getFactura().setSubtotal(subtotal);
+        reserva.getFactura().setTotal(total);
+
+        return reserva;
     }
 
-    @Override
-    public void registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento) throws Exception {
-
-    }
 
     @Override
     public void cancelarReserva(String idReserva) throws Exception {
-
+        reservaServicio.cancelarReserva(idReserva);
     }
 
     @Override
-    public void recargarBilletera(String cedula, double monto) throws Exception {
-
+    public void recargarBilletera(double monto, String cedulaUsuario) throws Exception {
+        usuarioServicio.recargarBilletera(monto, cedulaUsuario);
     }
 
     @Override

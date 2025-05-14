@@ -76,7 +76,9 @@ public class AlojamientoServicio {
         return alojamientoRepositorio.obtenerAlojamientos();
     }
 
-
+    public Alojamiento obtenerAlojamientoPorId(String id){
+        return alojamientoRepositorio.buscarAlojamiento(id);
+    }
 }
 
 
