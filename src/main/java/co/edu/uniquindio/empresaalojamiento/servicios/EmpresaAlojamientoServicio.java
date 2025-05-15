@@ -7,12 +7,14 @@ import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Getter
 public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     private final UsuarioServicio usuarioServicio;

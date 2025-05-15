@@ -6,6 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -18,6 +21,12 @@ public class ControladorPrincipal {
 
     private ControladorPrincipal(){
         empresaAlojamiento = new EmpresaAlojamientoServicio();
+
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            empresaAlojamiento.getUsuarioRepositorio().guardarDatos(empresaAlojamiento.getUsuarioRepositorio().listarUsuarios());
+            System.out.println("Usuarios guardados automáticamente al cerrar el programa.");
+        }));
     }
 
 
@@ -55,6 +64,14 @@ public class ControladorPrincipal {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void cambiarEfectoHooverBoton(Button boton, String rutaImagenHover) {
+        ImageView imageView = (ImageView) boton.getGraphic();
+        Image imagenOriginal = imageView.getImage();
+        Image imagenHover = new Image(rutaImagenHover);
+        boton.setOnMouseEntered(e -> imageView.setImage(imagenHover));
+        boton.setOnMouseExited(e -> imageView.setImage(imagenOriginal));
     }
 
 }

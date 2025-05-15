@@ -127,7 +127,7 @@ public class UsuarioServicio {
         if (!codigoIngresado.equals(usuarioActivar.getCodigoEnviado())) {
             throw new Exception("El codigo es incorrecto");
         }
-        usuarioRepositorio.activarUsuario(usuarioActivar);
+        usuarioActivar.setActivo(true);
     }
 
     public List<Usuario> obtenerUsuarios() {
@@ -140,6 +140,9 @@ public class UsuarioServicio {
 
     public void validarCambioContrasena(String codigoIngresado, String correo) throws Exception {
         Usuario usuario = buscarUsuarioCorreo(correo);
+        if(usuario == null) {
+            throw new Exception("No existe un usuario con ese correo");
+        }
         if (!usuario.getCodigoEnviado().equals(codigoIngresado)) {
             throw new Exception("El código es incorrecto");
         }
@@ -147,7 +150,7 @@ public class UsuarioServicio {
 
     public void cambiarCodigoEnviado(String cedula, String codigoEnviado) {
         Usuario usuario = usuarioRepositorio.buscarUsuario(cedula);
-        usuarioRepositorio.cambiarCodigoEnviado(usuario, codigoEnviado);
+        usuario.setCodigoEnviado(codigoEnviado);
     }
 
     public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception {
@@ -159,10 +162,10 @@ public class UsuarioServicio {
                     "Al menos un carácter especial\n" +
                     "Mínimo 8 caracteres\n" +
                     "Solo permite letras, números y los símbolos");
-        if (contrasena.equals(contrasenaConfirmar)) {
-            usuarioRepositorio.cambiarContrasena(usuario, contrasena);
+        if (!contrasena.equals(contrasenaConfirmar)) {
+            throw new Exception("Asegurese de que escribió la contraseña correctamente en ambos campos");
         }
-
+        usuario.setContrasena(contrasena);
     }
 
 }

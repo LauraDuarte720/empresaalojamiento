@@ -20,13 +20,11 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
     @Override
     public void agregarUsuario(Usuario usuario) {
         usuarios.add(usuario);
-        guardarDatos(usuarios);
     }
 
     @Override
     public void eliminarUsuario(Usuario usuario) {
         usuarios.remove(usuario);
-        guardarDatos(usuarios);
     }
 
     @Override
@@ -45,32 +43,6 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         return usuarios;
     }
 
-    public void guardarDatos(List<Usuario> usuarios) {
-        try {
-            Persistencia.serializarObjeto(Constantes.RUTA_USUARIOS, usuarios);
-        } catch (IOException e) {
-            System.err.println("Error guardando pacientes: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void activarUsuario(Usuario usuario) {
-        usuario.setActivo(true);
-        guardarDatos(usuarios);
-    }
-
-    @Override
-    public void cambiarContrasena(Usuario usuario, String contrasena) {
-        usuario.setContrasena(contrasena);
-        guardarDatos(usuarios);
-    }
-
-    @Override
-    public void cambiarCodigoEnviado(Usuario usuario, String codigoEnviado) {
-        usuario.setCodigoEnviado(codigoEnviado);
-        guardarDatos(usuarios);
-    }
-
     public void actualizarUsuario(String cedulaAntiguo,  String cedulaNueva, String nombre, String apellido, String telefono, String email){
         Usuario usuario = buscarUsuario(cedulaAntiguo);
         usuario.setNombre(nombre);
@@ -78,7 +50,6 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         usuario.setTelefono(telefono);
         usuario.setEmail(email);
         usuario.setCedula(cedulaNueva);
-        guardarDatos(usuarios);
     }
 
 
@@ -94,4 +65,12 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         return new ArrayList<>();
     }
 
+
+    public void guardarDatos(List<Usuario> usuarios) {
+        try {
+            Persistencia.serializarObjeto(Constantes.RUTA_USUARIOS, usuarios);
+        } catch (IOException e) {
+            System.err.println("Error guardando pacientes: " + e.getMessage());
+        }
+    }
 }

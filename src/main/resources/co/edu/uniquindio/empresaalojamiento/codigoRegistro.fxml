@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="362.0" spacing="40.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CodigoRegistroControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="403.0" spacing="40.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CodigoRegistroControlador">
     <children>
-        <Label style="-fx-border-color: #421404; -fx-border-width: 1; -fx-padding: 5;" text="Ingrese el código de verificación" textFill="#421404">
+        <Label prefHeight="44.0" prefWidth="342.0" style="-fx-border-color: #421404; -fx-border-width: 1; -fx-padding: 5;" text="Ingrese el código de verificación" textFill="#421404">
             <font>
                 <Font name="System Bold" size="21.0" />
             </font>
