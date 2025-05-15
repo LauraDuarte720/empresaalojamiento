@@ -5,7 +5,10 @@ import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 public class NuevaContrasenaControlador {
 
@@ -37,8 +40,15 @@ public class NuevaContrasenaControlador {
     void initialize() {
         ControladorPrincipal.cambiarEfectoHooverBoton(btnContrasena, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
         ControladorPrincipal.cambiarEfectoHooverBoton(btnConfirmarContrasena, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
-        mostrandoTexto1 = false;
-        mostrandoTexto2 = false;
+        txtNuevaContrasenaField.textProperty().bindBidirectional(txtNuevaContrasena.textProperty());
+        txtNuevaContrasenaConfirmarField.textProperty().bindBidirectional(txtNuevaContrasenaConfirmar.textProperty());
+
+        txtNuevaContrasenaField.textProperty().bindBidirectional(txtNuevaContrasena.textProperty());
+        txtNuevaContrasenaConfirmarField.textProperty().bindBidirectional(txtNuevaContrasenaConfirmar.textProperty());
+
+
+        setMostrarContrasena(false, btnContrasena, txtNuevaContrasena, txtNuevaContrasenaField);
+        setMostrarContrasena(false, btnConfirmarContrasena, txtNuevaContrasenaConfirmar, txtNuevaContrasenaConfirmarField);
     }
 
     @FXML
@@ -53,39 +63,34 @@ public class NuevaContrasenaControlador {
         }
     }
 
-    @FXML
-    void verContrasena(ActionEvent event) {
-        if (mostrandoTexto1) {
-            txtNuevaContrasenaField.setVisible(false);
-            txtNuevaContrasenaField.setManaged(false);
-            txtNuevaContrasena.setVisible(true);
-            txtNuevaContrasena.setManaged(true);
-            mostrandoTexto1 = false;
+    private boolean setMostrarContrasena(boolean mostrar, Button boton, PasswordField passwordField, TextField textField) {
+        if(mostrar) {
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoOscuro.png");
+            textField.setVisible(true);
+            textField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            return true;
         } else {
-            txtNuevaContrasenaField.setVisible(true);
-            txtNuevaContrasenaField.setManaged(true);
-            txtNuevaContrasena.setVisible(false);
-            txtNuevaContrasena.setManaged(false);
-            mostrandoTexto1 = true;
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
+            textField.setVisible(false);
+            textField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            return false;
         }
     }
 
     @FXML
-    void verContrasenaConfirmacion(ActionEvent event) {
-        if (mostrandoTexto2) {
-            txtNuevaContrasenaConfirmarField.setVisible(false);
-            txtNuevaContrasenaConfirmarField.setManaged(false);
-            txtNuevaContrasenaConfirmar.setVisible(true);
-            txtNuevaContrasenaConfirmar.setManaged(true);
-            mostrandoTexto2 = false;
-        } else {
-            txtNuevaContrasenaConfirmarField.setVisible(true);
-            txtNuevaContrasenaConfirmarField.setManaged(true);
-            txtNuevaContrasenaConfirmar.setVisible(false);
-            txtNuevaContrasenaConfirmar.setManaged(false);
-            mostrandoTexto2 = true;
-        }
+    void verContrasena(ActionEvent event) {
+        mostrandoTexto1 = setMostrarContrasena(!mostrandoTexto1, btnContrasena, txtNuevaContrasena, txtNuevaContrasenaField);
+    }
 
+    @FXML
+    void verContrasenaConfirmacion(ActionEvent event) {
+        mostrandoTexto2 = setMostrarContrasena(!mostrandoTexto2, btnConfirmarContrasena, txtNuevaContrasenaConfirmar, txtNuevaContrasenaConfirmarField);
     }
 
 }

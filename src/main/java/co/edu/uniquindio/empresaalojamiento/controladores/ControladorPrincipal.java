@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class ControladorPrincipal {
 
@@ -69,7 +71,9 @@ public class ControladorPrincipal {
     public static void cambiarEfectoHooverBoton(Button boton, String rutaImagenHover) {
         ImageView imageView = (ImageView) boton.getGraphic();
         Image imagenOriginal = imageView.getImage();
-        Image imagenHover = new Image(rutaImagenHover);
+        System.out.println(imagenOriginal + "Antes de cargar la imagen");
+        Image imagenHover = new Image(Objects.requireNonNull(ControladorPrincipal.class.getResourceAsStream(rutaImagenHover)));
+        System.out.println("Despues de cargar la imagen");
         boton.setOnMouseEntered(e -> imageView.setImage(imagenHover));
         boton.setOnMouseExited(e -> imageView.setImage(imagenOriginal));
     }

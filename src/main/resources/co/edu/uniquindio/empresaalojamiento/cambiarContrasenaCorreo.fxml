@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="423.0" spacing="10.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CambioContrasenaControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="423.0" spacing="10.0" style="-fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CambioContrasenaControlador">
    <children>
       <VBox>
          <children>
@@ -23,9 +28,9 @@
             </Button>
          </children>
       </VBox>
-      <Label text="Cambiar contrasena">
+      <Label style="-fx-border-color: #421404; -fx-border-width: 1; -fx-padding: 5;" text="Cambiar contrasena" textFill="#421404">
          <font>
-            <Font size="21.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
       <GridPane prefHeight="110.0" prefWidth="393.0">
@@ -38,9 +43,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="20.0" prefWidth="125.0" text="Correo de recuperación" />
+            <Label prefHeight="25.0" prefWidth="177.0" text="Correo de recuperación">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <TextField fx:id="txtCorreo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="196.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" />
-            <Label fx:id="lblCodigo" text="Código" GridPane.rowIndex="1" />
+            <Label fx:id="lblCodigo" text="Código" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <TextField fx:id="txtCodigo" prefHeight="25.0" prefWidth="196.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
