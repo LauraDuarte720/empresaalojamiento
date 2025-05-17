@@ -14,15 +14,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="432.0" spacing="10.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.ActualizarUsuarioControlador">
    <children>
-      <HBox prefHeight="26.0" prefWidth="94.0">
-         <children>
-            <Button fx:id="regresar" mnemonicParsing="false" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
+      <HBox prefHeight="26.0" prefWidth="94.0" />
       <Label style="-fx-border-color: #421404; -fx-border-width: 1; -fx-padding: 5;" text="Actualizar Datos" textFill="#421404">
          <font>
             <Font name="System Bold" size="25.0" />

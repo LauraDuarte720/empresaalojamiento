@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -29,10 +31,10 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <GridPane prefHeight="72.0" prefWidth="306.0">
+      <GridPane prefHeight="72.0" prefWidth="344.0">
         <columnConstraints>
-          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="148.79998779296875" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="179.20001220703125" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,7 +42,25 @@
         </rowConstraints>
          <children>
             <TextField fx:id="txtCorreoIniciarSesion" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" />
-            <TextField fx:id="txtContrasenaSesion" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <StackPane>
+                     <children>
+                        <TextField fx:id="txtContrasenaSesion" style="-fx-background-color: white; -fx-border-color: #9e8576;" />
+                        <PasswordField fx:id="txtPasContrasenaSesion" prefHeight="27.0" prefWidth="169.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" />
+                     </children>
+                  </StackPane>
+                  <Button fx:id="btnVerContrasena" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verContrasena" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;" text="Button">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Imagenes/ojoCerradoClaro.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <ImageView fx:id="imgIconoCorreo" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -60,7 +80,7 @@
                      <image>
                         <Image url="@Imagenes/contrasena-2.png" />
                      </image></ImageView>
-                  <Label text="Contrasena">
+                  <Label text="Contraseña">
                      <font>
                         <Font size="18.0" />
                      </font>

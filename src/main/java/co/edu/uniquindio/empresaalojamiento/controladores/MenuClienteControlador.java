@@ -39,6 +39,47 @@ public class MenuClienteControlador implements Initializable {
 
     }
 
+    @FXML
+    void eliminarCuenta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void recargarBilletera(ActionEvent event) {
+        Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/recargarBilletera.fxml", getClass());
+        panelPrincipal.getChildren().setAll(node);
+
+    }
+
+    @FXML
+    void verAlojamientos(ActionEvent event) {
+        Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/panelAlojamiento.fxml", getClass());
+        panelPrincipal.getChildren().setAll(node);
+    }
+
+    @FXML
+    void verReservas(ActionEvent event) {
+        Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/panelReserva.fxml", getClass());
+        panelPrincipal.getChildren().setAll(node);
+
+    }
+
+
+    @FXML
+    void actualizarDatos(ActionEvent event) {
+        Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/actualizarUsuario.fxml", getClass());
+        panelPrincipal.getChildren().setAll(node);
+
+    }
+
+
+    @FXML
+    void cerrarSesion(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", panelPrincipal, getClass());
+        ControladorPrincipal.crearAlerta("¡Hasta luego " + Sesion.getInstancia().getUsuario().getNombre() + "!", Alert.AlertType.INFORMATION);
+        Sesion.getInstancia().cerrarSesion();
+    }
+
     public Parent crearItem(Alojamiento a) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("itemAlojamiento.fxml"));
@@ -55,35 +96,4 @@ public class MenuClienteControlador implements Initializable {
         return null;
     }
 
-    @FXML
-    void actualizaDatos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cerrarSesion(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", panelPrincipal, getClass());
-        ControladorPrincipal.crearAlerta("¡Hasta luego " + Sesion.getInstancia().getUsuario().getNombre() + "!", Alert.AlertType.INFORMATION);
-        Sesion.getInstancia().cerrarSesion();
-    }
-
-    @FXML
-    void eliminarCuenta(ActionEvent event) {
-
-    }
-
-    @FXML
-    void recargarBilletera(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verAlojamientos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verReservas(ActionEvent event) {
-
-    }
 }

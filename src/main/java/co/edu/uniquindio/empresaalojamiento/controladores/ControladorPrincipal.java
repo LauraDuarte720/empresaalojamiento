@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -39,6 +41,7 @@ public class ControladorPrincipal {
         return instancia;
     }
 
+
     public void cerrarVentana(Node node){
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
@@ -47,8 +50,8 @@ public class ControladorPrincipal {
 
     public static void crearAlerta(String mensaje, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);
-        alert.setHeight(300);
-        alert.setWidth(500);
+        alert.setHeight(200);
+        alert.setWidth(400);
         alert.setTitle("Alerta");
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
@@ -76,6 +79,38 @@ public class ControladorPrincipal {
         System.out.println("Despues de cargar la imagen");
         boton.setOnMouseEntered(e -> imageView.setImage(imagenHover));
         boton.setOnMouseExited(e -> imageView.setImage(imagenOriginal));
+    }
+
+
+    public static Parent cargarPanel(String fxmlFile, Class<?> clase) {
+        try {
+            FXMLLoader loader = new FXMLLoader(clase.getResource(fxmlFile));
+            Parent node = loader.load();
+            return node;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean setMostrarContrasena(boolean mostrar, Button boton, PasswordField passwordField, TextField textField, Class<?> clase) {
+        if(mostrar) {
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoOscuro.png");
+            textField.setVisible(true);
+            textField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+            return true;
+        } else {
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
+            textField.setVisible(false);
+            textField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            return false;
+        }
     }
 
 }

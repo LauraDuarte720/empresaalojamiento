@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="771.0" style="-fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="824.0" style="-fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
    <children>
       <HBox prefHeight="503.0" prefWidth="723.0" style="-fx-background-color: #D3B49F;">
          <children>
@@ -37,7 +37,7 @@
                      </font></Button>
                   <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Gestionar datos de la cuenta" textFill="WHITE">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#actualizaDatos" text="Actualizar datos" />
+                      <MenuItem mnemonicParsing="false" onAction="#actualizarDatos" text="Actualizar datos" />
                       <MenuItem mnemonicParsing="false" onAction="#eliminarCuenta" text="Eliminar datos" />
                     </items>
                      <font>
@@ -51,7 +51,7 @@
                   </Button>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../Downloads/WhatsApp%20Image%202025-05-12%20at%2018.09.59.jpeg" />
+                        <Image url="@Imagenes/Captura%20de%20pantalla%202025-05-17%20003404.png" />
                      </image>
                   </ImageView>
                </children>
@@ -62,7 +62,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <StackPane fx:id="panelPrincipal" prefHeight="501.0" prefWidth="525.0" />
+            <StackPane fx:id="panelPrincipal" prefHeight="534.0" prefWidth="575.0" />
          </children>
       </HBox>
    </children>

@@ -41,10 +41,9 @@ public class ActualizarUsuarioControlador {
     @FXML
     private TextField txtTelefonoAct;
 
-    private EmpresaAlojamientoServicio empresaAlojamientoServicio;
     private final Sesion sesion = Sesion.getInstancia();
     Usuario usuario;
-    private final ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstancia();
+    private final EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
 
     public void initialize() {
         usuario = sesion.getUsuario();
@@ -63,15 +62,10 @@ public class ActualizarUsuarioControlador {
                     txtApellidoAct.getText(),
                     txtTelefonoAct.getText(),
                     txtCorreoAct.getText());
-            ControladorPrincipal.crearAlerta("El usuario "+txtNombreAct+" ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
+            ControladorPrincipal.crearAlerta("El usuario "+txtNombreAct.getText()+" ha sido actualizado correctamente", Alert.AlertType.INFORMATION);
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
-    }
-
-    @FXML
-    void regresar() {
-
     }
 
 }

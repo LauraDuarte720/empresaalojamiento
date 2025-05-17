@@ -15,10 +15,11 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="172.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="183.0" fitWidth="188.0" layoutX="128.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Imagenes/logoEmpresa.png" />
-         </image></ImageView>
+            <Image url="@Imagenes/Captura%20de%20pantalla%202025-05-17%20003404.png" />
+         </image>
+      </ImageView>
       <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#irPantallaInicio" style="-fx-background-color: #421404;" text="Ir a pantalla de inicio" textFill="WHITE">
          <font>
             <Font name="Mali Regular" size="13.0" />
