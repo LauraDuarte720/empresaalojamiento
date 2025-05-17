@@ -19,4 +19,6 @@ public interface IAlojamientoRepositorio {
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
                                       double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional);
+
+    public  List<String> obtenerCamposOpcionales(Alojamiento alojamiento);
 }

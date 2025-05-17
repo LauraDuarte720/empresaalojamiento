@@ -5,10 +5,6 @@ import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import java.util.Objects;
 
 public class NuevaContrasenaControlador {
 
@@ -38,8 +34,8 @@ public class NuevaContrasenaControlador {
 
     @FXML
     void initialize() {
-        ControladorPrincipal.cambiarEfectoHooverBoton(btnContrasena, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
-        ControladorPrincipal.cambiarEfectoHooverBoton(btnConfirmarContrasena, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
+        ControladorPrincipal.cambiarEfectoHooverBoton(btnContrasena, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoCerradoOscuro.png");
+        ControladorPrincipal.cambiarEfectoHooverBoton(btnConfirmarContrasena, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoCerradoOscuro.png");
         txtNuevaContrasenaField.textProperty().bindBidirectional(txtNuevaContrasena.textProperty());
         txtNuevaContrasenaConfirmarField.textProperty().bindBidirectional(txtNuevaContrasenaConfirmar.textProperty());
 

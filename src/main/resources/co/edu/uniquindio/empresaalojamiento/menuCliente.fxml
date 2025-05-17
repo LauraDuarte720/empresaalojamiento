@@ -51,7 +51,7 @@
                   </Button>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/Captura%20de%20pantalla%202025-05-17%20003404.png" />
+                        <Image url="@imagenesIconos/Captura%20de%20pantalla%202025-05-17%20003404.png" />
                      </image>
                   </ImageView>
                </children>

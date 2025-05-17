@@ -156,7 +156,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public List<Alojamiento> obtenerAlojamientosAleatorios() throws Exception {
+    public List<Alojamiento> obtenerAlojamientosAleatorios(){
         List<Alojamiento> copiaLista = alojamientoServicio.obtenerAlojamientos();
         Collections.shuffle(copiaLista);
 
@@ -298,6 +298,10 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return usuarioServicio.buscarUsuarioCorreo(correo);
     }
 
+    public Usuario buscarUsuario(String id){
+        return usuarioServicio.buscarUsuario(id);
+    }
+
     public void validarCambioContrasena(String codigoIngresado, String contrasena) throws Exception{
         usuarioServicio.validarCambioContrasena(codigoIngresado, contrasena);
     }
@@ -308,5 +312,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception{
         usuarioServicio.cambiarContrasena(usuario, contrasena, contrasenaConfirmar);
+    }
+
+    public List<String> obtenerCamposOpcionales(String idAlojamiento) throws Exception{
+        return alojamientoServicio.obtenerCamposOpcionales(idAlojamiento);
+    }
+
+    public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception{
+        return resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
     }
 }

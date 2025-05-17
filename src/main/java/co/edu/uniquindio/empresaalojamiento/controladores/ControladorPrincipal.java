@@ -1,5 +1,8 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +32,7 @@ public class ControladorPrincipal {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             empresaAlojamiento.getUsuarioRepositorio().guardarDatos(empresaAlojamiento.getUsuarioRepositorio().listarUsuarios());
+            empresaAlojamiento.getAlojamientoRepositorio().guardarDatos(empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos());
             System.out.println("Usuarios guardados automáticamente al cerrar el programa.");
         }));
     }
@@ -95,21 +99,66 @@ public class ControladorPrincipal {
 
     public static boolean setMostrarContrasena(boolean mostrar, Button boton, PasswordField passwordField, TextField textField, Class<?> clase) {
         if(mostrar) {
-            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoClaro.png"))));
-            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoAbiertoOscuro.png");
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoAbiertoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoAbiertoOscuro.png");
             textField.setVisible(true);
             textField.setManaged(true);
             passwordField.setVisible(false);
             passwordField.setManaged(false);
             return true;
         } else {
-            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoClaro.png"))));
-            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
+            ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoCerradoClaro.png"))));
+            ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoCerradoOscuro.png");
             textField.setVisible(false);
             textField.setManaged(false);
             passwordField.setVisible(true);
             passwordField.setManaged(true);
             return false;
+        }
+    }
+
+    public static void cargarData(){
+        try {
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
+                    "Hotel Estelar",
+                    "Un hotel moderno con vista a la ciudad.", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel1.png", 250000,
+                    4, true, false, true, 300, Ciudad.ARAUCA);
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
+                    "Casa flores",
+                    "Casa muy bonita al norte de la ciudad", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/casa1.png", 260000,
+                    4, true, true, false, 300, Ciudad.ARAUCA);
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
+                    "Hotel Estelar",
+                    "Un hotel moderno con vista a la ciudad.", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel2.png", 250000,
+                    4, false, true, true, 300, Ciudad.ARAUCA);
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.APARTAMENTOS,
+                    "Apartamentos la milagrosa",
+                    "Casa muy bonita al norte de la ciudad", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/apartamentos1.png", 260000,
+                    4, true, true, true, 300, Ciudad.ARMENIA);
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
+                    "Hotel caribe",
+                    "Hotel al borde del mar", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel3.png", 250000,
+                    4, true, true, true, 300, Ciudad.ARAUCA);
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
+                    "Casa de las nieves",
+                    "Casa iglue en el nevado del ruiz", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/casa2.png", 260000,
+                    4, true, true, true, 300, Ciudad.ARAUCA);
+
+            Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();
+            alojamiento.setId("1");
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy bonito", 4, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1054863011", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1054863011", "1");
+        } catch (Exception ignored) {
         }
     }
 

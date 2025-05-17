@@ -35,7 +35,7 @@ public class IniciarSesionControlador {
 
     @FXML
     void initialize() {
-        ControladorPrincipal.cambiarEfectoHooverBoton(btnVerContrasena, "/co/edu/uniquindio/empresaalojamiento/Imagenes/ojoCerradoOscuro.png");
+        ControladorPrincipal.cambiarEfectoHooverBoton(btnVerContrasena, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoCerradoOscuro.png");
         txtContrasenaSesion.textProperty().bindBidirectional(txtPasContrasenaSesion.textProperty());
         txtPasContrasenaSesion.textProperty().bindBidirectional(txtContrasenaSesion.textProperty());
 

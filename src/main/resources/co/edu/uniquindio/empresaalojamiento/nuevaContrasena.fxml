@@ -64,7 +64,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Imagenes/ojoCerradoClaro.png" />
+                              <Image url="@imagenesIconos/ojoCerradoClaro.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -83,7 +83,7 @@
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Imagenes/ojoCerradoClaro.png" />
+                              <Image url="@imagenesIconos/ojoCerradoClaro.png" />
                            </image>
                         </ImageView>
                      </graphic>

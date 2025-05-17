@@ -138,6 +138,10 @@ public class UsuarioServicio {
         return usuarioRepositorio.buscarUsuarioCorreo(correo);
     }
 
+    public Usuario buscarUsuario(String id) {
+        return usuarioRepositorio.buscarUsuario(id);
+    }
+
     public void validarCambioContrasena(String codigoIngresado, String correo) throws Exception {
         Usuario usuario = buscarUsuarioCorreo(correo);
         if(usuario == null) {

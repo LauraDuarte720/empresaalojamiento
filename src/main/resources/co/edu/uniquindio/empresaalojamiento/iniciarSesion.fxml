@@ -54,7 +54,7 @@
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Imagenes/ojoCerradoClaro.png" />
+                              <Image url="@imagenesIconos/ojoCerradoClaro.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -65,7 +65,7 @@
                <children>
                   <ImageView fx:id="imgIconoCorreo" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/correo-electronico.png" />
+                        <Image url="@imagenesIconos/correo-electronico.png" />
                      </image></ImageView>
                   <Label style="-fx-font-family: Vollkorn;" text="Correo ">
                      <font>
@@ -78,7 +78,7 @@
                <children>
                   <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/contrasena-2.png" />
+                        <Image url="@imagenesIconos/contrasena-2.png" />
                      </image></ImageView>
                   <Label text="Contraseña">
                      <font>

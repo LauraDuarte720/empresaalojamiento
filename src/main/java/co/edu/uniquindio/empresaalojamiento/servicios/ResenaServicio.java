@@ -5,6 +5,7 @@ import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IResenaRepos
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -21,6 +22,16 @@ public class ResenaServicio {
         if (valoracion == null || valoracion.isEmpty()) throw new Exception("La valoración no puede ser vacia");
         if (calificacion == null) throw new Exception("Debe ingresar una calificacion al alojamiento");
 
-        return new Resena(UUID.randomUUID().toString(),valoracion, calificacion, idUsuario, idAlojamiento);
+        Resena resena = new Resena(UUID.randomUUID().toString(), valoracion, calificacion, idUsuario, idAlojamiento);
+        resenaRepositorio.agregarResena(resena);
+        return resena;
+    }
+
+    public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception {
+        List<Resena> resenas = resenaRepositorio.obtenerResenasAlojamiento(idAlojamiento);
+        if (resenas.isEmpty()) {
+            throw new Exception();
+        }
+        return resenas;
     }
 }

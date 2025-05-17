@@ -42,7 +42,7 @@
                <children>
                   <ImageView fx:id="imgIconoCedulaAct" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/licencia-de-conducir.png" />
+                        <Image url="@imagenesIconos/licencia-de-conducir.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" style="-fx-font-family: Vollkorn;" text="Cedula">
                      <font>
@@ -55,7 +55,7 @@
                <children>
                   <ImageView fx:id="imgIconoNombreAct" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/usuario.png" />
+                        <Image url="@imagenesIconos/usuario.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Nombre">
                      <font>
@@ -68,7 +68,7 @@
                <children>
                   <ImageView fx:id="imgIconoApellidoAct" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/usuario-2.png" />
+                        <Image url="@imagenesIconos/usuario-2.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Apellido">
                      <font>
@@ -81,7 +81,7 @@
                <children>
                   <ImageView fx:id="imgIconoTelefonoAct" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/llamada-telefonica.png" />
+                        <Image url="@imagenesIconos/llamada-telefonica.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Telefono">
                      <font>
@@ -94,7 +94,7 @@
                <children>
                   <ImageView fx:id="imgIconoCorreoAct" fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/a.png" />
+                        <Image url="@imagenesIconos/a.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" text="Correo">
                      <font>

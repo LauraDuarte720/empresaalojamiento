@@ -23,20 +23,8 @@ public class MenuClienteControlador implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        List<Alojamiento> lista = new ArrayList<>();
-        lista.add(Alojamiento.builder().nombre("Hola 1").build());
-        lista.add(Alojamiento.builder().nombre("Hola 2").build());
-        lista.add(Alojamiento.builder().nombre("Hola 3").build());
-
-        VBox vBox = new VBox();
-        panelPrincipal.getChildren().add(vBox);
-
-        for (Alojamiento a : lista) {
-            Parent raiz = crearItem(a);
-            vBox.getChildren().add(raiz);
-        }
-
+        Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/panelAlojamiento.fxml", getClass());
+        panelPrincipal.getChildren().setAll(node);
     }
 
     @FXML
@@ -78,22 +66,6 @@ public class MenuClienteControlador implements Initializable {
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", panelPrincipal, getClass());
         ControladorPrincipal.crearAlerta("¡Hasta luego " + Sesion.getInstancia().getUsuario().getNombre() + "!", Alert.AlertType.INFORMATION);
         Sesion.getInstancia().cerrarSesion();
-    }
-
-    public Parent crearItem(Alojamiento a) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("itemAlojamiento.fxml"));
-            Parent raiz = fxmlLoader.load();
-            ItemAlojamientoControlador controlador = fxmlLoader.getController();
-            controlador.setAlojamiento(a);
-            Scene scene = new Scene(raiz);
-            //scene.
-            return raiz;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 }

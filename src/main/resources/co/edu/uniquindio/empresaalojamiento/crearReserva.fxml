@@ -47,7 +47,7 @@
                <children>
                   <ImageView fx:id="imgFechaIngreso" fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/calendario.png" />
+                        <Image url="@imagenesIconos/calendario.png" />
                      </image></ImageView>
                   <Label prefHeight="22.0" prefWidth="102.0" text="Fecha de Ingreso" />
                </children>
@@ -56,7 +56,7 @@
                <children>
                   <ImageView fx:id="imgFechaSalida" fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/calendario-2.png" />
+                        <Image url="@imagenesIconos/calendario-2.png" />
                      </image></ImageView>
                   <Label text="Fecha de Salidad" />
                </children>
@@ -65,7 +65,7 @@
                <children>
                   <ImageView fx:id="imgNumHuesped" fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Imagenes/invitados.png" />
+                        <Image url="@imagenesIconos/invitados.png" />
                      </image></ImageView>
                   <Label text="Numero de Huepedes" />
                </children>
