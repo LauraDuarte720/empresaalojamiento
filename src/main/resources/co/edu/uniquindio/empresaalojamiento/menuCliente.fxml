@@ -38,7 +38,7 @@
                   <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Gestionar datos de la cuenta" textFill="WHITE">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#actualizarDatos" text="Actualizar datos" />
-                      <MenuItem mnemonicParsing="false" onAction="#eliminarCuenta" text="Eliminar datos" />
+                      <MenuItem mnemonicParsing="false" onAction="#eliminarCuenta" text="Eliminar Cuenta" />
                     </items>
                      <font>
                         <Font name="System Bold" size="13.0" />

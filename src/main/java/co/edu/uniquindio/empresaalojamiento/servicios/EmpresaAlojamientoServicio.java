@@ -113,7 +113,6 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception {
-        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario);
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
         if (alojamientoReserva.getCapacidadMaximaHuespedes()<numeroHuespedes){
             throw new Exception("El numero de huespedes supera la capacidad maxima del alojamiento");
@@ -137,7 +136,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
                 total = subtotal-(subtotal * oferta.getValorPorcentaje());
             }
         }
+        Usuario usuario =usuarioServicio.buscarUsuario(idUsuario);
+        if (usuario.getBilletera().getSaldo()<total){
+            throw new Exception("No tiene saldo suficiente para realizar la reserva");
+        }
+        usuario.getBilletera().setSaldo(usuario.getBilletera().getSaldo()-total);
 
+        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario);
         reserva.getFactura().setSubtotal(subtotal);
         reserva.getFactura().setTotal(total);
 
@@ -320,5 +325,13 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception{
         return resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
+    }
+
+    public Alojamiento obtenerAlojamientoPorId(String idAlojamiento) {
+        return alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
+    }
+
+    public List<Reserva> obtenerReservasUsuario(String idUsuario){
+        return reservaServicio.obtenerReservasUsuario(idUsuario);
     }
 }

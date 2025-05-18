@@ -30,11 +30,11 @@ public class CrearResenaControlador {
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
 
 
-     void inicializar() {
+    @FXML
+    public void initialize() {
         cmbCalificacion.getItems().addAll(Arrays.stream(Calificacion.values())
                 .map(Calificacion::getNombreLegible)
                 .toList());
-
     }
 
     @FXML
@@ -48,4 +48,8 @@ public class CrearResenaControlador {
         }
     }
 
+    @FXML
+    void regresar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtValoracion, getClass());
+    }
 }

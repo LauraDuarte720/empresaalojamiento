@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tblReservas" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelReservaControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelReservaControlador">
    <children>
       <Label alignment="CENTER" prefWidth="277.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Reservas" textFill="#421404">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tblReservas" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="tbcAlojamiento" prefWidth="75.0" text="Alojamiento" />
           <TableColumn fx:id="tbcFechaIngreso" prefWidth="75.0" text="Fecha Ingreso" />

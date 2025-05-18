@@ -13,8 +13,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="442.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CrearResenaControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="442.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.CrearResenaControlador">
    <children>
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#regresar" style="-fx-background-color: #421404;" text="Regresar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
       <Label style="-fx-border-color: #421404; -fx-padding: 5;" text="Agregar  Resena" textFill="#421404">
          <font>
             <Font name="System Bold" size="23.0" />
@@ -60,7 +69,7 @@
             <TextArea fx:id="txtValoracion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="93.0" prefWidth="198.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" onAction="#crearResena" style="-fx-background-color: #421404;" text="Agregar" textFill="WHITE">
+      <Button layoutX="201.0" layoutY="259.0" mnemonicParsing="false" onAction="#crearResena" style="-fx-background-color: #421404;" text="Agregar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

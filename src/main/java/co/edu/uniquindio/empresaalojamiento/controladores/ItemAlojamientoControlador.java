@@ -3,6 +3,7 @@ package co.edu.uniquindio.empresaalojamiento.controladores;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
+import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -54,10 +55,11 @@ public class ItemAlojamientoControlador {
     private List<Resena> listaResenas;
 
     private Alojamiento alojamiento;
-    private EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
+    private final EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
 
     public void setAlojamiento(Alojamiento alojamiento) {
         this.alojamiento = alojamiento;
+        AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
         System.out.println(alojamiento.getId());
         indexResena = 0;
         lblTituloAlojamiento.setText(alojamiento.getNombre());
@@ -76,7 +78,8 @@ public class ItemAlojamientoControlador {
     }
 
     public void reservar(ActionEvent actionEvent) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/reservarAlojamiento.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+
     }
 
     public void llenarCamposAdicionales() {
