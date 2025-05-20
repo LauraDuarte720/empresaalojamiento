@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
+<VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="569.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
          <children>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="563.0" spacing="10.0">
                <children>
@@ -18,7 +18,7 @@
                   <TextField fx:id="txtFiltroPrecioMax" prefHeight="26.0" prefWidth="91.0" promptText="\$Maximo" />
                </children>
             </HBox>
-      <ListView fx:id="listAlojamientos" prefHeight="437.0" prefWidth="622.0" style="-fx-background-color: #D3B49F;" />
+      <ListView fx:id="listAlojamientos" prefHeight="590.0" prefWidth="625.0" style="-fx-background-color: #D3B49F;" />
          </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

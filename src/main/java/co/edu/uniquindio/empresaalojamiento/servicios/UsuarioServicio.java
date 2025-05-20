@@ -8,6 +8,7 @@ import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.UUID;
 
@@ -170,6 +171,16 @@ public class UsuarioServicio {
             throw new Exception("Asegurese de que escribió la contraseña correctamente en ambos campos");
         }
         usuario.setContrasena(contrasena);
+    }
+
+    public String obtenerSaldoCadena(String cedula) throws Exception {
+        Usuario usuario = usuarioRepositorio.buscarUsuario(cedula);
+        if (usuario == null) {
+            throw new Exception("No existe un usuario con ese cedula");
+        }
+
+        DecimalFormat df = new DecimalFormat("#.##############################");
+        return df.format(usuario.getBilletera().getSaldo());
     }
 
 }

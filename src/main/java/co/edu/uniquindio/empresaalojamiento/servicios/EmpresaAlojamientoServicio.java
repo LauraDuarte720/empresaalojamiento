@@ -2,16 +2,15 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.*;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
-import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
-import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
@@ -29,7 +28,6 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final HabitacionRepositorio habitacionRepositorio;
     private final ResenaServicio resenaServicio;
     private final ResenaRepositorio resenaRepositorio;
-
 
 
     public EmpresaAlojamientoServicio() {
@@ -51,7 +49,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Alojamiento registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                     double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception {
+                                            double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception {
         return alojamientoServicio.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad);
     }
 
@@ -78,7 +76,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public void actualizarUsuario(String cedulaAntigua, String cedulaNueva, String nombre, String apellido, String telefono, String email) throws Exception {
-        usuarioServicio.actualizarUsuario(cedulaAntigua, cedulaNueva,nombre,apellido,telefono,email);
+        usuarioServicio.actualizarUsuario(cedulaAntigua, cedulaNueva, nombre, apellido, telefono, email);
     }
 
     @Override
@@ -97,8 +95,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Habitacion registrarHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion, String idHotel, String rutaImagen) throws Exception {
-        return habitacionServicio.crearHabitacion(numeroHabitacion,precioPorNoche,capacidadHuespedes,descripcion,idHotel,rutaImagen);
+    public Habitacion registrarHabitacion(int numeroHabitacion, double precioPorNoche, int capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception {
+        return habitacionServicio.crearHabitacion(numeroHabitacion, precioPorNoche, capacidadHuespedes, descripcion, idHotel, rutaImagen);
     }
 
     @Override
@@ -116,7 +114,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     @Override
     public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
-        if (alojamientoReserva.getCapacidadMaximaHuespedes()<numeroHuespedes){
+        if (alojamientoReserva.getCapacidadMaximaHuespedes() < numeroHuespedes) {
             throw new Exception("El numero de huespedes supera la capacidad maxima del alojamiento");
         }
         for (Reserva reservaAlojamiento : reservaServicio.obtenerReservasAlojamiento(idAlojamiento)) {
@@ -135,14 +133,14 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         double total = subtotal;
         for (Oferta oferta : ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento)) {
             if (oferta.getFechaInicio().isBefore(fechaInicio) && oferta.getFechaFinal().isAfter(fechaFinal)) {
-                total = subtotal-(subtotal * oferta.getValorPorcentaje());
+                total = subtotal - (subtotal * oferta.getValorPorcentaje());
             }
         }
-        Usuario usuario =usuarioServicio.buscarUsuario(idUsuario);
-        if (usuario.getBilletera().getSaldo()<total){
+        Usuario usuario = usuarioServicio.buscarUsuario(idUsuario);
+        if (usuario.getBilletera().getSaldo() < total) {
             throw new Exception("No tiene saldo suficiente para realizar la reserva");
         }
-        usuario.getBilletera().setSaldo(usuario.getBilletera().getSaldo()-total);
+        usuario.getBilletera().setSaldo(usuario.getBilletera().getSaldo() - total);
 
         Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario);
         reserva.getFactura().setSubtotal(subtotal);
@@ -163,7 +161,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public List<Alojamiento> obtenerAlojamientosAleatorios(){
+    public List<Alojamiento> obtenerAlojamientosAleatorios() {
         List<Alojamiento> copiaLista = alojamientoServicio.obtenerAlojamientos();
         Collections.shuffle(copiaLista);
 
@@ -179,30 +177,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         LocalDate inicioAno = LocalDate.of(ano, 1, 1);
         LocalDate finAno = LocalDate.of(ano, 12, 31);
         long diasTotales = ChronoUnit.DAYS.between(inicioAno, finAno.plusDays(1));
-        int diasOcupados =  0;
-        List <Reserva> reservasAlojamiento=reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
-
-            for (Reserva reserva : reservasAlojamiento) {
-                LocalDate inicioReserva = reserva.getFechaInicio();
-                LocalDate finReserva = reserva.getFechaFinal();
-
-                LocalDate inicio = inicioReserva.isBefore(inicioAno) ? inicioAno : inicioReserva;
-                LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
-
-            if (!inicio.isAfter(fin)) {
-                    diasOcupados += (int) ChronoUnit.DAYS.between(inicio, fin.plusDays(1));
-                }
-            }
-
-        return ((double) diasOcupados / diasTotales) * 100;
-    }
-
-    public double obtenerGananciasTotales(int ano, String idAlojamiento){
-        LocalDate inicioAno = LocalDate.of(ano, 1, 1);
-        LocalDate finAno = LocalDate.of(ano, 12, 31);
-        double gananciasTotales = 0;
-
-        List <Reserva> reservasAlojamiento=reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+        int diasOcupados = 0;
+        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
 
         for (Reserva reserva : reservasAlojamiento) {
             LocalDate inicioReserva = reserva.getFechaInicio();
@@ -212,14 +188,36 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
             LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
 
             if (!inicio.isAfter(fin)) {
-                gananciasTotales+=reserva.getFactura().getTotal();
+                diasOcupados += (int) ChronoUnit.DAYS.between(inicio, fin.plusDays(1));
+            }
+        }
+
+        return ((double) diasOcupados / diasTotales) * 100;
+    }
+
+    public double obtenerGananciasTotales(int ano, String idAlojamiento) {
+        LocalDate inicioAno = LocalDate.of(ano, 1, 1);
+        LocalDate finAno = LocalDate.of(ano, 12, 31);
+        double gananciasTotales = 0;
+
+        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+
+        for (Reserva reserva : reservasAlojamiento) {
+            LocalDate inicioReserva = reserva.getFechaInicio();
+            LocalDate finReserva = reserva.getFechaFinal();
+
+            LocalDate inicio = inicioReserva.isBefore(inicioAno) ? inicioAno : inicioReserva;
+            LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
+
+            if (!inicio.isAfter(fin)) {
+                gananciasTotales += reserva.getFactura().getTotal();
             }
         }
         return gananciasTotales;
     }
 
-    public double obtenerCantidadReservasAlojamiento( String idAlojamiento){
-        List <Reserva> reservasAlojamiento=reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+    public double obtenerCantidadReservasAlojamiento(String idAlojamiento) {
+        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
         double cantidadReservas = 0;
 
         for (Reserva reserva : reservasAlojamiento) {
@@ -239,17 +237,17 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     public List<Alojamiento> ordenarAlojamientosPopularesCiudad(Ciudad ciudad) {
 
-        List<Alojamiento> alojamientosCiudad= alojamientoServicio.obtenerAlojamientos().stream()
+        List<Alojamiento> alojamientosCiudad = alojamientoServicio.obtenerAlojamientos().stream()
                 .filter(a -> a.getCiudad().equals(ciudad))
                 .toList();
         return ordenarAlojamientosPopulares(alojamientosCiudad);
     }
 
-    public void activarUsuario(String cedula, String codigo) throws Exception{
+    public void activarUsuario(String cedula, String codigo) throws Exception {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
-    public void enviarCodigo(String correo){
+    public void enviarCodigo(String correo) {
         usuarioServicio.enviarCodigo(correo);
     }
 
@@ -276,7 +274,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return alojamientos;
     }
 
-    public List<Alojamiento> ordenarAlojamientosMasRentableTipo(TipoAlojamiento tipo){
+    public List<Alojamiento> ordenarAlojamientosMasRentableTipo(TipoAlojamiento tipo) {
         List<Alojamiento> alojamientosTipo = alojamientoServicio.obtenerAlojamientos().stream()
                 .filter(a -> a.getTipoAlojamiento().equals(tipo))
                 .collect(Collectors.toList());
@@ -284,32 +282,32 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ordenarAlojamientosMasRentable(alojamientosTipo);
     }
 
-    public Usuario iniciarSesion(String correo, String contrasena) throws Exception{
+    public Usuario iniciarSesion(String correo, String contrasena) throws Exception {
         Usuario usuarioEncontrado = null;
-        for(Usuario usuario : usuarioServicio.obtenerUsuarios()){
+        for (Usuario usuario : usuarioServicio.obtenerUsuarios()) {
 
-            if(usuario.getEmail().equals(correo) && usuario.getContrasena().equals(contrasena)){
+            if (usuario.getEmail().equals(correo) && usuario.getContrasena().equals(contrasena)) {
                 usuarioEncontrado = usuario;
-                if(!usuarioEncontrado.getActivo()){
+                if (!usuarioEncontrado.getActivo()) {
                     throw new IllegalAccessException("Usuario inactivo");
                 }
             }
         }
-        if(usuarioEncontrado == null){
+        if (usuarioEncontrado == null) {
             throw new Exception("Usuario o contraseña incorrecta");
         }
         return usuarioEncontrado;
     }
 
-    public Usuario buscarUsuarioCorreo(String correo){
+    public Usuario buscarUsuarioCorreo(String correo) {
         return usuarioServicio.buscarUsuarioCorreo(correo);
     }
 
-    public Usuario buscarUsuario(String id){
+    public Usuario buscarUsuario(String id) {
         return usuarioServicio.buscarUsuario(id);
     }
 
-    public void validarCambioContrasena(String codigoIngresado, String contrasena) throws Exception{
+    public void validarCambioContrasena(String codigoIngresado, String contrasena) throws Exception {
         usuarioServicio.validarCambioContrasena(codigoIngresado, contrasena);
     }
 
@@ -317,15 +315,15 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.cambiarCodigoEnviado(cedula, codigoEnviado);
     }
 
-    public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception{
+    public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception {
         usuarioServicio.cambiarContrasena(usuario, contrasena, contrasenaConfirmar);
     }
 
-    public List<String> obtenerCamposOpcionales(String idAlojamiento) throws Exception{
+    public List<String> obtenerCamposOpcionales(String idAlojamiento) throws Exception {
         return alojamientoServicio.obtenerCamposOpcionales(idAlojamiento);
     }
 
-    public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception{
+    public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception {
         return resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
     }
 
@@ -333,7 +331,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
     }
 
-    public List<Reserva> obtenerReservasUsuario(String idUsuario){
+    public List<Reserva> obtenerReservasUsuario(String idUsuario) {
         return reservaServicio.obtenerReservasUsuario(idUsuario);
     }
 
@@ -342,18 +340,22 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         float suma = 0;
         int contador = 0;
         List<Resena> resenas = resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
-        for(Resena resena : resenas){
+        for (Resena resena : resenas) {
             suma += resena.getCalificacion();
             contador++;
         }
-        alojamiento.setCalificacionPromedio(Math.round((suma / contador) * 10.0) /10.0f);
+        alojamiento.setCalificacionPromedio(Math.round((suma / contador) * 10.0) / 10.0f);
     }
 
     public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax) throws Exception {
         return alojamientoServicio.obtenerAlojamientosFiltrados(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax);
     }
 
-    public List<Alojamiento> obtenerAlojamientos(){
+    public List<Alojamiento> obtenerAlojamientos() {
         return alojamientoServicio.obtenerAlojamientos();
+    }
+
+    public String obtenerSaldoCadena(String cedula) throws Exception {
+    return usuarioServicio.obtenerSaldoCadena(cedula);
     }
 }

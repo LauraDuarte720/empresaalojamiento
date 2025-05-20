@@ -40,6 +40,7 @@ public class CrearReservaControlador {
         try {
             controladorPrincipal.registrarReserva(datePickFechaIngreso.getValue(),datePickFechaSalida.getValue(),Integer.parseInt(txtNumHuesped.getText()),alojamiento.getId(),sesion.getUsuario().getCedula());
             ControladorPrincipal.crearAlerta("Se ha creado con exito la reserva", Alert.AlertType.INFORMATION);
+            AlojamientoSingleton.getInstancia().setAlojamiento(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
@@ -49,6 +50,7 @@ public class CrearReservaControlador {
     @FXML
     void regresar(ActionEvent event) {
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
+        AlojamientoSingleton.getInstancia().setAlojamiento(null);
     }
 
 }

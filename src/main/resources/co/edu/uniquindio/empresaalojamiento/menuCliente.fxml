@@ -15,7 +15,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="900.0" style="-fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
    <children>
-      <HBox prefHeight="618.0" prefWidth="802.0" style="-fx-background-color: #D3B49F;">
+      <HBox alignment="TOP_CENTER" prefHeight="618.0" prefWidth="802.0" style="-fx-background-color: #D3B49F;">
          <children>
             <VBox alignment="TOP_CENTER" spacing="25.0" style="-fx-background-color: #8C522D;">
                <children>
@@ -64,7 +64,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <StackPane fx:id="panelPrincipal" />
+            <StackPane fx:id="panelPrincipal" prefHeight="603.0" prefWidth="653.0" />
          </children>
       </HBox>
    </children>
