@@ -149,8 +149,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         reserva.getFactura().setSubtotal(subtotal);
         reserva.getFactura().setTotal(total);
 
-        // Falta crear una string bonita con la info de la factura para meter en el pdf, al igual que u ntitulo
-        File factura = Utilidades.generarPdf("Factura", "Esta es la factura ", "Informacion de la factura");
+
+        File factura = Utilidades.generarPdf("Factura" + reserva.getFactura().getCodigo(),  generarInfoFactura(reserva));
         Utilidades.enviarCorreoQrPdf(usuario.getEmail(), "Reservación", "Hola " + usuario.getNombre() + "\nHas hecho una reservación en:\n\t " + alojamientoReserva.getNombre() + "\n\nPara ver su factura electrónica escaneé el siguiente código: \n\n", "imagenQr" + usuario.getCedula() + System.currentTimeMillis() +".png", factura);
         return reserva;
     }
@@ -364,4 +364,84 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     public String obtenerSaldoCadena(String cedula) throws Exception {
     return usuarioServicio.obtenerSaldoCadena(cedula);
     }
+
+
+    public String generarInfoFactura(Reserva reserva) throws Exception {
+        Usuario usuario = buscarUsuario(reserva.getIdUsuario());
+        Factura factura = reserva.getFactura();
+        Alojamiento alojamiento = alojamientoRepositorio.buscarAlojamiento(reserva.getIdAlojamiento());
+        return """
+============================================================
+                         FACTURA ELECTRÓNICA
+============================================================
+
+Factura #: %s
+Fecha      : %s
+
+--------------------- DATOS DEL CLIENTE ---------------------
+
+Cliente    : %s %s
+Cédula     : %s
+Teléfono   : %s
+Email      : %s
+
+--------------------- DETALLES DE LA RESERVA ----------------
+
+Reserva ID        : %s
+Fecha Entrada     : %s
+Fecha Salida      : %s
+Total de días     : %d
+Número Huéspedes  : %d
+
+-------------------- DETALLES DEL ALOJAMIENTO ----------------
+
+Alojamiento       : %s
+Ciudad            : %s
+Tipo              : %s
+Precio por noche  : $%,.2f
+Servicios         : %s
+
+----------------------- RESUMEN DE PAGO ----------------------
+
+Subtotal base     : $%,.2f
+Costo Adicional   : $%,.2f
+Subtotal          : $%,.2f
+Descuento         : $%,.2f
+-------------------------------
+Total a Pagar     : $%,.2f
+
+Gracias por preferirnos. ¡Esperamos su pronta visita!
+
+============================================================
+""".formatted(
+                factura.getCodigo(),
+                factura.getFecha(),
+                usuario.getNombre(), usuario.getApellido(),
+                usuario.getCedula(),
+                usuario.getTelefono(),
+                usuario.getEmail(),
+                reserva.getId(),
+                reserva.getFechaInicio(),
+                reserva.getFechaFinal(),
+                (int) ChronoUnit.DAYS.between(reserva.getFechaInicio(), reserva.getFechaFinal()),
+                reserva.getNumeroHuespedes(),
+                alojamiento.getNombre(),
+                alojamiento.getCiudad().toString(),
+                alojamiento.getTipoAlojamiento().toString(),
+                alojamiento.getPrecioPorNoche(),
+                obtenerServiciosIncluidosString(alojamiento),
+                factura.getSubtotal() - alojamiento.getCostoAdicional(),
+                alojamiento.getCostoAdicional(),
+                factura.getSubtotal(),
+                factura.getSubtotal() - factura.getTotal(),
+                factura.getTotal()
+        );
+    }
+
+    public String obtenerServiciosIncluidosString(Alojamiento alojamiento) throws Exception {
+        List<String> servicios = alojamientoRepositorio.obtenerCamposOpcionales(alojamiento);
+        return servicios.isEmpty() ? "Ninguno" : String.join(", ", servicios);
+    }
+
+
 }

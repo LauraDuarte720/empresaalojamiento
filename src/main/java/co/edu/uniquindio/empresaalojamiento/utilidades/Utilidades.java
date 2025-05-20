@@ -23,7 +23,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-import java.io.IOException;
 
 public class Utilidades {
     public static void enviarNotificacion(String destinatario, String asunto, String mensaje) {
@@ -43,27 +42,6 @@ public class Utilidades {
                 .withDebugLogging(true)
                 .buildMailer()) {
 
-
-            mailer.sendMail(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void enviarNotificacion(String destinatario, String asunto, String mensaje, String rutaQR) {
-        Email email = EmailBuilder.startingBlank()
-                .from("envioemail278@gmail.com")
-                .to(destinatario)
-                .withSubject(asunto)
-                .withPlainText(mensaje)
-                .withAttachment("qr.png", new FileDataSource(new File(rutaQR)))
-                .buildEmail();
-
-        try (Mailer mailer = MailerBuilder
-                .withSMTPServer("smtp.gmail.com", 587, "envioemail278@gmail.com", "jipn vsxx eoxc pwvu")
-                .withTransportStrategy(TransportStrategy.SMTP_TLS)
-                .withDebugLogging(true)
-                .buildMailer()) {
 
             mailer.sendMail(email);
         } catch (Exception e) {
@@ -113,7 +91,7 @@ public class Utilidades {
 
             String rutaQR = carpetaQR + nombreImagen + ".png";
 
-            String contenidoQR = "https://drive.google.com/tu_archivo.pdf";
+            String contenidoQR = "file:///E:/Archivos/Repositorios%20github/empresaalojamiento/facturas/Factura1747772240806.pdf";
 
             Utilidades.crearQR(contenidoQR, rutaQR);
 
@@ -132,28 +110,25 @@ public class Utilidades {
 
     }
 
-    public static File generarPdf(String nombreArchivo, String titulo, String mensajeCentral) throws IOException {
+    public static File generarPdf(String nombreArchivo, String mensajeCentral) throws IOException {
         PDDocument documento = new PDDocument();
         PDPage pagina = new PDPage(PDRectangle.LETTER);
         documento.addPage(pagina);
 
         try (PDPageContentStream contenido = new PDPageContentStream(documento, pagina)) {
-            // Título arriba
-            contenido.beginText();
-            contenido.setFont(PDType1Font.HELVETICA_BOLD, 20);
-            contenido.newLineAtOffset(220, 700); // posición del título
-            contenido.showText(titulo);
-            contenido.endText();
-
-            // Mensaje en el centro
             contenido.beginText();
             contenido.setFont(PDType1Font.HELVETICA, 14);
-            contenido.newLineAtOffset(100, 400); // posición del mensaje
-            contenido.showText(mensajeCentral);
+            contenido.newLineAtOffset(100, 730);
+            String[] lineas = mensajeCentral.replace("\r", "").split("\n");
+            for (String linea : lineas) {
+                contenido.showText(linea);
+                contenido.newLineAtOffset(0, -18);
+            }
+
             contenido.endText();
         }
 
-        String rutaArchivo = "facturas/" + nombreArchivo + System.currentTimeMillis() + ".pdf";
+        String rutaArchivo = "facturas/" + nombreArchivo + ".pdf";
         documento.save(rutaArchivo);
         documento.close();
 

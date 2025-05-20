@@ -115,7 +115,7 @@ public class UsuarioServicio {
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void enviarCodigo(String correo) {
+    public void enviarCodigo(String correo) throws Exception {
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuarioCorreo(correo);
