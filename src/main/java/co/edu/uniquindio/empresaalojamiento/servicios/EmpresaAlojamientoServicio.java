@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.*;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
@@ -28,9 +29,11 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final HabitacionRepositorio habitacionRepositorio;
     private final ResenaServicio resenaServicio;
     private final ResenaRepositorio resenaRepositorio;
+    private final Usuario usuario;
 
 
-    public EmpresaAlojamientoServicio() {
+    public EmpresaAlojamientoServicio(){
+        this.usuario = Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build();
 
         this.resenaRepositorio = new ResenaRepositorio();
         this.resenaServicio = new ResenaServicio(resenaRepositorio);

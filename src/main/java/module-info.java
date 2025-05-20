@@ -4,6 +4,9 @@ module co.edu.uniquindio.empresaalojamiento {
     requires static lombok;
     requires org.simplejavamail.core;
     requires org.simplejavamail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires jakarta.activation;
 
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;
