@@ -63,7 +63,6 @@ public class ItemAlojamientoControlador {
 
     public void setAlojamiento(Alojamiento alojamiento) {
         this.alojamiento = alojamiento;
-        AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
         System.out.println(alojamiento.getId());
         indexResena = 0;
         lblTituloAlojamiento.setText(alojamiento.getNombre());
@@ -82,6 +81,7 @@ public class ItemAlojamientoControlador {
     }
 
     public void reservar(ActionEvent actionEvent) {
+        AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
         if(Sesion.getInstancia().getUsuario() != null){
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
         }

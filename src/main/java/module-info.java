@@ -7,6 +7,7 @@ module co.edu.uniquindio.empresaalojamiento {
     requires com.google.zxing;
     requires com.google.zxing.javase;
     requires jakarta.activation;
+    requires org.apache.pdfbox;
 
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;

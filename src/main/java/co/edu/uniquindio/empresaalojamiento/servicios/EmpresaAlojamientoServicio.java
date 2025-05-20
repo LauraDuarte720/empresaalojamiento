@@ -6,8 +6,10 @@ import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
+import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import lombok.Getter;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -149,6 +151,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         reserva.getFactura().setSubtotal(subtotal);
         reserva.getFactura().setTotal(total);
 
+        // Falta crear una string bonita con la info de la factura para meter en el pdf, al igual que u ntitulo
+        File factura = Utilidades.generarPdf("Factura", "Esta es la factura ", "Informacion de la factura");
+        Utilidades.enviarCorreoQrPdf(usuario.getEmail(), "Reservación", "Hola " + usuario.getNombre() + "\nHas hecho una reservación en:\n\t " + alojamientoReserva.getNombre() + "\n\nPara ver su factura electrónica escaneé el siguiente código: \n\n", "imagenQr" + usuario.getCedula() + System.currentTimeMillis() +".png", factura);
         return reserva;
     }
 

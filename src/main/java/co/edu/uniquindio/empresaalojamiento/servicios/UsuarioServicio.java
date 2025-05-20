@@ -119,7 +119,7 @@ public class UsuarioServicio {
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuarioCorreo(correo);
-        Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
+        Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Hola" + usuarioActivar.getNombre() + "\n\nSu código de verificacion es: " + "\n\t- " + codigoGenerado);
         usuarioActivar.setCodigoEnviado(codigoGenerado);
     }
 

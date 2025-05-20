@@ -33,7 +33,12 @@ public class CrearReservaControlador {
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
-    private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    private  Alojamiento alojamiento;
+
+    @FXML
+    void initialize(){
+        alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    }
 
     @FXML
     void crearReserva(ActionEvent event) {
