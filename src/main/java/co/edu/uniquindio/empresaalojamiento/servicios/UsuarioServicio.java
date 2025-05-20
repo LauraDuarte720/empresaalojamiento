@@ -115,10 +115,13 @@ public class UsuarioServicio {
         usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
     }
 
-    public void enviarCodigo(String correo) {
+    public void enviarCodigo(String correo) throws Exception {
         String codigoGenerado = Utilidades.generarCodigoVerificacion();
         System.out.println(codigoGenerado);
         Usuario usuarioActivar = usuarioRepositorio.buscarUsuarioCorreo(correo);
+        if (usuarioActivar == null) {
+            throw new Exception("No existe un usuario con ese correo");
+        }
         Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
         usuarioActivar.setCodigoEnviado(codigoGenerado);
     }

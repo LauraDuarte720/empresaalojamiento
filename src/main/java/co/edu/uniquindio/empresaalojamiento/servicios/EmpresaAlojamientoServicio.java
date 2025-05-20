@@ -29,11 +29,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final HabitacionRepositorio habitacionRepositorio;
     private final ResenaServicio resenaServicio;
     private final ResenaRepositorio resenaRepositorio;
-    private final Usuario usuario;
 
 
     public EmpresaAlojamientoServicio(){
-        this.usuario = Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build();
 
         this.resenaRepositorio = new ResenaRepositorio();
         this.resenaServicio = new ResenaServicio(resenaRepositorio);
@@ -242,7 +240,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
         List<Alojamiento> alojamientosCiudad = alojamientoServicio.obtenerAlojamientos().stream()
                 .filter(a -> a.getCiudad().equals(ciudad))
-                .toList();
+                .collect(Collectors.toList());
         return ordenarAlojamientosPopulares(alojamientosCiudad);
     }
 
@@ -250,7 +248,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
-    public void enviarCodigo(String correo) {
+    public void enviarCodigo(String correo) throws Exception{
         usuarioServicio.enviarCodigo(correo);
     }
 

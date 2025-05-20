@@ -32,12 +32,17 @@ public class CambioContrasenaControlador {
     void enviarCodigo(ActionEvent event) {
         txtCodigo.setVisible(true);
         lblCodigo.setVisible(true);
-        empresaAlojamientoServicio.enviarCodigo(txtCorreo.getText());
+        try {
+            empresaAlojamientoServicio.enviarCodigo(txtCorreo.getText());
+        }catch (Exception e){
+            ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+        }
+
     }
 
     @FXML
     void cancelar(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicarSesion.fxml", "Inicio Sesion", lblCodigo, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Inicio Sesion", lblCodigo, getClass());
     }
 
     @FXML
