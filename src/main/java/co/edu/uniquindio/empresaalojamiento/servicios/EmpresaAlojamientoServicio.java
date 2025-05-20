@@ -108,7 +108,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Resena crearResena(String valoracion, Integer calificacion, String idUsuario, String idAlojamiento) throws Exception {
-        return resenaServicio.crearResena(valoracion, calificacion, idUsuario, idAlojamiento);
+        Resena resena = resenaServicio.crearResena(valoracion, calificacion, idUsuario, idAlojamiento);
+        promediarCalificaciones(idAlojamiento);
+        return resena;
     }
 
     @Override
@@ -333,5 +335,25 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     public List<Reserva> obtenerReservasUsuario(String idUsuario){
         return reservaServicio.obtenerReservasUsuario(idUsuario);
+    }
+
+    public void promediarCalificaciones(String idAlojamiento) throws Exception {
+        Alojamiento alojamiento = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
+        float suma = 0;
+        int contador = 0;
+        List<Resena> resenas = resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
+        for(Resena resena : resenas){
+            suma += resena.getCalificacion();
+            contador++;
+        }
+        alojamiento.setCalificacionPromedio(Math.round((suma / contador) * 10.0) /10.0f);
+    }
+
+    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax) throws Exception {
+        return alojamientoServicio.obtenerAlojamientosFiltrados(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax);
+    }
+
+    public List<Alojamiento> obtenerAlojamientos(){
+        return alojamientoServicio.obtenerAlojamientos();
     }
 }

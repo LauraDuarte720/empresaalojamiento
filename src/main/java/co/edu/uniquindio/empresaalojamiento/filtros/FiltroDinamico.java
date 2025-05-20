@@ -21,7 +21,7 @@ public class FiltroDinamico {
         if (ciudadSeleccionada!=null) {
             filtros.add(new FiltroPorCiudad(ciudadSeleccionada));
         }
-        if (precioMin >= 0 && precioMax >= 0) {
+        if (precioMin >= 0 && precioMax >= 0 && (precioMax != 0|| precioMin != 0)) {
             filtros.add(new FiltroPorRangoPrecio(precioMin, precioMax));
         }
 

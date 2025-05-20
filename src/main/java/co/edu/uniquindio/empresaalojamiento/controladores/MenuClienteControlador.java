@@ -39,7 +39,7 @@ public class MenuClienteControlador implements Initializable {
         try{
             controladorPrincipal.eliminarUsuario(sesion.getUsuario().getCedula());
             ControladorPrincipal.crearAlerta("Cuenta eliminada con exito", Alert.AlertType.INFORMATION);
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", panelPrincipal, getClass());
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion2.fxml", "Inicio Sesion", panelPrincipal, getClass());
         }catch(Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }

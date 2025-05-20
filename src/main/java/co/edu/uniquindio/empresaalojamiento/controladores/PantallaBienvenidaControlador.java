@@ -13,7 +13,7 @@ public class PantallaBienvenidaControlador {
 
     @FXML
     void irPantallaInicio(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion.fxml", "Inicio Sesion", lblTitutlo, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/inicioSesion2.fxml", "Inicio Sesion", lblTitutlo, getClass());
     }
 
 }

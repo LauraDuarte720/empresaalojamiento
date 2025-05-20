@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane fx:id="scrPareserva" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 15; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
-   <content>
-      <VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="375.0" prefWidth="563.0" spacing="20.0" style="-fx-background-color: #D3B49F;">
+<VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="550.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
          <children>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="563.0" spacing="10.0">
                <children>
                   <ComboBox fx:id="cmbFiltroCiudad" prefHeight="28.0" prefWidth="109.0" promptText="Ciudad" style="-fx-background-color: #e4cabd; -fx-border-color: #421404;" />
                   <ComboBox fx:id="cmbFiltroTipoAlojamiento" prefHeight="28.0" prefWidth="141.0" promptText="Tipo Alojamiento" style="-fx-background-color: #e4cabd; -fx-border-color: #421404;" />
-                  <TextField fx:id="txtFiltroNombre" editable="false" prefHeight="26.0" prefWidth="127.0" promptText="Nombre" />
+                  <TextField fx:id="txtFiltroNombre" prefHeight="26.0" prefWidth="127.0" promptText="Nombre" />
                   <TextField fx:id="txtFiltroPrecioMin" prefHeight="26.0" prefWidth="68.0" promptText="\$Minimo" />
-                  <TextField fx:id="txtFiltroPrecioMax" prefHeight="26.0" prefWidth="88.0" promptText="\$Maximo" />
+                  <TextField fx:id="txtFiltroPrecioMax" prefHeight="26.0" prefWidth="91.0" promptText="\$Maximo" />
                </children>
             </HBox>
-         </children></VBox>
-   </content>
-</ScrollPane>
+      <ListView fx:id="listAlojamientos" prefHeight="437.0" prefWidth="622.0" style="-fx-background-color: #D3B49F;" />
+         </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding></VBox>

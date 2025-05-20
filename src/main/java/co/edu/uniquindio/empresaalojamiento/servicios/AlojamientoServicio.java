@@ -63,8 +63,24 @@ public class AlojamientoServicio {
 
     }
 
-    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, double precioMin, double precioMax) {
-        return FiltroDinamico.filtrar(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax, alojamientoRepositorio.obtenerAlojamientos());
+    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax) throws Exception {
+        double precioMinD;
+        double precioMaxD;
+        try {
+            precioMinD = Double.parseDouble(precioMin);
+            precioMaxD = Double.parseDouble(precioMax);
+
+        }
+        catch (Exception e) {
+            precioMinD = 0;
+            precioMaxD = 0;
+        }
+
+        if(precioMaxD < precioMinD) throw new Exception("El precio máximo debe ser mayor que el mínimo");
+
+        if (precioMinD < 0) throw new Exception("El precio mínimo debe ser mayor que 0");
+
+        return FiltroDinamico.filtrar(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMinD, precioMaxD, alojamientoRepositorio.obtenerAlojamientos());
     }
 
     public List<Alojamiento> obtenerAlojamientos() {

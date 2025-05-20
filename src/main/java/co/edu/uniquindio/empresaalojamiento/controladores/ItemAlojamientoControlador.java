@@ -2,11 +2,15 @@ package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
+import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -78,8 +82,13 @@ public class ItemAlojamientoControlador {
     }
 
     public void reservar(ActionEvent actionEvent) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
-
+        if(Sesion.getInstancia().getUsuario() != null){
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+        }
+        else{
+            ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+        }
     }
 
     public void llenarCamposAdicionales() {

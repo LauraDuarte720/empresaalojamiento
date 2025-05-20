@@ -4,38 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Ciudad {
-    LETICIA("Leticia"),
-    MEDELLIN("Medellín"),
-    ARAUCA("Arauca"),
-    BARRANQUILLA("Barranquilla"),
-    CARTAGENA("Cartagena"),
-    TUNJA("Tunja"),
-    MANIZALES("Manizales"),
-    FLORENCIA("Florencia"),
-    YOPAL("Yopal"),
-    POPAYAN("Popayán"),
-    VALLEDUPAR("Valledupar"),
-    QUIBDO("Quibdó"),
-    MONTERIA("Montería"),
-    BOGOTA("Bogotá"),
-    INIRIDA("Inírida"),
-    SAN_JOSE_DEL_GUAVIARE("San José del Guaviare"),
-    NEIVA("Neiva"),
-    RIOHACHA("Riohacha"),
-    SANTA_MARTA("Santa Marta"),
-    VILLAVICENCIO("Villavicencio"),
-    PASTO("Pasto"),
-    CUCUTA("Cúcuta"),
-    MOCOA("Mocoa"),
-    ARMENIA("Armenia"),
-    PEREIRA("Pereira"),
-    SAN_ANDRES("San Andrés"),
-    BUCARAMANGA("Bucaramanga"),
-    SINCELEJO("Sincelejo"),
-    IBAGUE("Ibagué"),
-    CALI("Cali"),
-    MITU("Mitú"),
-    PUERTO_CARRENO("Puerto Carreño");
+        ARAUCA("Arauca"),
+        ARMENIA("Armenia"),
+        BARRANQUILLA("Barranquilla"),
+        BOGOTA("Bogotá"),
+        BUCARAMANGA("Bucaramanga"),
+        CALI("Cali"),
+        CARTAGENA("Cartagena"),
+        CUCUTA("Cúcuta"),
+        FLORENCIA("Florencia"),
+        IBAGUE("Ibagué"),
+        INIRIDA("Inírida"),
+        LETICIA("Leticia"),
+        MANIZALES("Manizales"),
+        MEDELLIN("Medellín"),
+        MITU("Mitú"),
+        MOCOA("Mocoa"),
+        MONTERIA("Montería"),
+        NEIVA("Neiva"),
+        PASTO("Pasto"),
+        PEREIRA("Pereira"),
+        POPAYAN("Popayán"),
+        PUERTO_CARRENO("Puerto Carreño"),
+        QUIBDO("Quibdó"),
+        RIOHACHA("Riohacha"),
+        SAN_ANDRES("San Andrés"),
+        SAN_JOSE_DEL_GUAVIARE("San José del Guaviare"),
+        SANTA_MARTA("Santa Marta"),
+        SINCELEJO("Sincelejo"),
+        TUNJA("Tunja"),
+        VALLEDUPAR("Valledupar"),
+        VILLAVICENCIO("Villavicencio"),
+        YOPAL("Yopal");
 
     private final String nombre;
 
@@ -53,5 +53,10 @@ public enum Ciudad {
             nombres.add(ciudad.getNombre());
         }
         return nombres;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

@@ -21,4 +21,9 @@ public enum TipoAlojamiento {
         }
         return nombres;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
