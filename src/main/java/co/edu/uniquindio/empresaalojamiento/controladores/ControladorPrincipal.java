@@ -1,8 +1,11 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
+import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -158,6 +161,9 @@ public class ControladorPrincipal {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1054863011", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1054863011", "1");
+
+            UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
+            usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
         } catch (Exception ignored) {
         }
     }

@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="600.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="600.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.GestionalojamientoControlador">
    <children>
       <Label alignment="TOP_CENTER" prefHeight="42.0" prefWidth="193.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Alojamientos" textFill="#421404">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TableView prefHeight="198.0" prefWidth="554.0" style="-fx-border-color: #421404;">
+      <TableView fx:id="tblAlojamientos" prefHeight="198.0" prefWidth="554.0" style="-fx-border-color: #421404;">
         <columns>
             <TableColumn fx:id="tbcTIpoAlojamiento" prefWidth="75.0" text="Tipo" />
           <TableColumn fx:id="tbcNombre" prefWidth="75.0" text="Nombre" />
@@ -78,7 +78,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="137.0" prefWidth="229.0" spacing="10.0">
                <children>
-                  <Label text="Listar Alojamientos mas rentables">
+                  <Label text="Listar Alojamientos mas populares">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
@@ -52,15 +53,26 @@ public class IniciarSesionControlador {
     void iniciarSesion(ActionEvent event) {
         try{
             Usuario usuario = empresaAlojamientoServicio.iniciarSesion(txtCorreoIniciarSesion.getText(), txtContrasenaSesion.getText());
-            Sesion.getInstancia().setUsuario(usuario);
-            ControladorPrincipal.crearAlerta("Bienvenido " +usuario.getNombre(), Alert.AlertType.INFORMATION);
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtCorreoIniciarSesion, getClass());
+            if(usuario.getRol()== Rol.CLIENTE) {
+                Sesion.getInstancia().setUsuario(usuario);
+                ControladorPrincipal.crearAlerta("Bienvenido " + usuario.getNombre(), Alert.AlertType.INFORMATION);
+                ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtCorreoIniciarSesion, getClass());
+            }else{
+                Sesion.getInstancia().setUsuario(usuario);
+                ControladorPrincipal.crearAlerta("Bienvenido " + usuario.getNombre(), Alert.AlertType.INFORMATION);
+                ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Usuario", txtCorreoIniciarSesion, getClass());
+            }
         } catch (IllegalAccessException e) {
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
             Usuario usuario = empresaAlojamientoServicio.buscarUsuarioCorreo(txtCorreoIniciarSesion.getText());
             Sesion.getInstancia().setUsuario(usuario);
-            empresaAlojamientoServicio.enviarCodigo(usuario.getEmail());
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/codigoRegistro.fxml", "Codigo registro", txtCorreoIniciarSesion, getClass());
+            try {
+                empresaAlojamientoServicio.enviarCodigo(usuario.getEmail());
+                ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/codigoRegistro.fxml", "Codigo registro", txtCorreoIniciarSesion, getClass());
+            }catch (Exception ex){
+                ControladorPrincipal.crearAlerta(ex.getMessage(), Alert.AlertType.ERROR);
+            }
+
         }
 
         catch(Exception e){
