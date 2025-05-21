@@ -442,4 +442,8 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
     public List<Habitacion> obtenerHabitacionesHotel(String idHotel){
         return habitacionServicio.obtenerHabitacionesHotel(idHotel);
     }
+
+    public List<Oferta> obtenerOfertas() {
+        return ofertaServicio.obtenerOfertas();
+    }
 }

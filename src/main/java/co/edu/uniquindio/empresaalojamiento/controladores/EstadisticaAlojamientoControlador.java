@@ -43,7 +43,7 @@ public class EstadisticaAlojamientoControlador {
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources) {
+    private void initialize() {
 
         int currentYear = Year.now().getValue();
         for (int i = currentYear; i >= currentYear - 10; i--) {
