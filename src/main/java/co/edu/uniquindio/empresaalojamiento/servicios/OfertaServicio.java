@@ -79,7 +79,7 @@ public class OfertaServicio {
 
         ofertaModificar.setFechaInicio(fechaInicio);
         ofertaModificar.setFechaInicio(fechaFin);
-        ofertaModificar.setValorPorcentaje(ofertaValor);
+        ofertaModificar.setValorPorcentaje(ofertaValor/100);
         ofertaModificar.setDescripcion(descripcion);
 
     }

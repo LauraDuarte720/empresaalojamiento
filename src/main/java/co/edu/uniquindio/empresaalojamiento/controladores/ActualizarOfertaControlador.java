@@ -27,7 +27,6 @@ public class ActualizarOfertaControlador {
     private TextField txtDescuento;
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
-    private final Sesion sesion = Sesion.getInstancia();
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
     private final Oferta oferta = OfertaSingleton.getInstancia().getOferta();
 
@@ -41,9 +40,9 @@ public class ActualizarOfertaControlador {
     @FXML
     void actualizarOferta(ActionEvent event) {
         try {
-            controladorPrincipal.actualizarOferta(oferta.getId(),dateFechaInicio.getValue(),dateFechaFinal.getValue(),Double.parseDouble(txtDescuento.getText()),alojamiento.getId(),txtDescripcion.getText());
+            controladorPrincipal.actualizarOferta(oferta.getId(),dateFechaInicio.getValue(),dateFechaFinal.getValue(),Double.parseDouble(txtDescuento.getText()),oferta.getIdAlojamiento(),txtDescripcion.getText());
             ControladorPrincipal.crearAlerta("Se ha actualizado con exito la oferta", Alert.AlertType.INFORMATION);
-
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Administrador", txtDescripcion, getClass());
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -51,7 +50,7 @@ public class ActualizarOfertaControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("menuAdministrador", "Administrador", txtDescripcion, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Administrador", txtDescripcion, getClass());
     }
 
 }

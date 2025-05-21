@@ -38,17 +38,17 @@ public class PanelOfertaControlador {
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
-    private OfertaSingleton ofertaSingleton = OfertaSingleton.getInstancia();
+    private final OfertaSingleton ofertaSingleton = OfertaSingleton.getInstancia();
     private Oferta ofertaSeleccionada;
 
     @FXML
     public void initialize() {
 
-        tbcAlojamiento.setCellValueFactory(cellData ->new SimpleStringProperty(controladorPrincipal.obtenerAlojamientoPorId("5b7a868e-fc71-4700-bb50-b7a6681c4600").getNombre()));
+        tbcAlojamiento.setCellValueFactory(cellData ->new SimpleStringProperty(controladorPrincipal.obtenerAlojamientoPorId(cellData.getValue().getIdAlojamiento()).getNombre()));
         tbcDescripcion.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getDescripcion()));
         tbcFechaInicio.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getFechaInicio().toString()));
         tbcFechaFinal.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getFechaFinal().toString()));
-        tbcPorcentajes.setCellValueFactory(cellData ->new SimpleStringProperty(String.valueOf(cellData.getValue().getValorPorcentaje())));
+        tbcPorcentajes.setCellValueFactory(cellData ->new SimpleStringProperty(String.valueOf(cellData.getValue().getValorPorcentaje()*100)));
         setOfertas();
         tblOferta.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             ofertaSeleccionada=newValue;
@@ -58,8 +58,13 @@ public class PanelOfertaControlador {
 
     @FXML
     void actualizar(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/actualizarOferta.fxml", "Actualizar Oferta", tblOferta, getClass());
-        ofertaSingleton.setOferta(ofertaSeleccionada);
+        if(ofertaSeleccionada!=null){
+            ofertaSingleton.setOferta(ofertaSeleccionada);
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/actualizarOferta.fxml", "Actualizar Oferta", tblOferta, getClass());
+        }else{
+            ControladorPrincipal.crearAlerta("Debe seleccionar una oferta antes de actualizarla", Alert.AlertType.ERROR);
+        }
+
     }
 
     @FXML
