@@ -38,7 +38,7 @@ public class GestionHabitacionControlador {
         tbcCapacidad.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCapacidadHuespedes())));
         tbcNumHabitacion.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getNumero())));
         tbcPrecio.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPrecioPorNoche())));
-        tbHabitacion.setItems(observableList(controladorPrincipal.obtenerHabitacionesHotel(alojamiento.getId())));
+        setHabitaciones();
         tbHabitacion.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             habitacionSeleccionado=newValue;
         });
@@ -56,7 +56,7 @@ public class GestionHabitacionControlador {
             try {
                 controladorPrincipal.eliminarHabitacion(habitacionSeleccionado.getId());
                 ControladorPrincipal.crearAlerta("Se ha eliminado con exito la habitacion", Alert.AlertType.INFORMATION);
-                tbHabitacion.setItems(observableList(controladorPrincipal.obtenerHabitacionesHotel(alojamiento.getId())));
+                setHabitaciones();
             }catch (Exception e){
                 ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
             }
@@ -69,8 +69,13 @@ public class GestionHabitacionControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-    ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/gestionAlojamiento.fxml", "Gestiones Alojamiento", tbHabitacion, getClass());
-    AlojamientoSingleton.getInstancia().setAlojamiento(null);
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/gestionAlojamiento.fxml", "Gestiones Alojamiento", tbHabitacion, getClass());
+        AlojamientoSingleton.getInstancia().setAlojamiento(null);
+    }
+
+    public void setHabitaciones(){
+        tbHabitacion.setItems(observableList(controladorPrincipal.obtenerHabitacionesHotel(alojamiento.getId())));
+        tbHabitacion.refresh();
     }
 
 }

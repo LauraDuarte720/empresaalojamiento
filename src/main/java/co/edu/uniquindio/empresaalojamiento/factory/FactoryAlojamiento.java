@@ -32,8 +32,6 @@ public class FactoryAlojamiento {
                     .nombre(nombre)
                     .descripcion(descripcion)
                     .ruta(ruta)
-                    .precioPorNoche(precioPorNoche)
-                    .capacidadMaximaHuespedes(capacidadMaximaHuespede).piscina(piscina)
                     .wifi(wifi)
                     .desayuno(desayuno)
                     .ciudad(ciudad)

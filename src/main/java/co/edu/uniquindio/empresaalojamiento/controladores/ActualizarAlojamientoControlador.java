@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -44,9 +45,6 @@ public class ActualizarAlojamientoControlador {
     private TextField txtPrecioNoche;
 
     @FXML
-    private ComboBox<String> cmbTipoAlojamiento;
-
-    @FXML
     private TextField txtnombre;
 
     @FXML
@@ -69,6 +67,15 @@ public class ActualizarAlojamientoControlador {
 
     @FXML
     private Button btnHabitaciones;
+
+    @FXML
+    private Label tipoAlojamiento;
+
+    @FXML
+    private HBox hBoxCapacidadHuesped;
+
+    @FXML
+    private HBox hBoxPrecioNoche;
 
     private String rutaFoto;
 
@@ -93,21 +100,17 @@ public class ActualizarAlojamientoControlador {
         } else {
             imgFoto.setImage(null);
         }
+        tipoAlojamiento.setText(alojamiento.getTipoAlojamiento().toString());
         txtCapacidadHuespedes.setText(String.valueOf(alojamiento.getCapacidadMaximaHuespedes()));
         txtDescripcion.setText(alojamiento.getDescripcion());
         txtPrecioNoche.setText(String.valueOf(alojamiento.getPrecioPorNoche()));
-        cmbTipoAlojamiento.getItems().addAll(TipoAlojamiento.getListaDeNombres());
-        cmbTipoAlojamiento.getSelectionModel().select(alojamiento.getTipoAlojamiento().toString());
         txtnombre.setText(alojamiento.getNombre());
         checkDesayuno.setSelected(alojamiento.isDesayuno());
         checkPiscina.setSelected(alojamiento.isPiscina());
         checkWifi.setSelected(alojamiento.isWifi());
         txtCostoadicional.setText(String.valueOf(alojamiento.getCostoAdicional()));
-        actualizarVisibilidad(cmbTipoAlojamiento.getValue());
-        cmbTipoAlojamiento.setOnAction(event -> {
-            actualizarVisibilidad(cmbTipoAlojamiento.getValue());
+        actualizarVisibilidad(alojamiento.getTipoAlojamiento().toString());
 
-        });
     }
     @FXML
     void actualizarAlojamiento(ActionEvent event) {
@@ -178,6 +181,11 @@ public class ActualizarAlojamientoControlador {
         lblCostoAdicional.setVisible(mostrar1);
         txtCostoadicional.setVisible(mostrar1);
         btnHabitaciones.setVisible(mostrar2);
+        hBoxCapacidadHuesped.setVisible(mostrar1);
+        hBoxPrecioNoche.setVisible(mostrar1);
+        txtPrecioNoche.setVisible(mostrar1);
+        txtCapacidadHuespedes.setVisible(mostrar1);
+
     }
 
 
