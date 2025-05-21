@@ -38,6 +38,7 @@ public class PanelAlojamientoControlador {
     private VBox vBoxAlojamientos;
 
 
+
     private static EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
 
 

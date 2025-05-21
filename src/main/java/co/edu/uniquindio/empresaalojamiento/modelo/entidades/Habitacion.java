@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
 @Builder
 @AllArgsConstructor
-public class Habitacion {
+public class Habitacion implements Serializable {
     private String id;
     private int numero;
     private double precioPorNoche;

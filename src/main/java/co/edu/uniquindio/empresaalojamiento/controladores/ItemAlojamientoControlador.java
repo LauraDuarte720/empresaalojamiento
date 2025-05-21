@@ -6,6 +6,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
+import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -48,6 +49,9 @@ public class ItemAlojamientoControlador {
     private Label lblUsuario;
 
     @FXML
+    private Label lblPrecioPorNoche;
+
+    @FXML
     private Label lblCalificacionIndividual;
 
     @FXML
@@ -68,6 +72,7 @@ public class ItemAlojamientoControlador {
         lblTituloAlojamiento.setText(alojamiento.getNombre());
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
+        lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
         imgAlojamiento.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(alojamiento.getRuta()))));
         llenarCamposAdicionales();
 

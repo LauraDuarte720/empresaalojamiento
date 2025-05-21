@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 
-public class Factura {
+public class Factura implements Serializable {
     private double total;
     private double subtotal;
     private LocalDate fecha;

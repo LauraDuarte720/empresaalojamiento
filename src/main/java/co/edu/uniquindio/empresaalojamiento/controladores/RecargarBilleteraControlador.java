@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
+import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,7 +24,7 @@ public class RecargarBilleteraControlador {
     public void initialize() {
         try {
 
-            txtSaldo.setText("Su saldo actual es: " + empresaAlojamientoServicio.obtenerSaldoCadena(sesion.getUsuario().getCedula()));
+            txtSaldo.setText("Su saldo actual es: " + Utilidades.obtenerValorCadena(sesion.getUsuario().getBilletera().getSaldo()));
         } catch (Exception e) {
             ControladorPrincipal.crearAlerta("No existe un usuario con esa cedula", Alert.AlertType.ERROR);
         }
@@ -35,7 +36,7 @@ public class RecargarBilleteraControlador {
             empresaAlojamientoServicio.recargarBilletera(Double.parseDouble(txtMontoRecargar.getText()), sesion.getUsuario().getCedula());
             ControladorPrincipal.crearAlerta("Ha recargado su billetera con exito", Alert.AlertType.INFORMATION);
             txtMontoRecargar.clear();
-            txtSaldo.setText("Su saldo actual es: " + empresaAlojamientoServicio.obtenerSaldoCadena(sesion.getUsuario().getCedula()));
+            txtSaldo.setText("Su saldo actual es: " + Utilidades.obtenerValorCadena(sesion.getUsuario().getBilletera().getSaldo()));
 
         } catch (Exception e) {
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);

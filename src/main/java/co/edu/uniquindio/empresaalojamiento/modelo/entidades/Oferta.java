@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Builder
 @Setter
 @AllArgsConstructor
-public class Oferta {
+public class Oferta implements Serializable {
     private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;

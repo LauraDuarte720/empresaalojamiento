@@ -131,7 +131,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
             }
         }
 
-        int diasReserva = (int) ChronoUnit.DAYS.between(fechaInicio, fechaFinal.plusDays(1));
+        int diasReserva = (int) ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
         double subtotal = (alojamientoReserva.getPrecioPorNoche() * diasReserva) + alojamientoReserva.getCostoAdicional();
         double total = subtotal;
         for (Oferta oferta : ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento)) {
@@ -359,10 +359,6 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     public List<Alojamiento> obtenerAlojamientos() {
         return alojamientoServicio.obtenerAlojamientos();
-    }
-
-    public String obtenerSaldoCadena(String cedula) throws Exception {
-    return usuarioServicio.obtenerSaldoCadena(cedula);
     }
 
 

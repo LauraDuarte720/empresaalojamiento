@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AlojamientoRepositorio implements IAlojamientoRepositorio {
-    private final ArrayList<Alojamiento> alojamientos;
+    private final List<Alojamiento> alojamientos;
 
     public AlojamientoRepositorio() {
-        this.alojamientos = new ArrayList<>();
+
+        this.alojamientos = leerDatos();
     }
 
 
@@ -87,7 +88,7 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
                 return (List<Alojamiento>) datos;
             }
         } catch (Exception e) {
-            System.err.println("Error cargando pacientes: " + e.getMessage());
+            System.err.println("Error cargando alojamientos: " + e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -97,7 +98,7 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
         try {
             Persistencia.serializarObjeto(Constantes.RUTA_ALOJAMIENTOS, alojamientos);
         } catch (IOException e) {
-            System.err.println("Error guardando pacientes: " + e.getMessage());
+            System.err.println("Error guardando alojamientos: " + e.getMessage());
         }
     }
 

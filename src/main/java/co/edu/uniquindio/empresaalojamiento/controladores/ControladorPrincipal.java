@@ -36,6 +36,10 @@ public class ControladorPrincipal {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             empresaAlojamiento.getUsuarioRepositorio().guardarDatos(empresaAlojamiento.getUsuarioRepositorio().listarUsuarios());
             empresaAlojamiento.getAlojamientoRepositorio().guardarDatos(empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos());
+            empresaAlojamiento.getOfertaRepositorio().guardarDatos(empresaAlojamiento.getOfertaRepositorio().obtenerOfertas());
+            empresaAlojamiento.getHabitacionRepositorio().guardarDatos(empresaAlojamiento.getHabitacionRepositorio().obtenerHabitaciones());
+            empresaAlojamiento.getReservaRepositorio().guardarDatos(empresaAlojamiento.getReservaRepositorio().obtenerReservas());
+            empresaAlojamiento.getResenaRepositorio().guardarDatos(empresaAlojamiento.getResenaRepositorio().obtenerResenas());
             System.out.println("Usuarios guardados automáticamente al cerrar el programa.");
         }));
     }
@@ -156,6 +160,7 @@ public class ControladorPrincipal {
 
             Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();
             alojamiento.setId("1");
+            System.out.println(alojamiento.getNombre());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy bonito", 4, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1092457610", "1");

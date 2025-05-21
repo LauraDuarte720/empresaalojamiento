@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.utilidades;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -15,6 +16,7 @@ import org.simplejavamail.mailer.MailerBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -133,5 +135,10 @@ public class Utilidades {
         documento.close();
 
         return new File(rutaArchivo);
+    }
+
+    public static String obtenerValorCadena(double valor) {
+        DecimalFormat df = new DecimalFormat("#.##############################");
+        return df.format(valor);
     }
 }

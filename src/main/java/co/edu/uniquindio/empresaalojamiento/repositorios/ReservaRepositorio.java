@@ -1,20 +1,22 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Reserva;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IReservaRepositorio;
+import co.edu.uniquindio.empresaalojamiento.utilidades.Constantes;
+import co.edu.uniquindio.empresaalojamiento.utilidades.Persistencia;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReservaRepositorio implements IReservaRepositorio {
 
-    private final ArrayList<Reserva> reservas;
+    private final List<Reserva> reservas;
 
     public ReservaRepositorio() {
-        this.reservas = new ArrayList<>();
+
+        this.reservas = leerDatos();
     }
 
     @Override
@@ -56,6 +58,27 @@ public class ReservaRepositorio implements IReservaRepositorio {
                 .filter(c -> idAlojamiento.equalsIgnoreCase(c.getIdAlojamiento()))
                 .collect(Collectors.toList()
                 );
+    }
+
+    public List<Reserva> leerDatos() {
+        try {
+            Object datos = Persistencia.deserializarObjeto(Constantes.RUTA_RESERVAS);
+            if (datos != null) {
+                return (List<Reserva>) datos;
+            }
+        } catch (Exception e) {
+            System.err.println("Error cargando reservas: " + e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+
+    public void guardarDatos(List<Reserva> reservas) {
+        try {
+            Persistencia.serializarObjeto(Constantes.RUTA_RESERVAS, reservas);
+        } catch (IOException e) {
+            System.err.println("Error guardando reservas: " + e.getMessage());
+        }
     }
 }
 
