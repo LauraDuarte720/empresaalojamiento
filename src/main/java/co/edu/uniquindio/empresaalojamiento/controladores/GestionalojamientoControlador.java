@@ -54,7 +54,7 @@ public class GestionalojamientoControlador {
         tbcMaxHuesped.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCapacidadMaximaHuespedes())));
         tbcPrecioPorNoche.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPrecioPorNoche())));
         tbcTIpoAlojamiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoAlojamiento().toString()));
-        setAlojamiento();
+        setAlojamiento(observableList(controladorPrincipal.obtenerAlojamientos()));
         tblAlojamientos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             alojamientoSeleccionado=newValue;
         });
@@ -65,7 +65,7 @@ public class GestionalojamientoControlador {
         try {
             controladorPrincipal.eliminarAlojamiento(alojamientoSeleccionado.getId());
             ControladorPrincipal.crearAlerta("Se ha eliminado con exito el alojamiento", Alert.AlertType.INFORMATION);
-            setAlojamiento();
+            setAlojamiento(observableList(controladorPrincipal.obtenerAlojamientos()));
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -79,7 +79,7 @@ public class GestionalojamientoControlador {
                 throw new IllegalArgumentException("Debe seleccionar una ciudad antes de filtrar.");
             }
             List<Alojamiento> alojamientosPopulares = controladorPrincipal.ordenarAlojamientosPopularesCiudad(ciudadSeleccionada);
-            setAlojamiento();
+            setAlojamiento(observableList(alojamientosPopulares));
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -103,9 +103,14 @@ public class GestionalojamientoControlador {
 
     @FXML
     void irCrearOferta(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearOferta.fxml", "Crear Oferta", tblAlojamientos, getClass());
+        if (alojamientoSeleccionado != null) {
+            Alojamiento alojamientoSeleccionado = tblAlojamientos.getSelectionModel().getSelectedItem();
+            AlojamientoSingleton.getInstancia().setAlojamiento(alojamientoSeleccionado);
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearOferta.fxml", "Crear Oferta", tblAlojamientos, getClass());
+        } else {
+            ControladorPrincipal.crearAlerta("Selecciona un alojamiento primero", Alert.AlertType.ERROR);
+        }
     }
-
     @FXML
     void irNuevoAlojamiento(ActionEvent event) {
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearAlojamiento.fxml", "Nuevo Alojamiento", tblAlojamientos, getClass());
@@ -117,14 +122,14 @@ public class GestionalojamientoControlador {
         if (alojamientoSeleccionado != null) {
             Alojamiento alojamientoSeleccionado = tblAlojamientos.getSelectionModel().getSelectedItem();
             AlojamientoSingleton.getInstancia().setAlojamiento(alojamientoSeleccionado);
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/estadisticaAlojamiento.fxml", "Actualizar Alojamiento", tblAlojamientos, getClass());
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/estadisticaAlojamiento.fxml", "Estadistica del alojamiento" + alojamientoSeleccionado.getNombre(), tblAlojamientos, getClass());
         }else {
             ControladorPrincipal.crearAlerta("Selecciona un alojamiento primero", Alert.AlertType.ERROR);
         }
     }
 
-    public void setAlojamiento(){
-        tblAlojamientos.setItems(observableList(controladorPrincipal.obtenerAlojamientos()));
+    public void setAlojamiento(List<Alojamiento> alojamientos){
+        tblAlojamientos.setItems(observableList(alojamientos));
         tblAlojamientos.refresh();
     }
 

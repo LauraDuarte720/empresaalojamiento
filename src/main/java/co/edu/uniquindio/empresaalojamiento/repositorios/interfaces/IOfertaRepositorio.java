@@ -12,4 +12,6 @@ public interface IOfertaRepositorio {
     public Oferta buscarOferta(String id);
 
     public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento);
+
+    public List<Oferta> obtenerOfertas();
 }

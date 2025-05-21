@@ -56,6 +56,10 @@ public class OfertaServicio {
         return oferta;
     }
 
+    public List<Oferta> obtenerOfertas() {
+        return ofertaRepositorio.obtenerOfertas();
+    }
+
     public void modificarOferta(String idOferta, LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception{
         Oferta ofertaModificar = ofertaRepositorio.buscarOferta(idOferta);
         if (ofertaModificar==null){

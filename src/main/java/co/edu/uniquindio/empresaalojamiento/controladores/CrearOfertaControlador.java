@@ -6,6 +6,7 @@ import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -28,15 +29,25 @@ public class CrearOfertaControlador {
     private TextField txtDescuento;
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
-    private final Sesion sesion = Sesion.getInstancia();
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
 
     @FXML
     void crearOferta(ActionEvent event) {
-
+        try{
+            controladorPrincipal.registrarOferta(dateFechaInicio.getValue(),dateFechaFinal.getValue(),Double.parseDouble(txtDescuento.getText()),alojamiento.getId(),txtDescripcion.getText());
+            ControladorPrincipal.crearAlerta("Se ha creado con exito la oferta", Alert.AlertType.INFORMATION);
+            AlojamientoSingleton.getInstancia().setAlojamiento(null);
+            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Usuario", txtDescripcion, getClass());
+        }catch (Exception e){
+            ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
 
+    @FXML
+    void regresar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Administrador", txtDescripcion, getClass());
+    }
 
 
 }
