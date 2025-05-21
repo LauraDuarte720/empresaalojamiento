@@ -4,10 +4,12 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
+import co.edu.uniquindio.empresaalojamiento.singleton.OfertaSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -36,25 +38,44 @@ public class PanelOfertaControlador {
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    private OfertaSingleton ofertaSingleton = OfertaSingleton.getInstancia();
+    private Oferta ofertaSeleccionada;
 
     @FXML
     public void initialize() {
-        tbcAlojamiento.setCellValueFactory(cellData ->new SimpleStringProperty(controladorPrincipal.obtenerAlojamientoPorId(cellData.getValue().getIdAlojamiento()).getNombre()));
+
+        tbcAlojamiento.setCellValueFactory(cellData ->new SimpleStringProperty(controladorPrincipal.obtenerAlojamientoPorId("5b7a868e-fc71-4700-bb50-b7a6681c4600").getNombre()));
         tbcDescripcion.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getDescripcion()));
         tbcFechaInicio.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getFechaInicio().toString()));
         tbcFechaFinal.setCellValueFactory(cellData ->new SimpleStringProperty(cellData.getValue().getFechaFinal().toString()));
         tbcPorcentajes.setCellValueFactory(cellData ->new SimpleStringProperty(String.valueOf(cellData.getValue().getValorPorcentaje())));
         setOfertas();
+        tblOferta.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            ofertaSeleccionada=newValue;
+        });
+
     }
 
     @FXML
     void actualizar(ActionEvent event) {
-
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/actualizarOferta.fxml", "Actualizar Oferta", tblOferta, getClass());
+        ofertaSingleton.setOferta(ofertaSeleccionada);
     }
 
     @FXML
     void eliminar(ActionEvent event) {
-
+        if(ofertaSeleccionada!=null){
+            try {
+                controladorPrincipal.eliminarOferta(ofertaSeleccionada.getId());
+                ControladorPrincipal.crearAlerta("Se ha eliminado con exito la oferta", Alert.AlertType.INFORMATION);
+                setOfertas();
+            }catch (Exception e){
+                ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
+        else{
+            ControladorPrincipal.crearAlerta("Debe seleccionar una oferta antes de eliminarla", Alert.AlertType.ERROR);
+        }
     }
 
     public void setOfertas(){

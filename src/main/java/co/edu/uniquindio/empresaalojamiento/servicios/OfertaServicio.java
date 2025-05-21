@@ -53,6 +53,8 @@ public class OfertaServicio {
                 .build();
 
         getOfertaRepositorio().agregarOferta(oferta);
+        System.out.println("id de la oferta: "+oferta.getId());
+        System.out.println("id de alojamiento: "+oferta.getIdAlojamiento());
         return oferta;
     }
 

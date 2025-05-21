@@ -85,6 +85,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
+        Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
+        System.out.println("Nombre del alojamiento al que se le hico la oferta" + alojamientoReserva.getNombre());
         return ofertaServicio.crearOferta(fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
     }
 
