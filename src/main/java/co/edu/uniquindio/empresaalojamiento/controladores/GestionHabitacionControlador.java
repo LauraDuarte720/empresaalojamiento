@@ -69,7 +69,7 @@ public class GestionHabitacionControlador {
 
     @FXML
     void regresar(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/gestionAlojamiento.fxml", "Gestiones Alojamiento", tbHabitacion, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Gestiones Alojamiento", tbHabitacion, getClass());
         AlojamientoSingleton.getInstancia().setAlojamiento(null);
     }
 

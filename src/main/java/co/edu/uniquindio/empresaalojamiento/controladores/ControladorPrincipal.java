@@ -7,6 +7,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
+import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -126,10 +127,11 @@ public class ControladorPrincipal {
 
     public static void cargarData(){
         try {
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
+            Alojamiento alojamiento1 = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel Estelar",
                     "Un hotel moderno con vista a la ciudad.", "/imagenes/imagenHotel1.png", 250000,
                     4, true, false, true, 300, Ciudad.ARAUCA);
+
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
                     "Casa flores",
