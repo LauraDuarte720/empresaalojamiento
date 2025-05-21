@@ -93,7 +93,7 @@ public class ItemAlojamientoControlador {
             imgPrecio.setVisible(false);
             lblPrecioPorNoche.setVisible(false);
             btnReservar.setMaxWidth(170);
-            btnReservar.setText("Seleccionar Alojamiento");
+            btnReservar.setText("Seleccionar Habitación");
         }
 
         try {

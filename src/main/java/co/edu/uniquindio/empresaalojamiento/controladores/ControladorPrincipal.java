@@ -7,7 +7,6 @@ import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
-import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -30,7 +29,7 @@ public class ControladorPrincipal {
     private final EmpresaAlojamientoServicio empresaAlojamiento;
 
 
-    private ControladorPrincipal(){
+    private ControladorPrincipal() {
         empresaAlojamiento = new EmpresaAlojamientoServicio();
 
 
@@ -46,21 +45,21 @@ public class ControladorPrincipal {
     }
 
 
-    public static ControladorPrincipal getInstancia(){
-        if(instancia == null){
+    public static ControladorPrincipal getInstancia() {
+        if (instancia == null) {
             instancia = new ControladorPrincipal();
         }
         return instancia;
     }
 
 
-    public void cerrarVentana(Node node){
+    public void cerrarVentana(Node node) {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 
 
-    public static void crearAlerta(String mensaje, Alert.AlertType tipo){
+    public static void crearAlerta(String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setHeight(200);
         alert.setWidth(400);
@@ -106,7 +105,7 @@ public class ControladorPrincipal {
     }
 
     public static boolean setMostrarContrasena(boolean mostrar, Button boton, PasswordField passwordField, TextField textField, Class<?> clase) {
-        if(mostrar) {
+        if (mostrar) {
             ((ImageView) boton.getGraphic()).setImage(new Image(Objects.requireNonNull(clase.getResourceAsStream("/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoAbiertoClaro.png"))));
             ControladorPrincipal.cambiarEfectoHooverBoton(boton, "/co/edu/uniquindio/empresaalojamiento/imagenesIconos/ojoAbiertoOscuro.png");
             textField.setVisible(true);
@@ -125,40 +124,102 @@ public class ControladorPrincipal {
         }
     }
 
-    public static void cargarData(){
+    public static void cargarData() {
         try {
-            Alojamiento alojamiento1 = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
-                    "Hotel Estelar",
-                    "Un hotel moderno con vista a la ciudad.", "/imagenes/imagenHotel1.png", 250000,
-                    4, true, false, true, 300, Ciudad.ARAUCA);
+            /*ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.HOTEL).
+                    nombre("Hotel Estelar").
+                    descripcion("Un hotel moderno con vista a la ciudad.").
+                    ruta("/imagenes/imagenHotel1.png").
+                    piscina(true).
+                    desayuno(false).
+                    wifi(true).
+                    costoAdicional(300).
+                    ciudad(Ciudad.ARAUCA).
+                    id("1").
+                    build());
 
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.CASA).
+                    nombre("Casa flores").
+                    descripcion("Casa muy bonita al norte de la ciudad").
+                    ruta("/imagenes/casa1.png").
+                    piscina(true).
+                    desayuno(false).
+                    wifi(true).
+                    costoAdicional(500).
+                    ciudad(Ciudad.ARAUCA).
+                    id("2").
+                    build());
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
-                    "Casa flores",
-                    "Casa muy bonita al norte de la ciudad", "/imagenes/casa1.png", 260000,
-                    4, true, true, false, 300, Ciudad.ARAUCA);
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.HOTEL).
+                    nombre("Hotel la paz").
+                    descripcion("Un hotel moderno con vista al monte.").
+                    ruta("/imagenes/imagenHotel2.png").
+                    piscina(true).
+                    desayuno(false).
+                    wifi(true).
+                    costoAdicional(300).
+                    ciudad(Ciudad.ARAUCA).
+                    id("3").
+                    build());
 
-
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
-                    "Hotel Estelar",
-                    "Un hotel moderno con vista a la ciudad.", "/imagenes/imagenHotel2.png", 250000,
-                    4, false, true, true, 300, Ciudad.ARAUCA);
-
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.APARTAMENTOS,
-                    "Apartamentos la milagrosa",
-                    "Casa muy bonita al norte de la ciudad", "/imagenes/apartamentos1.png", 260000,
-                    4, true, true, true, 300, Ciudad.ARMENIA);
-
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.APARTAMENTOS).
+                    nombre("Apartamentos la milagrosa").
+                    descripcion("Apartamentos muy bonitos al norte de la ciudad").
+                    ruta("/imagenes/apartamentos1.png").
+                    precioPorNoche(130000).
+                    capacidadMaximaHuespedes(6).
+                    piscina(true).
+                    desayuno(false).
+                    wifi(true).
+                    costoAdicional(100).
+                    ciudad(Ciudad.ARMENIA).
+                    id("4").
+                    build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel caribe",
                     "Hotel al borde del mar", "/imagenes/imagenHotel3.png", 250000,
                     4, true, true, true, 300, Ciudad.ARAUCA);
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
-                    "Casa de las nieves",
-                    "Casa iglue en el nevado del ruiz", "/imagenes/casa2.png", 260000,
-                    4, true, true, true, 300, Ciudad.ARAUCA);
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.HOTEL).
+                    nombre("Hotel caribe").
+                    descripcion("Hotel al borde del mar").
+                    ruta("/imagenes/imagenHotel3.png").
+                    precioPorNoche(110000).
+                    capacidadMaximaHuespedes(6).
+                    piscina(true).
+                    desayuno(false).
+                    wifi(true).
+                    costoAdicional(10000).
+                    ciudad(Ciudad.ARAUCA).
+                    id("5").
+                    build());
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+                    tipoAlojamiento(TipoAlojamiento.CASA).
+                    nombre("Casa de las nieves").
+                    descripcion("Casa iglue en el nevado del ruiz").
+                    ruta("/imagenes/casa2.png").
+                    precioPorNoche(320000).
+                    capacidadMaximaHuespedes(3).
+                    piscina(false).
+                    desayuno(true).
+                    wifi(false).
+                    costoAdicional(30000).
+                    ciudad(Ciudad.ARAUCA).
+                    id("5").
+                    build());
+            ;
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("1", "30000", "4", "Hola", "1", "/imagenes/interior-del-sitio-de-alojamiento-comodo.jpg");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("2", "40000", "4", "Adios", "1", "/imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg");
 
             Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();
             alojamiento.setId("1");
@@ -169,7 +230,7 @@ public class ControladorPrincipal {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1092457610", "1");
-
+*/
             UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
             usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
         } catch (Exception ignored) {
