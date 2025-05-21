@@ -87,12 +87,17 @@ public class GestionalojamientoControlador {
 
     @FXML
     void irActualizarAlojamiento(ActionEvent event) {
+        if (alojamientoSeleccionado == null) {
+            ControladorPrincipal.crearAlerta("Selecciona un alojamiento primero", Alert.AlertType.ERROR);
+        }
+        Alojamiento alojamientoSeleccionado = tblAlojamientos.getSelectionModel().getSelectedItem();
+        AlojamientoSingleton.getInstancia().setAlojamiento(alojamientoSeleccionado);
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/actualizarAlojamiento.fxml", "Actualizar Alojamiento", tblAlojamientos, getClass());
     }
 
     @FXML
     void irAlojamientoRentable(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/alojamientoRentable.fxml", "Alojamiento Rentable", tblAlojamientos, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/alojamientosRentables.fxml", "Alojamiento Rentable", tblAlojamientos, getClass());
     }
 
     @FXML
@@ -102,12 +107,12 @@ public class GestionalojamientoControlador {
 
     @FXML
     void irNuevoAlojamiento(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/nuevoAlojamiento.fxml", "Nuevo Alojamiento", tblAlojamientos, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearAlojamiento.fxml", "Nuevo Alojamiento", tblAlojamientos, getClass());
     }
 
     @FXML
     void irVerEstadistuca(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/verEstadisticas.fxml", "Ver Estadisticas", tblAlojamientos, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/estadisticaAlojamiento.fxml", "Ver Estadisticas", tblAlojamientos, getClass());
     }
 
 }

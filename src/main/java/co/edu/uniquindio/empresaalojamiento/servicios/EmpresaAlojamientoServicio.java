@@ -443,5 +443,7 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
         return servicios.isEmpty() ? "Ninguno" : String.join(", ", servicios);
     }
 
-
+    public List<Habitacion> obtenerHabitacionesHotel(String idHotel){
+        return habitacionServicio.obtenerHabitacionesHotel(idHotel);
+    }
 }

@@ -4,6 +4,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -65,6 +66,13 @@ public class EstadisticaAlojamientoControlador {
         });
     }
 
+    @FXML
+    void regresar(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Menu Administrador", cmbAno, getClass());
+        AlojamientoSingleton.getInstancia().setAlojamiento(null);
+    }
+
+
     private void mostrarOcupacion(int ano, String idAlojamiento) {
         barcharOcupacion.getData().clear();
 
@@ -88,5 +96,7 @@ public class EstadisticaAlojamientoControlador {
 
         barcharGananciasTotales.getData().add(serie);
     }
+
+
 }
 
