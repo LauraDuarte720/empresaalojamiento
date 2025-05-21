@@ -31,7 +31,7 @@ public interface IEmpresaAlojamiento {
 
     public void actualizarOferta(String idOferta, LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception;
 
-    public Habitacion registrarHabitacion(int numeroHabitacion, double precioPorNoche, int capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception;
+    public Habitacion registrarHabitacion(String numeroHabitacion, String precioPorNoche, String capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception;
 
     public void eliminarHabitacion(String idHabitacion) throws Exception;
 
