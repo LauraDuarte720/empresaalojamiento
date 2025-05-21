@@ -128,34 +128,34 @@ public class ControladorPrincipal {
         try {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel Estelar",
-                    "Un hotel moderno con vista a la ciudad.", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel1.png", 250000,
+                    "Un hotel moderno con vista a la ciudad.", "/imagenes/imagenHotel1.png", 250000,
                     4, true, false, true, 300, Ciudad.ARAUCA);
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
                     "Casa flores",
-                    "Casa muy bonita al norte de la ciudad", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/casa1.png", 260000,
+                    "Casa muy bonita al norte de la ciudad", "/imagenes/casa1.png", 260000,
                     4, true, true, false, 300, Ciudad.ARAUCA);
 
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel Estelar",
-                    "Un hotel moderno con vista a la ciudad.", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel2.png", 250000,
+                    "Un hotel moderno con vista a la ciudad.", "/imagenes/imagenHotel2.png", 250000,
                     4, false, true, true, 300, Ciudad.ARAUCA);
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.APARTAMENTOS,
                     "Apartamentos la milagrosa",
-                    "Casa muy bonita al norte de la ciudad", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/apartamentos1.png", 260000,
+                    "Casa muy bonita al norte de la ciudad", "/imagenes/apartamentos1.png", 260000,
                     4, true, true, true, 300, Ciudad.ARMENIA);
 
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel caribe",
-                    "Hotel al borde del mar", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/imagenHotel3.png", 250000,
+                    "Hotel al borde del mar", "/imagenes/imagenHotel3.png", 250000,
                     4, true, true, true, 300, Ciudad.ARAUCA);
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.CASA,
                     "Casa de las nieves",
-                    "Casa iglue en el nevado del ruiz", "/co/edu/uniquindio/empresaalojamiento/imagenesAlojamientos/casa2.png", 260000,
+                    "Casa iglue en el nevado del ruiz", "/imagenes/casa2.png", 260000,
                     4, true, true, true, 300, Ciudad.ARAUCA);
 
             Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();

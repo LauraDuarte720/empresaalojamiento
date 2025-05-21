@@ -2,23 +2,28 @@ package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,7 +78,7 @@ public class ItemAlojamientoControlador {
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
-        imgAlojamiento.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(alojamiento.getRuta()))));
+        imgAlojamiento.setImage(new Image(new File("imagenes/imagenHotel1.png").toURI().toString()));
         llenarCamposAdicionales();
 
         try {
@@ -87,10 +92,9 @@ public class ItemAlojamientoControlador {
 
     public void reservar(ActionEvent actionEvent) {
         AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
-        if(Sesion.getInstancia().getUsuario() != null){
+        if (Sesion.getInstancia().getUsuario() != null) {
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
-        }
-        else{
+        } else {
             ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
         }
@@ -155,4 +159,18 @@ public class ItemAlojamientoControlador {
 
     }
 
+    private void mostrarPopupAlojamiento(Alojamiento alojamiento) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PopupAlojamiento.fxml"));
+            Parent root = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); // bloquea ventana anterior si quieres
+            popupStage.setTitle("Información del alojamiento");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait(); // o show() si no quieres bloquear la ventana principal
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
