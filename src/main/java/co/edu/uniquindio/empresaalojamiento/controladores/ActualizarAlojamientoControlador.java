@@ -115,6 +115,14 @@ public class ActualizarAlojamientoControlador {
     @FXML
     void actualizarAlojamiento(ActionEvent event) {
         try{
+            if (archivoTemporalSeleccionado != null) {
+                try {
+                    rutaFoto = guardarImagenEnDirectorio(archivoTemporalSeleccionado);
+                } catch (IOException e) {
+                    ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+                    return;
+                }
+            }
             controladorPrincipal.actualizarAlojamiento(
                     alojamiento.getId(),
                     txtnombre.getText(),
@@ -136,6 +144,8 @@ public class ActualizarAlojamientoControlador {
     }
 
 
+    private File archivoTemporalSeleccionado;
+
     @FXML
     void seleccionarFoto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -149,30 +159,27 @@ public class ActualizarAlojamientoControlador {
         File archivoSeleccionado = fileChooser.showOpenDialog(null);
 
         if (archivoSeleccionado != null) {
-            try {
+            archivoTemporalSeleccionado = archivoSeleccionado;
 
-                File directorioImagenes = new File("imagenes");
-                if (!directorioImagenes.exists()) {
-                    directorioImagenes.mkdirs();
-                }
-
-                String nombreArchivo = archivoSeleccionado.getName();
-
-                File archivoDestino = new File(directorioImagenes, nombreArchivo);
-
-                Files.copy(archivoSeleccionado.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                rutaFoto = archivoDestino.getAbsolutePath();
-
-                Image imagen = new Image(archivoDestino.toURI().toString());
-                imgFoto.setImage(imagen);
-
-            } catch (IOException e) {
-                ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
-            }
+            Image imagen = new Image(archivoSeleccionado.toURI().toString());
+            imgFoto.setImage(imagen);
         }
     }
 
+
+    public String guardarImagenEnDirectorio(File archivoOrigen) throws IOException {
+        File directorioImagenes = new File("imagenes");
+        if (!directorioImagenes.exists()) {
+            directorioImagenes.mkdirs();
+        }
+
+        String nombreArchivo = archivoOrigen.getName();
+        File archivoDestino = new File(directorioImagenes, nombreArchivo);
+
+        Files.copy(archivoOrigen.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        return archivoDestino.getAbsolutePath();
+    }
 
     private void actualizarVisibilidad(String seleccion) {
         boolean mostrar1 = "Casa".equals(seleccion) || "Apartamentos".equals(seleccion);

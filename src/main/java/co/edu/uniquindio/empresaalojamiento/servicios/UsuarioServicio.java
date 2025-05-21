@@ -122,7 +122,7 @@ public class UsuarioServicio {
         if (usuarioActivar == null) {
             throw new Exception("No existe un usuario con ese correo");
         }
-        Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación correo", "Su correo de verificacion es" + codigoGenerado);
+        Utilidades.enviarNotificacion(usuarioActivar.getEmail(), "Activación cuenta", "Su código de verificación es: " + codigoGenerado);
         usuarioActivar.setCodigoEnviado(codigoGenerado);
     }
 
