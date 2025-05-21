@@ -28,8 +28,12 @@ public class AlojamientoServicio {
         if (descripcion == null || descripcion.isEmpty())
             throw new Exception("La descripcion del alojamiento no puede ser vacia");
         if (ruta == null || ruta.isEmpty()) throw new Exception("La ruta del alojamiento no puede ser vacia");
-        if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
-        if (capacidadMaximaHuespede <= 0) throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+
+        if(tipoAlojamiento==TipoAlojamiento.APARTAMENTOS||tipoAlojamiento==TipoAlojamiento.CASA) {
+            if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
+            if (capacidadMaximaHuespede <= 0)
+                throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+        }
         if (ciudad == null) throw new Exception("Debe ingresar una ciudad");
 
         Alojamiento alojamiento = FactoryAlojamiento.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta,

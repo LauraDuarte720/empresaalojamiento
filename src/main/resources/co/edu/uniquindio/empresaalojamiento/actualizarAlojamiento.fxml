@@ -91,7 +91,6 @@
                   </Label>
                </children>
             </HBox>
-            <ComboBox fx:id="cmbTipoAlojamiento" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" />
             <TextField fx:id="txtnombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="3">
                <children>
@@ -107,21 +106,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="6">
-               <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenesIconos/camera_3004613.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Foto">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="161.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="161.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Button mnemonicParsing="false" onAction="#seleccionarFoto" style="-fx-background-color: #9e8576;" text="Seleccionar" textFill="WHITE">
                      <font>
@@ -132,7 +117,7 @@
                </children>
             </HBox>
             <ComboBox fx:id="cmbCiudad" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="4">
+            <HBox fx:id="hBoxPrecioNoche" alignment="CENTER_LEFT" spacing="10.0" visible="false" GridPane.rowIndex="6">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -146,31 +131,15 @@
                   </Label>
                </children>
             </HBox>
-            <TextField fx:id="txtPrecioNoche" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="5">
-               <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenesIconos/invitados.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefWidth="147.0" text="Capacidad Maxima de Huespedes" wrapText="true">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <TextField fx:id="txtCapacidadHuespedes" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextArea fx:id="txtDescripcion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="56.0" prefWidth="160.0" style="-fx-border-color: #421404; -fx-background-color: white;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 5;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <CheckBox fx:id="checkPiscina" mnemonicParsing="false" text="Piscina" />
                   <CheckBox fx:id="checkDesayuno" mnemonicParsing="false" text="Desyauno" />
                   <CheckBox fx:id="checkWifi" mnemonicParsing="false" text="Wifi" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="7">
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="5">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -199,6 +168,37 @@
                </children>
             </HBox>
             <TextField fx:id="txtCostoadicional" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="tipoAlojamiento" alignment="CENTER" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" text="TIpo Alojamiento" GridPane.columnIndex="1" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenesIconos/camera_3004613.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Foto">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <TextField fx:id="txtPrecioNoche" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <HBox fx:id="hBoxCapacidadHuesped" alignment="CENTER_LEFT" spacing="10.0" visible="false" GridPane.rowIndex="7">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenesIconos/invitados.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefWidth="147.0" text="Capacidad Maxima de Huespedes" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <TextField fx:id="txtCapacidadHuespedes" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
       <HBox alignment="CENTER_RIGHT">

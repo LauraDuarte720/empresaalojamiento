@@ -26,4 +26,13 @@ public enum TipoAlojamiento {
     public String toString() {
         return nombre;
     }
+
+    public static TipoAlojamiento getTipoAlojamientoDesdeNombre(String nombreLegible) {
+        return switch (nombreLegible) {
+            case "Apartamentos" -> TipoAlojamiento.APARTAMENTOS;
+            case "Casa" -> TipoAlojamiento.CASA;
+            case "Hotel" -> TipoAlojamiento.HOTEL;
+            default -> null;
+        };
+    }
 }

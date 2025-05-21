@@ -54,7 +54,7 @@ public class PanelReservaControlador {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getNumeroHuespedes())));
         tbcPrecio.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getFactura().getTotal())));
-        tblReservas.setItems(observableList(controladorPrincipal.obtenerReservasUsuario(sesion.getUsuario().getCedula())));
+        setReservas();
     }
     @FXML
     void agregarResena(ActionEvent event) {
@@ -86,7 +86,7 @@ public class PanelReservaControlador {
             if (reserva.getFechaInicio().isAfter(LocalDate.now())){
                 controladorPrincipal.cancelarReserva(reserva.getId());
                 ControladorPrincipal.crearAlerta("Reserva cancelada con exito", Alert.AlertType.INFORMATION);
-                tblReservas.setItems(observableList(controladorPrincipal.obtenerReservasUsuario(sesion.getUsuario().getCedula())));
+                setReservas();
             }else{
                 ControladorPrincipal.crearAlerta("No puede cancelar una reserva si ya paso la fecha", Alert.AlertType.ERROR);
             }
@@ -95,5 +95,9 @@ public class PanelReservaControlador {
         }
     }
 
+    public void setReservas(){
+        tblReservas.setItems(observableList(controladorPrincipal.obtenerReservasUsuario(sesion.getUsuario().getCedula())));
+        tblReservas.refresh();
+    }
 }
 
