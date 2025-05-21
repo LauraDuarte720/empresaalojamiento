@@ -19,14 +19,27 @@ public class HabitacionServicio {
         this.habitacionRepositorio = habitacionRepositorio;
     }
 
-    public Habitacion crearHabitacion(int numeroHabitacion,double precioPorNoche,int capacidadHuespedes,String descripcion, String idHotel, String rutaImagen)throws Exception{
-        if (numeroHabitacion<0){
-            throw new Exception("El numero de habitacion debe ser mayor a 0");
+    public Habitacion crearHabitacion(String numeroHabitacion,String precioPorNoche,String capacidadHuespedes,String descripcion, String idHotel, String rutaImagen)throws Exception{
+        int numeroHabitacionI;
+        double precioPorNocheD;
+        int capacidadHuespedesI;
+
+        try{
+            numeroHabitacionI = Integer.parseInt(numeroHabitacion);
+            precioPorNocheD = Double.parseDouble(precioPorNoche);
+            capacidadHuespedesI = Integer.parseInt(capacidadHuespedes);
+        } catch (NumberFormatException e) {
+            numeroHabitacionI = -1;
+            precioPorNocheD = -1;
+            capacidadHuespedesI = -1;
         }
-        if (precioPorNoche<0){
-            throw new Exception("El precio por noche debe ser mayor a 0");
+        if (numeroHabitacionI<0){
+            throw new Exception("El número de habitación ingresado es inválido");
         }
-        if (capacidadHuespedes<0){
+        if (precioPorNocheD<0){
+            throw new Exception("El precio por noche ingresado es inválido");
+        }
+        if (capacidadHuespedesI<0){
             throw new Exception("La capacidad de huespedes debe ser mayor a 0");
         }
         if (descripcion.isEmpty()){
@@ -34,9 +47,9 @@ public class HabitacionServicio {
         }
         Habitacion habitacion=Habitacion.builder()
                 .id(UUID.randomUUID().toString())
-                .numero(numeroHabitacion)
-                .precioPorNoche(precioPorNoche)
-                .capacidadHuespedes(capacidadHuespedes)
+                .numero(numeroHabitacionI)
+                .precioPorNoche(precioPorNocheD)
+                .capacidadHuespedes(capacidadHuespedesI)
                 .descripcion(descripcion)
                 .idHotel(idHotel)
                 .rutaImagen(rutaImagen)

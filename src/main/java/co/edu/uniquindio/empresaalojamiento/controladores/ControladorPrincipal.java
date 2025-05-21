@@ -160,7 +160,8 @@ public class ControladorPrincipal {
 
             Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();
             alojamiento.setId("1");
-            System.out.println(alojamiento.getNombre());
+
+            System.out.println(ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().size());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy bonito", 4, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1092457610", "1");

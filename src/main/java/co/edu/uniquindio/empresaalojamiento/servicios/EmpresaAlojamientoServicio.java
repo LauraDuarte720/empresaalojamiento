@@ -12,6 +12,7 @@ import lombok.Getter;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,7 +99,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Habitacion registrarHabitacion(int numeroHabitacion, double precioPorNoche, int capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception {
+    public Habitacion registrarHabitacion(String numeroHabitacion, String precioPorNoche, String capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception {
         return habitacionServicio.crearHabitacion(numeroHabitacion, precioPorNoche, capacidadHuespedes, descripcion, idHotel, rutaImagen);
     }
 
@@ -445,5 +446,13 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
 
     public List<Oferta> obtenerOfertas() {
         return ofertaServicio.obtenerOfertas();
+    }
+
+    public List<Integer> obtenerNumerosHabitaciones(String idHotel){
+        List<Integer> numerosHabitaciones = new ArrayList<>();
+        for(Habitacion habitacion: obtenerHabitacionesHotel(idHotel)){
+            numerosHabitaciones.add(habitacion.getNumero());
+        }
+        return numerosHabitaciones;
     }
 }

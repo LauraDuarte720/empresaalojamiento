@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #421404; -fx-border-color: #D3B49F; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelHabitacionControlador">
+<VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #421404; -fx-border-color: #D3B49F; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelHabitacionControlador">
     <children>
-        <ListView fx:id="listAlojamientos" prefHeight="590.0" prefWidth="546.0" style="-fx-background-color: #421404;" />
+      <StackPane>
+         <children>
+              <ListView fx:id="listHabitaciones" prefHeight="590.0" prefWidth="546.0" style="-fx-background-color: #421404;" />
+            <Label fx:id="lblNoHay" prefHeight="30.0" prefWidth="302.0" text="No hay habitaciones por el momento" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

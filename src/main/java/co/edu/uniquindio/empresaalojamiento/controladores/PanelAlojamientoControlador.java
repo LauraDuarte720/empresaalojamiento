@@ -37,6 +37,8 @@ public class PanelAlojamientoControlador {
     @FXML
     private VBox vBoxAlojamientos;
 
+    @FXML
+    private Label lblNoHay;
 
 
     private static EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
@@ -96,10 +98,18 @@ public class PanelAlojamientoControlador {
             }
         });
 
-        // Cargar los alojamientos iniciales
-        listAlojamientos.setItems(FXCollections.observableArrayList(
-                empresaAlojamientoServicio.obtenerAlojamientosAleatorios()
-        ));
+        if (empresaAlojamientoServicio.obtenerAlojamientos().size() > 0) {
+            listAlojamientos.setItems(FXCollections.observableArrayList(
+                    empresaAlojamientoServicio.obtenerAlojamientosAleatorios()));
+            vBoxAlojamientos.setVisible(true);
+            lblNoHay.setVisible(false);
+        }
+        else{
+            vBoxAlojamientos.setVisible(false);
+            lblNoHay.setVisible(true);
+        }
+
+
     }
 
     private void aplicarFiltros() {

@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
@@ -13,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,7 +38,13 @@ public class ItemAlojamientoControlador {
     private ImageView imgAlojamiento;
 
     @FXML
+    private ImageView imgPrecio;
+
+    @FXML
     private Label lblCalificacion;
+
+    @FXML
+    private Label lblCalificacionIndividual;
 
     @FXML
     private Label lblDescripcion;
@@ -48,19 +56,19 @@ public class ItemAlojamientoControlador {
     private Label lblOpinion;
 
     @FXML
+    private Label lblPrecioPorNoche;
+
+    @FXML
     private Label lblTituloAlojamiento;
 
     @FXML
     private Label lblUsuario;
 
     @FXML
-    private Label lblPrecioPorNoche;
-
-    @FXML
-    private Label lblCalificacionIndividual;
-
-    @FXML
     private VBox vBoxCamposOpcionales;
+
+    @FXML
+    private Button btnReservar;
 
 
     private int indexResena;
@@ -78,8 +86,15 @@ public class ItemAlojamientoControlador {
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
-        imgAlojamiento.setImage(new Image(new File("imagenes/imagenHotel1.png").toURI().toString()));
+        imgAlojamiento.setImage(new Image(new File(alojamiento.getRuta().substring(1)).toURI().toString()));
         llenarCamposAdicionales();
+
+        if(alojamiento.getTipoAlojamiento().equals(TipoAlojamiento.HOTEL)){
+            imgPrecio.setVisible(false);
+            lblPrecioPorNoche.setVisible(false);
+            btnReservar.setMaxWidth(170);
+            btnReservar.setText("Seleccionar Alojamiento");
+        }
 
         try {
             listaResenas = empresaAlojamientoServicio.obtenerResenasAlojamiento(alojamiento.getId());
@@ -92,12 +107,18 @@ public class ItemAlojamientoControlador {
 
     public void reservar(ActionEvent actionEvent) {
         AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
-        if (Sesion.getInstancia().getUsuario() != null) {
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+        if (!alojamiento.getTipoAlojamiento().equals(TipoAlojamiento.HOTEL)) {
+            if (Sesion.getInstancia().getUsuario() != null) {
+                ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+            } else {
+                ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
+                ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+            }
         } else {
-            ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
-            ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblTituloAlojamiento, getClass());
+            mostrarPopupAlojamiento(alojamiento);
         }
+
+
     }
 
     public void llenarCamposAdicionales() {
@@ -161,14 +182,14 @@ public class ItemAlojamientoControlador {
 
     private void mostrarPopupAlojamiento(Alojamiento alojamiento) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PopupAlojamiento.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/empresaalojamiento/panelHabitacion.fxml"));
             Parent root = loader.load();
 
             Stage popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); // bloquea ventana anterior si quieres
-            popupStage.setTitle("Información del alojamiento");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Habitaciones del alojamiento");
             popupStage.setScene(new Scene(root));
-            popupStage.showAndWait(); // o show() si no quieres bloquear la ventana principal
+            popupStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

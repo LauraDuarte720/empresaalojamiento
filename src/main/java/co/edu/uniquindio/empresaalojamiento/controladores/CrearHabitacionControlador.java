@@ -49,7 +49,7 @@ public class CrearHabitacionControlador {
     @FXML
     void crearHabitacion(ActionEvent event) {
         try{
-            controladorPrincipal.registrarHabitacion(Integer.parseInt(txtNumHabitacion.getText()),Integer.parseInt(txtPrecioNoche.getText()),Integer.parseInt(txtCapacidadHuespedes.getText()),txtDescripcion.getText(),alojamiento.getId(),rutaFoto);
+            controladorPrincipal.registrarHabitacion(txtNumHabitacion.getText(),txtPrecioNoche.getText(),txtCapacidadHuespedes.getText(),txtDescripcion.getText(),alojamiento.getId(),rutaFoto);
             ControladorPrincipal.crearAlerta("Se ha creado con exito la habitacion", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/gestionHabitacion.fxml", "Gestor de Habitaciones", txtNumHabitacion, getClass());
         }catch(Exception e){
