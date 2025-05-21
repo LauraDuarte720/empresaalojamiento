@@ -53,6 +53,8 @@ public class OfertaServicio {
                 .build();
 
         getOfertaRepositorio().agregarOferta(oferta);
+        System.out.println("id de la oferta: "+oferta.getId());
+        System.out.println("id de alojamiento: "+oferta.getIdAlojamiento());
         return oferta;
     }
 
@@ -77,7 +79,7 @@ public class OfertaServicio {
 
         ofertaModificar.setFechaInicio(fechaInicio);
         ofertaModificar.setFechaInicio(fechaFin);
-        ofertaModificar.setValorPorcentaje(ofertaValor);
+        ofertaModificar.setValorPorcentaje(ofertaValor/100);
         ofertaModificar.setDescripcion(descripcion);
 
     }

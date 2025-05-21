@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IHabitacionRepositorio;
 import lombok.Getter;
@@ -44,7 +45,15 @@ public class HabitacionServicio {
         if (descripcion.isEmpty()) {
             throw new Exception("La descripcion no puede estar vacia");
         }
-        Habitacion habitacion = Habitacion.builder()
+        for(Habitacion habitacion:habitacionRepositorio.obtenerHabitacionesHotel(idHotel))
+            if(habitacion.getNumero()==numeroHabitacionI){
+                throw new Exception("Ya existe una habitacion con este numero");
+            }
+        if(rutaImagen.isEmpty()||rutaImagen==null){
+            throw new Exception("La imagen no puede estar vacia");
+        }
+
+        Habitacion habitacion=Habitacion.builder()
                 .id(UUID.randomUUID().toString())
                 .numero(numeroHabitacionI)
                 .precioPorNoche(precioPorNocheD)
