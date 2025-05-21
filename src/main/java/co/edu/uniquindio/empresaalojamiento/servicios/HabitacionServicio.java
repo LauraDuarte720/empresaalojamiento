@@ -1,6 +1,5 @@
 package co.edu.uniquindio.empresaalojamiento.servicios;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IHabitacionRepositorio;
 import lombok.Getter;
@@ -19,12 +18,12 @@ public class HabitacionServicio {
         this.habitacionRepositorio = habitacionRepositorio;
     }
 
-    public Habitacion crearHabitacion(String numeroHabitacion,String precioPorNoche,String capacidadHuespedes,String descripcion, String idHotel, String rutaImagen)throws Exception{
+    public Habitacion crearHabitacion(String numeroHabitacion, String precioPorNoche, String capacidadHuespedes, String descripcion, String idHotel, String rutaImagen) throws Exception {
         int numeroHabitacionI;
         double precioPorNocheD;
         int capacidadHuespedesI;
 
-        try{
+        try {
             numeroHabitacionI = Integer.parseInt(numeroHabitacion);
             precioPorNocheD = Double.parseDouble(precioPorNoche);
             capacidadHuespedesI = Integer.parseInt(capacidadHuespedes);
@@ -33,19 +32,19 @@ public class HabitacionServicio {
             precioPorNocheD = -1;
             capacidadHuespedesI = -1;
         }
-        if (numeroHabitacionI<0){
+        if (numeroHabitacionI < 0) {
             throw new Exception("El número de habitación ingresado es inválido");
         }
-        if (precioPorNocheD<0){
+        if (precioPorNocheD < 0) {
             throw new Exception("El precio por noche ingresado es inválido");
         }
-        if (capacidadHuespedesI<0){
+        if (capacidadHuespedesI < 0) {
             throw new Exception("La capacidad de huespedes debe ser mayor a 0");
         }
-        if (descripcion.isEmpty()){
+        if (descripcion.isEmpty()) {
             throw new Exception("La descripcion no puede estar vacia");
         }
-        Habitacion habitacion=Habitacion.builder()
+        Habitacion habitacion = Habitacion.builder()
                 .id(UUID.randomUUID().toString())
                 .numero(numeroHabitacionI)
                 .precioPorNoche(precioPorNocheD)
@@ -60,15 +59,19 @@ public class HabitacionServicio {
 
     }
 
-    public void eliminarHabitacion(String idHabitacion)throws Exception{
+    public void eliminarHabitacion(String idHabitacion) throws Exception {
         Habitacion habitacionEliminar = habitacionRepositorio.buscarHabitacion(idHabitacion);
-        if(habitacionEliminar==null){
+        if (habitacionEliminar == null) {
             throw new Exception("La habitacion no existe");
         }
         habitacionRepositorio.eliminarHabitacion(habitacionEliminar);
     }
 
-    public List<Habitacion> obtenerHabitacionesHotel(String idHotel){
+    public List<Habitacion> obtenerHabitacionesHotel(String idHotel) {
         return habitacionRepositorio.obtenerHabitacionesHotel(idHotel);
+    }
+
+    public Habitacion buscarHabitacion(String id) {
+        return habitacionRepositorio.buscarHabitacion(id);
     }
 }

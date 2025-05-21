@@ -1,10 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
-import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
-import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -237,4 +235,16 @@ public class ControladorPrincipal {
         }
     }
 
+    public static void cerrarVentanaPorTitulo(String titulo) {
+        for (Window window : Window.getWindows()) {
+            if (window instanceof Stage && ((Stage) window).getTitle().equals(titulo)) {
+                Stage stage = (Stage) window;
+                if (stage.isShowing()) {
+                    stage.close();
+                    break;
+                }
+            }
+        }
+
+    }
 }

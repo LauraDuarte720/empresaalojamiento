@@ -37,7 +37,7 @@ public interface IEmpresaAlojamiento {
 
     public Resena crearResena(String valoracion, Integer calificacion, String idUsuario, String idAlojamiento) throws Exception;
 
-    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception;
+    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario,String idHabitacion) throws Exception;
 
     public void cancelarReserva(String idReserva) throws Exception;
 

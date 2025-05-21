@@ -60,6 +60,16 @@ public class ReservaRepositorio implements IReservaRepositorio {
                 );
     }
 
+    @Override
+    public List<Reserva> obtenerReservasHabitacion(String idHabitacion) {
+
+        return reservas
+                .stream()
+                .filter(c -> idHabitacion.equalsIgnoreCase(c.getIdHabitacion()))
+                .collect(Collectors.toList()
+                );
+    }
+
     public List<Reserva> leerDatos() {
         try {
             Object datos = Persistencia.deserializarObjeto(Constantes.RUTA_RESERVAS);

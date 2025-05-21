@@ -7,6 +7,7 @@ import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,10 +50,14 @@ public class ItemHabitacionControlador {
         HabitacionSingleton.getInstancia().setHabitacion(habitacion);
         if (Sesion.getInstancia().getUsuario() != null) {
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearReserva.fxml", "Reservar Alojamiento", lblCapacidad, getClass());
+
         } else {
             ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblCapacidad, getClass());
         }
+
+        ControladorPrincipal.cerrarVentanaPorTitulo("Inicio Sesion");
+        ControladorPrincipal.cerrarVentanaPorTitulo("Usuario");
     }
 
 }
