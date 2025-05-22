@@ -96,6 +96,24 @@ public class EmpresaAlojamientoServicioTest {
                 .build();
         empresaServicio.getReservaRepositorio().agregarReserva(reserva3);
 
+        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(
+                Alojamiento.builder()
+                        .id("1")
+                        .nombre("Hotel Armenia")
+                        .ciudad(Ciudad.BOGOTA)
+                        .tipoAlojamiento(TipoAlojamiento.HOTEL)
+                        .precioPorNoche(150000)
+                        .build());
+
+        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(
+                Alojamiento.builder()
+                        .id("2")
+                        .nombre("Casa Campestre")
+                        .ciudad(Ciudad.CALI)
+                        .tipoAlojamiento(TipoAlojamiento.CASA)
+                        .precioPorNoche(250000)
+                        .build());
+
     }
 
 
@@ -133,6 +151,8 @@ public class EmpresaAlojamientoServicioTest {
         assertEquals(0, usuario.getBilletera().getSaldo(), 0);
     }
 
+
+    //Para realizar este test, en data los alojamientos deben estar vacios
     @Test
     public void testOrdenarAlojamientosPopularesCiudad() {
 
@@ -211,7 +231,80 @@ public class EmpresaAlojamientoServicioTest {
         assertEquals("Usuario o contraseña incorrecta", thrown.getMessage());
     }
 
+    //Test obtener alojamientos filtrados
+    @Test
+    public void testObtenerAlojamientosFiltrados_ParametrosValidos() throws Exception {
+        List<Alojamiento> resultado = empresaServicio.obtenerAlojamientosFiltrados(
+                "Hotel",                       // nombre
+                TipoAlojamiento.HOTEL,        // tipo
+                Ciudad.BOGOTA,               // ciudad
+                "100000",                     // precioMin
+                "200000",                     // precioMax
+                false);                        // ofertaAplicada// ofertas
 
+        assertEquals(1, resultado.size());
+        assertEquals("Hotel Armenia", resultado.get(0).getNombre());
+    }
 
+    @Test
+    public void testObtenerAlojamientosFiltrados_PrecioMaxMenorQueMin() {
+        Exception e = assertThrows(Exception.class, () -> {
+            empresaServicio.obtenerAlojamientosFiltrados(
+                    "", TipoAlojamiento.CASA, Ciudad.MEDELLIN,
+                    "300000", "100000", false
+            );
+        });
 
+        assertEquals("El precio máximo debe ser mayor que el mínimo", e.getMessage());
+    }
+
+    @Test
+    public void testObtenerAlojamientosFiltrados_PrecioMinNegativo() {
+        Exception e = assertThrows(Exception.class, () -> {
+            empresaServicio.obtenerAlojamientosFiltrados(
+                    "", TipoAlojamiento.HOTEL, Ciudad.PEREIRA,
+                    "-50000", "100000", false
+            );
+        });
+
+        assertEquals("El precio mínimo debe ser mayor que 0", e.getMessage());
+    }
+
+    @Test
+    public void testCancelarReserva() throws Exception {
+
+        Reserva reserva = Reserva.builder()
+                .id("R123")
+                .build();
+        empresaServicio.getReservaRepositorio().agregarReserva(reserva);
+
+        empresaServicio.cancelarReserva("R123");
+        assertNull(empresaServicio.getReservaRepositorio().buscarReserva("R123"));
+    }
+
+    @Test
+    public void testCalcularOcupacionPorcentual() {
+        // Año para evaluar
+        int ano = 2023;
+
+        // id del alojamiento que sabemos tiene reservas en 2023
+        String idAlojamiento = "2";
+
+        // Llamar el método
+        double ocupacion = empresaServicio.calcularOcupacionPorcentual(ano, idAlojamiento);
+
+        // Reservas en tu setup para alojamiento "2" en 2023:
+        // reserva1: 2023-03-01 a 2023-03-05 (5 días)
+        // reserva2: 2022-12-01 a 2022-12-10 (no cuenta para 2023)
+        // reserva3: 2022-12-30 a 2023-01-02 (3 días en 2023: 2023-01-01, 2023-01-02)
+
+        // Total días ocupados en 2023 para alojamiento "2" = 5 + 2 (1 y 2 de enero) = 7 días
+
+        // Días totales del año 2023 (no bisiesto) = 365
+
+        double esperado = (7.0 / 365.0) * 100;
+
+        // Validar con un delta pequeño porque es double
+        assertEquals(esperado, ocupacion, 0.001);
+    }
 }
