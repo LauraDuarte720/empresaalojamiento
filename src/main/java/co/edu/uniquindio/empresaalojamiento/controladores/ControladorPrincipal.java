@@ -148,7 +148,7 @@ public class ControladorPrincipal {
 
     public static void cargarData() {
         try {
-            /*ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
                     nombre("Hotel Estelar").
                     descripcion("Un hotel moderno con vista a la ciudad.").
@@ -202,11 +202,11 @@ public class ControladorPrincipal {
                     id("4").
                     build());
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
+            /*ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
                     "Hotel hola",
                     "Hotel al borde del mar", "imagenes/imagenHotel3.png", 250000,
                     4, true, true, true, 300, Ciudad.ARAUCA);
-
+*/
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
@@ -272,7 +272,7 @@ public class ControladorPrincipal {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1092457610", "1");
 
-        */} catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

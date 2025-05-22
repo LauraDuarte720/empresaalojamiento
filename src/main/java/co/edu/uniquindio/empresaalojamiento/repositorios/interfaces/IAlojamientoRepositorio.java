@@ -1,6 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios.interfaces;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 
 
@@ -18,7 +19,7 @@ public interface IAlojamientoRepositorio {
     public List<Alojamiento> obtenerAlojamientoPorTipo(TipoAlojamiento tipo);
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional);
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym);
 
     public  List<String> obtenerCamposOpcionales(Alojamiento alojamiento);
 }

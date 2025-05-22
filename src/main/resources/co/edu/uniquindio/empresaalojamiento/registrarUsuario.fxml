@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -130,7 +131,25 @@
                   </Label>
                </children>
             </HBox>
-            <PasswordField fx:id="txtContrasena" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <StackPane>
+                     <children>
+                        <TextField fx:id="txtContrasena" style="-fx-background-color: white; -fx-border-color: #9e8576;" />
+                        <PasswordField fx:id="txtPasContrasenaSesion" prefHeight="28.0" prefWidth="193.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" />
+                     </children>
+                  </StackPane>
+                  <Button fx:id="btnVerContrasena" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#verContrasena" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent;" text="Button">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagenesIconos/ojoCerradoClaro.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </GridPane>
       <Button mnemonicParsing="false" onAction="#registrarUsuario" style="-fx-font-family: vollkorn; -fx-background-color: #421404;" text="Registrarse" textAlignment="JUSTIFY" textFill="WHITE">

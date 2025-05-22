@@ -1,6 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Resena;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
@@ -70,6 +71,8 @@ public class ItemAlojamientoControlador {
     @FXML
     private Button btnReservar;
 
+    @FXML
+    private Label lblOferta;
 
     private int indexResena;
 
@@ -86,6 +89,9 @@ public class ItemAlojamientoControlador {
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
+        for(Oferta ofertaAlojamiento : empresaAlojamientoServicio.obtenerOfertasAlojamiento(alojamiento.getId())){
+            lblOferta.setText("Ofertas:\n" + ofertaAlojamiento.getDescripcion() +" en las fechas: "+ ofertaAlojamiento.getFechaInicio() + " - " + ofertaAlojamiento.getFechaFinal() + " con valor de "+ ofertaAlojamiento.getValorPorcentaje()*100 );
+        }
         imgAlojamiento.setImage(new Image(new File(alojamiento.getRuta()).toURI().toString()));
         llenarCamposAdicionales();
 

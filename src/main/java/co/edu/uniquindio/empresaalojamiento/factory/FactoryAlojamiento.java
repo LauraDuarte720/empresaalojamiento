@@ -9,7 +9,7 @@ import java.util.UUID;
 public class FactoryAlojamiento {
 
     public static Alojamiento crearAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                               double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) {
+                                               double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) {
 
         Alojamiento alojamiento= null;
         switch (tipoAlojamiento) {
@@ -25,6 +25,9 @@ public class FactoryAlojamiento {
                     .desayuno(desayuno)
                     .costoAdicional(costoAdicional)
                     .ciudad(ciudad)
+                    .parqueadro(parqueadro)
+                    .mascotasPermitidas(mascotasPermitidas)
+                    .gym(gym)
                     .build();
             case TipoAlojamiento.HOTEL -> alojamiento=Alojamiento.builder()
                     .id(UUID.randomUUID().toString())
@@ -35,6 +38,9 @@ public class FactoryAlojamiento {
                     .wifi(wifi)
                     .desayuno(desayuno)
                     .ciudad(ciudad)
+                    .parqueadro(parqueadro)
+                    .mascotasPermitidas(mascotasPermitidas)
+                    .gym(gym)
                     .build();
         }
         return alojamiento;

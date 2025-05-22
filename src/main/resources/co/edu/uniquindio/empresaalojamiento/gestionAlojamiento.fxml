@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="666.0" spacing="10.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.GestionalojamientoControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="666.0" spacing="10.0" style="-fx-padding: 20; -fx-background-color: #D3B49F;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.GestionalojamientoControlador">
    <children>
       <Label alignment="TOP_CENTER" prefHeight="42.0" prefWidth="193.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Alojamientos" textFill="#421404">
          <font>
@@ -41,7 +41,7 @@
                      <children>
                         <VBox prefHeight="123.0" prefWidth="198.0" spacing="10.0" style="-fx-padding: 10;">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#irNuevoAlojamiento" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #421404;" text="Nuevo Alojamiento" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#irNuevoAlojamiento" prefHeight="27.0" prefWidth="171.0" style="-fx-background-color: #421404;" text="Nuevo Alojamiento" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -51,7 +51,7 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#eliminarAlojamiento" prefHeight="25.0" prefWidth="147.0" style="-fx-background-color: #421404;" text="Eliminar Alojamiento" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#eliminarAlojamiento" prefHeight="27.0" prefWidth="171.0" style="-fx-background-color: #421404;" text="Eliminar Alojamiento" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -60,7 +60,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="123.0" prefWidth="148.0" spacing="10.0" style="-fx-padding: 10;">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#irVerEstadistuca" style="-fx-background-color: #421404;" text="Ver Estadisticas" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#irVerEstadistuca" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #421404;" text="Ver Estadisticas" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>

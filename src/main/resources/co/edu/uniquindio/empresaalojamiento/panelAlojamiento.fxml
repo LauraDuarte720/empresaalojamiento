@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="570.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
+<StackPane prefHeight="570.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.PanelAlojamientoControlador">
    <children>
       <VBox fx:id="vBoxAlojamientos" alignment="TOP_CENTER" prefHeight="569.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;">
                <children>
                   <HBox alignment="CENTER" prefHeight="44.0" prefWidth="563.0" spacing="10.0">
                      <children>
-                        <ComboBox fx:id="cmbFiltroCiudad" prefHeight="28.0" prefWidth="83.0" promptText="Ciudad" style="-fx-background-color: #e4cabd; -fx-border-color: #421404;" />
+                        <ComboBox fx:id="cmbFiltroCiudad" prefHeight="28.0" prefWidth="102.0" promptText="Ciudad" style="-fx-background-color: #e4cabd; -fx-border-color: #421404;" />
                         <ComboBox fx:id="cmbFiltroTipoAlojamiento" prefHeight="28.0" prefWidth="136.0" promptText="Tipo Alojamiento" style="-fx-background-color: #e4cabd; -fx-border-color: #421404;" />
-                        <TextField fx:id="txtFiltroNombre" prefHeight="26.0" prefWidth="127.0" promptText="Nombre" style="-fx-background-color: white;" />
-                        <TextField fx:id="txtFiltroPrecioMin" prefHeight="26.0" prefWidth="68.0" promptText="\$Minimo" style="-fx-background-color: white;" />
+                        <TextField fx:id="txtFiltroNombre" prefHeight="26.0" prefWidth="110.0" promptText="Nombre" style="-fx-background-color: white;" />
+                        <TextField fx:id="txtFiltroPrecioMin" prefHeight="26.0" prefWidth="91.0" promptText="\$Minimo" style="-fx-background-color: white;" />
                         <TextField fx:id="txtFiltroPrecioMax" prefHeight="26.0" prefWidth="91.0" promptText="\$Maximo" style="-fx-background-color: white;" />
                   <RadioButton fx:id="rdVerOfettas" mnemonicParsing="false" text="Ver ofertas" />
                      </children>

@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox prefHeight="503.0" prefWidth="803.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuAdministradorControlador">
+<HBox prefHeight="563.0" prefWidth="1137.0" style="-fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuAdministradorControlador">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="495.0" prefWidth="343.0" spacing="25.0" style="-fx-background-color: #8C522D;">
+      <VBox alignment="TOP_CENTER" prefHeight="495.0" prefWidth="285.0" spacing="25.0" style="-fx-background-color: #8C522D;">
          <children>
             <Label alignment="CENTER" prefHeight="40.0" prefWidth="254.0" style="-fx-font-family: Vollkorn; -fx-border-color: #D3B49F; -fx-padding: 5;" text=" Menu Administrador" textFill="WHITE">
                <font>
@@ -40,9 +39,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <ImageView fitHeight="160.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 45;">
+            <ImageView fitHeight="239.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imagenesIconos/WhatsApp%20Image%202025-05-19%20at%2022.48.45.jpeg" />
+                  <Image url="@imagenesIconos/crearResena.jpeg" />
                </image>
             </ImageView>
          </children>
@@ -53,6 +52,6 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </VBox>
-      <StackPane fx:id="panelPrincipal" prefHeight="495.0" prefWidth="567.0" />
+      <StackPane fx:id="panelPrincipal" prefHeight="495.0" prefWidth="870.0" />
    </children>
 </HBox>

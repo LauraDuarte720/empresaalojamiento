@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface IEmpresaAlojamiento {
     public Alojamiento registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                     double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception;
+                                            double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception;
 
     public void eliminarAlojamiento(String idAlojamiento) throws Exception;
 
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception;
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional,Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception;
 
     public Usuario registrarUsuario(String cedula, String nombre, String apellido, String telefono,
                                     String email, String contrasena) throws Exception;

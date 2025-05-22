@@ -99,7 +99,7 @@ public class OfertaServicio {
         ofertaRepositorio.eliminarOferta(ofertaEliminar);
     }
 
-    public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) throws Exception{
+    public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) {
         return ofertaRepositorio.obtenerOfertasAlojamiento(idAlojamiento);
     }
 }

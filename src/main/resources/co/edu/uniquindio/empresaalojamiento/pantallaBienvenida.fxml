@@ -12,17 +12,17 @@
    <children>
       <Label fx:id="lblTitutlo" style="-fx-border-width: 1; -fx-border-color: #421404; -fx-padding: 5;" text="Bienvenido a Book Your Stay" textFill="#421404">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
       <ImageView fitHeight="210.0" fitWidth="171.0" layoutX="128.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@imagenesIconos/Captura%20de%20pantalla%202025-05-17%20003404.png" />
+            <Image url="@imagenesIconos/logoEmpresa.png" />
          </image>
       </ImageView>
       <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#irPantallaInicio" style="-fx-background-color: #421404;" text="Ir a pantalla de inicio" textFill="WHITE">
          <font>
-            <Font name="Mali Regular" size="13.0" />
+            <Font name="System Bold" size="13.0" />
          </font></Button>
    </children>
    <padding>

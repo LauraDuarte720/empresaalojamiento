@@ -26,4 +26,7 @@ public class Alojamiento implements Serializable {
     private boolean wifi;
     private boolean desayuno;
     private double costoAdicional;
+    private boolean parqueadro;
+    private boolean mascotasPermitidas;
+    private boolean gym;
 }

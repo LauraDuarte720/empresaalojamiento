@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Constantes;
@@ -52,7 +53,7 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
     }
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional){
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym){
         Alojamiento alojamientoActualizar = buscarAlojamiento(idAlojamiento);
         alojamientoActualizar.setNombre(nombre);
         alojamientoActualizar.setDescripcion(descripcion);
@@ -63,6 +64,10 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
         alojamientoActualizar.setWifi(wifi);
         alojamientoActualizar.setDesayuno(desayuno);
         alojamientoActualizar.setCostoAdicional(costoAdicional);
+        alojamientoActualizar.setCiudad(ciudad);
+        alojamientoActualizar.setParqueadro(parqueadro);
+        alojamientoActualizar.setMascotasPermitidas(mascotasPermitidas);
+        alojamientoActualizar.setGym(gym);
     }
 
     public  List<String> obtenerCamposOpcionales(Alojamiento alojamiento) {
@@ -77,6 +82,15 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
         }
         if (alojamiento.isDesayuno()) {
             presentes.add("Desayuno");
+        }
+        if (alojamiento.isParqueadro()){
+            presentes.add("Parqueadro");
+        }
+        if (alojamiento.isMascotasPermitidas()){
+            presentes.add("Mascotas permitidas");
+        }
+        if (alojamiento.isGym()){
+            presentes.add("Gimnasio");
         }
         return presentes;
     }

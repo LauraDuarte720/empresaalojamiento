@@ -77,6 +77,15 @@ public class ActualizarAlojamientoControlador {
     @FXML
     private HBox hBoxPrecioNoche;
 
+    @FXML
+    private CheckBox checkGym;
+
+    @FXML
+    private CheckBox checkMascotas;
+
+    @FXML
+    private CheckBox checkParqueaderos;
+
     private String rutaFoto;
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
@@ -108,6 +117,9 @@ public class ActualizarAlojamientoControlador {
         checkDesayuno.setSelected(alojamiento.isDesayuno());
         checkPiscina.setSelected(alojamiento.isPiscina());
         checkWifi.setSelected(alojamiento.isWifi());
+        checkParqueaderos.setSelected(alojamiento.isParqueadro());
+        checkGym.setSelected(alojamiento.isGym());
+        checkMascotas.setSelected(alojamiento.isMascotasPermitidas());
         txtCostoadicional.setText(String.valueOf(alojamiento.getCostoAdicional()));
         actualizarVisibilidad(alojamiento.getTipoAlojamiento().toString());
 
@@ -128,7 +140,16 @@ public class ActualizarAlojamientoControlador {
                     alojamiento.getId(),
                     txtnombre.getText(),
                     txtDescripcion.getText(),
-                    rutaFoto,Double.parseDouble(txtPrecioNoche.getText()),Integer.parseInt(txtCapacidadHuespedes.getText()),checkPiscina.isSelected(),checkWifi.isSelected(),checkDesayuno.isSelected(),Double.parseDouble(txtCostoadicional.getText()));
+                    rutaFoto,Double.parseDouble(txtPrecioNoche.getText()),
+                    Integer.parseInt(txtCapacidadHuespedes.getText()),
+                    checkPiscina.isSelected(),
+                    checkWifi.isSelected(),
+                    checkDesayuno.isSelected(),
+                    Double.parseDouble(txtCostoadicional.getText()),
+                    Ciudad.getCiudadDesdeNombre(cmbCiudad.getValue()),
+                    checkParqueaderos.isSelected(),
+                    checkMascotas.isSelected(),
+                    checkGym.isSelected());
             ControladorPrincipal.crearAlerta("Se ha actualizado con exito el alojamiento", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Menu Administrador", txtnombre, getClass());
             AlojamientoSingleton.getInstancia().setAlojamiento(null);

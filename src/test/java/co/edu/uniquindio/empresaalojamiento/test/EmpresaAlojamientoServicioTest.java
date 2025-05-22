@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmpresaAlojamientoServicioTest {
 
     private EmpresaAlojamientoServicio empresaServicio;
-    private ReservaServicio reservaServicioPersonalizado;
 
     @Before
     public void setUp() {
@@ -156,10 +155,10 @@ public class EmpresaAlojamientoServicioTest {
     @Test
     public void testOrdenarAlojamientosPopularesCiudad() {
 
-        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("1").nombre("Hotel Armenia 1").ciudad(Ciudad.ARMENIA).build());
+        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("1").nombre("Hotel Armenia 1").ciudad(Ciudad.BARRANQUILLA).build());
         empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("2").nombre("Hotel Pereira 1").ciudad(Ciudad.PEREIRA).build());
-        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("3").nombre("Hotel Armenia 2").ciudad(Ciudad.ARMENIA).build());
-        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("4").nombre("Hotel Armenia 3").ciudad(Ciudad.ARMENIA).build());
+        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("3").nombre("Hotel Armenia 2").ciudad(Ciudad.BARRANQUILLA).build());
+        empresaServicio.getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().id("4").nombre("Hotel Armenia 3").ciudad(Ciudad.BARRANQUILLA).build());
 
         Reserva reserva1 = Reserva.builder()
                 .id("R001")
@@ -198,7 +197,7 @@ public class EmpresaAlojamientoServicioTest {
         empresaServicio.getReservaRepositorio().agregarReserva(reserva6);
         empresaServicio.getReservaRepositorio().agregarReserva(reserva7);
 
-        List<Alojamiento> resultado = empresaServicio.ordenarAlojamientosPopularesCiudad(Ciudad.ARMENIA);
+        List<Alojamiento> resultado = empresaServicio.ordenarAlojamientosPopularesCiudad(Ciudad.BARRANQUILLA);
 
         assertEquals(3, resultado.size()); //Se inlcuye el alojamiento que esta en el Set up
         assertEquals("Hotel Armenia 1", resultado.get(0).getNombre()); // 3 reservas

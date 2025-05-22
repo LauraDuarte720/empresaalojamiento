@@ -68,6 +68,16 @@ public class CrearAlojamientoControlador {
 
     private String rutaFoto;
 
+    @FXML
+    private CheckBox checkGym;
+
+    @FXML
+    private CheckBox checkMascotas;
+
+    @FXML
+    private CheckBox checkParqueaderos;
+
+
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
     private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
@@ -95,7 +105,7 @@ public class CrearAlojamientoControlador {
             controladorPrincipal.registrarAlojamiento(TipoAlojamiento.getTipoAlojamientoDesdeNombre(cmbTipoAlojamiento.getValue()),txtnombre.getText(),txtDescripcion.getText(),
                     rutaFoto,Double.parseDouble(txtPrecioNoche.getText()),Integer.parseInt(txtCapacidadHuespedes.getText()),
                     checkPiscina.isSelected(),checkWifi.isSelected(),checkDesayuno.isSelected(),Double.parseDouble(txtCostoadicional.getText()),
-                    Ciudad.getCiudadDesdeNombre(cmbCiudad.getValue()));
+                    Ciudad.getCiudadDesdeNombre(cmbCiudad.getValue()),checkParqueaderos.isSelected(),checkMascotas.isSelected(),checkGym.isSelected());
             ControladorPrincipal.crearAlerta("Se ha creado con exito el alojamiento", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Menu Administrador", txtnombre, getClass());
         }catch (Exception e){

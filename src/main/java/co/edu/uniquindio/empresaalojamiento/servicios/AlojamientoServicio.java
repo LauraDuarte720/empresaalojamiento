@@ -22,7 +22,7 @@ public class AlojamientoServicio {
     }
 
     public Alojamiento crearAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                        double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception {
+                                        double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
 
         if (tipoAlojamiento == null) throw new Exception("Debe ingresar un tipo de alojamiento");
         if (nombre == null || nombre.isEmpty()) throw new Exception("El nombre del alojamiento no puede ser vacio");
@@ -38,7 +38,7 @@ public class AlojamientoServicio {
         if (ciudad == null) throw new Exception("Debe ingresar una ciudad");
 
         Alojamiento alojamiento = FactoryAlojamiento.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta,
-                precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad);
+                precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad, parqueadro, mascotasPermitidas, gym);
 
         alojamientoRepositorio.agregarAlojamiento(alojamiento);
         return alojamiento;
@@ -52,7 +52,7 @@ public class AlojamientoServicio {
     }
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
 
         Alojamiento alojamientoActualizar = alojamientoRepositorio.buscarAlojamiento(idAlojamiento);
         if (alojamientoActualizar == null) throw new Exception("El alojamiento no existe");
@@ -65,9 +65,10 @@ public class AlojamientoServicio {
             if (capacidadMaximaHuespede <= 0)
                 throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
         }
+        if (ciudad == null) throw new Exception("Debe ingresar una ciudad");
 
         alojamientoRepositorio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina,
-                wifi, desayuno, costoAdicional);
+                wifi, desayuno, costoAdicional,ciudad, parqueadro, mascotasPermitidas, gym);
 
     }
 

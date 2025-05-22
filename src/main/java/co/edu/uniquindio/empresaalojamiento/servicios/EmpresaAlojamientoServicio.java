@@ -58,8 +58,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Alojamiento registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                            double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad) throws Exception {
-        return alojamientoServicio.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad);
+                                            double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+        return alojamientoServicio.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad, parqueadro, mascotasPermitidas, gym);
     }
 
     @Override
@@ -69,8 +69,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional) throws Exception {
-        alojamientoServicio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional);
+                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional,Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+        alojamientoServicio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional,ciudad,parqueadro,mascotasPermitidas,gym);
     }
 
     @Override
@@ -497,4 +497,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return usuarioServicio.obtenerUsuarios();
     }
 
+    public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) {
+        return ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento);
+    }
 }
