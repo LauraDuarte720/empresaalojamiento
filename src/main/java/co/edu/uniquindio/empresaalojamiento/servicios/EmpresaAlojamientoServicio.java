@@ -374,8 +374,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         alojamiento.setCalificacionPromedio(Math.round((suma / contador) * 10.0) / 10.0f);
     }
 
-    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax) throws Exception {
-        return alojamientoServicio.obtenerAlojamientosFiltrados(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax);
+    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax, boolean ofertaAplicada) throws Exception {
+        return alojamientoServicio.obtenerAlojamientosFiltrados(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax, ofertaAplicada, obtenerOfertas());
     }
 
     public List<Alojamiento> obtenerAlojamientos() {

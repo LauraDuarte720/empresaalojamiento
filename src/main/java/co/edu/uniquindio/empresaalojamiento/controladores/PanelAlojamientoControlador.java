@@ -41,6 +41,10 @@ public class PanelAlojamientoControlador {
     private Label lblNoHay;
 
 
+    @FXML
+    private RadioButton rdVerOfettas;
+
+
     private static EmpresaAlojamientoServicio empresaAlojamientoServicio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
 
 
@@ -62,9 +66,21 @@ public class PanelAlojamientoControlador {
         cmbFiltroCiudad.setOnAction(e -> aplicarFiltros());
         cmbFiltroTipoAlojamiento.setOnAction(e -> aplicarFiltros());
 
+        rdVerOfettas.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            aplicarFiltros();
+        });
         txtFiltroNombre.textProperty().addListener((obs, oldVal, newVal) -> aplicarFiltros());
-        txtFiltroPrecioMin.textProperty().addListener((obs, oldVal, newVal) -> aplicarFiltros());
-        txtFiltroPrecioMax.textProperty().addListener((obs, oldVal, newVal) -> aplicarFiltros());
+        txtFiltroPrecioMin.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) {
+                aplicarFiltros();
+            }
+        });
+
+        txtFiltroPrecioMax.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal) {
+                aplicarFiltros();
+            }
+        });
 
         cmbFiltroCiudad.getItems().setAll(Ciudad.values());
         cmbFiltroTipoAlojamiento.getItems().setAll(TipoAlojamiento.values());
@@ -121,7 +137,7 @@ public class PanelAlojamientoControlador {
             String precioMin = txtFiltroPrecioMin.getText();
             String precioMax = txtFiltroPrecioMax.getText();
 
-            List<Alojamiento> filtrados = empresaAlojamientoServicio.obtenerAlojamientosFiltrados(nombre, tipo, ciudad, precioMin, precioMax);
+            List<Alojamiento> filtrados = empresaAlojamientoServicio.obtenerAlojamientosFiltrados(nombre, tipo, ciudad, precioMin, precioMax, rdVerOfettas.isSelected());
             System.out.println(filtrados);
             listAlojamientos.setItems(FXCollections.observableArrayList(filtrados));
 
