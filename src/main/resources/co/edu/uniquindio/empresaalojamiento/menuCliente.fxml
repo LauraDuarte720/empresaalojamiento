@@ -8,7 +8,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -50,7 +49,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Region prefHeight="36.0" prefWidth="200.0" />
+                  <Button mnemonicParsing="false" onAction="#irNotificaciones" text="Notificaciones" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imagenesIconos/Captura%20de%20pantalla%202025-05-17%20003404.png" />

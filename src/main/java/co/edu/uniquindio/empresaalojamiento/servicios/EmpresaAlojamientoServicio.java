@@ -4,6 +4,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.*;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.vo.Notificacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
@@ -15,6 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
@@ -32,10 +34,14 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final HabitacionRepositorio habitacionRepositorio;
     private final ResenaServicio resenaServicio;
     private final ResenaRepositorio resenaRepositorio;
+    private final NotificacionServicio notificacionServicio;
+    private final NotificacionRepositorio notificacionRepositorio;
 
 
     public EmpresaAlojamientoServicio(){
 
+        this.notificacionRepositorio = new NotificacionRepositorio();
+        this.notificacionServicio = new NotificacionServicio(notificacionRepositorio);
         this.resenaRepositorio = new ResenaRepositorio();
         this.resenaServicio = new ResenaServicio(resenaRepositorio);
         this.habitacionRepositorio = new HabitacionRepositorio();
@@ -457,4 +463,20 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
         }
         return numerosHabitaciones;
     }
+
+    public void enviarNotificacion(String mensaje, String idCliente) {
+        notificacionServicio.enviarNotificacion(mensaje, idCliente);
+    }
+
+    public List<Notificacion> obtenerNotificaciones(String idCliente) {
+        return notificacionServicio.obtenerNotificaciones(idCliente);
+    }
+
+    public void marcarComoLeida(UUID id) {
+        notificacionServicio.marcarComoLeida(id);
+    }
+    public List<Usuario> obtenerUsuarios(){
+        return usuarioServicio.obtenerUsuarios();
+    }
+
 }

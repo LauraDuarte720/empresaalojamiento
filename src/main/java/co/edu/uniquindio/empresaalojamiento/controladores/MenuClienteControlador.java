@@ -75,4 +75,10 @@ public class MenuClienteControlador implements Initializable {
         Sesion.getInstancia().cerrarSesion();
     }
 
+
+    @FXML
+    void irNotificaciones(ActionEvent event) {
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/notificaciones.fxml", "Notificaciones", panelPrincipal, getClass());
+    }
+
 }

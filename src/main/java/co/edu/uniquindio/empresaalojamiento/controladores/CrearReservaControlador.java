@@ -47,6 +47,7 @@ public class CrearReservaControlador {
             ControladorPrincipal.crearAlerta("Se ha creado con exito la reserva", Alert.AlertType.INFORMATION);
             AlojamientoSingleton.getInstancia().setAlojamiento(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
+            controladorPrincipal.enviarNotificacion("Tu reserva en " + alojamiento.getNombre()+" ha sido creada con exito",sesion.getUsuario().getCedula());
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
