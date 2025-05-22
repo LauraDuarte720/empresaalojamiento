@@ -66,7 +66,7 @@
                   </Label>
                </children>
             </HBox>
-            <TextArea fx:id="txtValoracion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="93.0" prefWidth="198.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextArea fx:id="txtValoracion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="93.0" prefWidth="198.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="201.0" layoutY="259.0" mnemonicParsing="false" onAction="#crearResena" style="-fx-background-color: #421404;" text="Agregar" textFill="WHITE">
