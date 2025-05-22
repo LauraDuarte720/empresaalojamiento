@@ -34,7 +34,7 @@ public class CrearOfertaControlador {
     @FXML
     void crearOferta(ActionEvent event) {
         try{
-            controladorPrincipal.registrarOferta(dateFechaInicio.getValue(),dateFechaFinal.getValue(),Double.parseDouble(txtDescuento.getText()),alojamiento.getId(),txtDescripcion.getText());
+            controladorPrincipal.registrarOferta(dateFechaInicio.getValue(),dateFechaFinal.getValue(),txtDescuento.getText(),alojamiento.getId(),txtDescripcion.getText());
             ControladorPrincipal.crearAlerta("Se ha creado con exito la oferta", Alert.AlertType.INFORMATION);
             AlojamientoSingleton.getInstancia().setAlojamiento(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Usuario", txtDescripcion, getClass());

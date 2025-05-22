@@ -83,9 +83,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
+    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, String ofertaValor, String idAlojamiento, String descripcion) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
-        System.out.println("Nombre del alojamiento al que se le hico la oferta" + alojamientoReserva.getNombre());
+        System.out.println("Nombre del alojamiento al que se le hisho la oferta" + alojamientoReserva.getNombre());
         return ofertaServicio.crearOferta(fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
     }
 
@@ -119,7 +119,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     @Override
     public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario, String idHabitacion) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
-        Habitacion habitacionReserva = habitacionServicio.buscarHabitacion(idUsuario);
+        Habitacion habitacionReserva = habitacionServicio.buscarHabitacion(idHabitacion);
 
         int capacidadMaximaHuespedesReserva;
         double precioNocheReserva;
@@ -244,13 +244,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     public double obtenerCantidadReservasAlojamiento(String idAlojamiento) {
-        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
-        double cantidadReservas = 0;
-
-        for (Reserva reserva : reservasAlojamiento) {
-            cantidadReservas++;
-        }
-        return cantidadReservas;
+        return reservaServicio.obtenerReservasAlojamiento(idAlojamiento).size();
     }
 
     public List<Alojamiento> ordenarAlojamientosPopulares(List<Alojamiento> alojamientos) {
@@ -389,6 +383,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         Alojamiento alojamiento = alojamientoRepositorio.buscarAlojamiento(reserva.getIdAlojamiento());
         Habitacion habitacion = habitacionRepositorio.buscarHabitacion(reserva.getIdHabitacion());
         String numeroHabitacion = habitacion != null ? habitacion.getNumero() + "" : "No aplica";
+        Double precioNoche = habitacion != null ? habitacion.getPrecioPorNoche() : alojamiento.getPrecioPorNoche();
+
         return """
                 ============================================================
                                          FACTURA ELECTRÓNICA
@@ -449,7 +445,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
                 numeroHabitacion,
                 alojamiento.getCiudad().toString(),
                 alojamiento.getTipoAlojamiento().toString(),
-                alojamiento.getPrecioPorNoche(),
+                precioNoche,
                 obtenerServiciosIncluidosString(alojamiento),
                 factura.getSubtotal() - alojamiento.getCostoAdicional(),
                 alojamiento.getCostoAdicional(),

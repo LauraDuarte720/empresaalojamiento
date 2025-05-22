@@ -42,7 +42,8 @@ public class ItemHabitacionControlador {
         lblCapacidad.setText("Capacidad máxima de huespedes: " + habitacion.getCapacidadHuespedes());
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(habitacion.getPrecioPorNoche()) + " por noche");
         lblNumeroHabitacion.setText("Número de habitación: " + habitacion.getNumero());
-        imgHabitacion.setImage(new Image(new File(habitacion.getRutaImagen().substring(1)).toURI().toString()));
+        imgHabitacion.setImage(new Image(new File(habitacion.getRutaImagen()).toURI().toString()));
+        System.out.println(habitacion.getRutaImagen());
     }
 
     @FXML
@@ -53,6 +54,7 @@ public class ItemHabitacionControlador {
 
         } else {
             ControladorPrincipal.crearAlerta("Para reservar debe iniciar sesión", Alert.AlertType.INFORMATION);
+            HabitacionSingleton.getInstancia().setHabitacion(habitacion);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Reservar Alojamiento", lblCapacidad, getClass());
         }
 
