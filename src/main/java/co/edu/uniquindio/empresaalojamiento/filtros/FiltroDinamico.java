@@ -1,6 +1,7 @@
 package co.edu.uniquindio.empresaalojamiento.filtros;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class FiltroDinamico {
 
-    public static List<Alojamiento> filtrar(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, double precioMin, double precioMax, List<Alojamiento> alojamientos) {
+    public static List<Alojamiento> filtrar(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, double precioMin, double precioMax, List<Alojamiento> alojamientos, boolean ofertasAplicadas, List<Oferta> ofertas) {
         List<IFiltro> filtros = new ArrayList<>();
 
         if (!nombreBuscado.isEmpty()) {
@@ -24,6 +25,10 @@ public class FiltroDinamico {
         if (precioMin >= 0 && precioMax >= 0 && (precioMax != 0|| precioMin != 0)) {
             filtros.add(new FiltroPorRangoPrecio(precioMin, precioMax));
         }
+        if(ofertasAplicadas){
+            filtros.add(new FiltroPorOferta(ofertas));
+        }
+
 
         List<Alojamiento> resultado = alojamientos;
         for (IFiltro f : filtros) {

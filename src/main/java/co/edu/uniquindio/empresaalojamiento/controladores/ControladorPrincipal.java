@@ -1,14 +1,13 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
-import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
-import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.repositorios.UsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import lombok.Getter;
@@ -28,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -146,28 +145,10 @@ public class ControladorPrincipal {
         return "imagenes/" + nombreArchivo;
     }
 
-    public static void seleccionarFoto(File archivoTemporalSeleccionado, ImageView imgFoto) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen");
-
-        FileChooser.ExtensionFilter filtroImagenes = new FileChooser.ExtensionFilter(
-                "Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif"
-        );
-        fileChooser.getExtensionFilters().add(filtroImagenes);
-
-        File archivoSeleccionado = fileChooser.showOpenDialog(null);
-
-        if (archivoSeleccionado != null) {
-            archivoTemporalSeleccionado = archivoSeleccionado;
-
-            Image imagen = new Image(archivoSeleccionado.toURI().toString());
-            imgFoto.setImage(imagen);
-        }
-    }
 
     public static void cargarData() {
         try {
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
+            /*ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
                     nombre("Hotel Estelar").
                     descripcion("Un hotel moderno con vista a la ciudad.").
@@ -254,16 +235,35 @@ public class ControladorPrincipal {
                     wifi(false).
                     costoAdicional(30000).
                     ciudad(Ciudad.ARAUCA).
-                    id("5").
+                    id("6").
                     build());
-            ;
 
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("1", "30000", "4", "Hola", "1", "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("2", "40000", "4", "Adios", "1", "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg");
+            UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
 
-            Alojamiento alojamiento = ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().getFirst();
-            alojamiento.setId("1");
+            Usuario usuario = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarUsuario("1092457610", "Joab novio de laura la mas linda del mundo", "De Duarte", "3014750404", "suarezjoab2706@gmail.com", "Joab2007*");
+            usuario.setActivo(true);
+            usuario.getBilletera().setSaldo(2000000000);
+
+            usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "60", "2", "Oferta por navidad");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "40", "3", "Oferta por dia de la madre");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "10", "5", "Oferta por hallowen");
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("1", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Hola", "1"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("2", 2, 40000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Adios", "1"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("3", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Hola", "3"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("4", 1, 30000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Hola de nuevo", "3"));
+
+
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 5), LocalDate.of(2020, 6, 10), 2, "1", "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 20), LocalDate.of(2020, 6, 22), 3, "1", "1092457610", "2");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 25), LocalDate.of(2020, 6, 30), 2, "6", "1092457610", "");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 5, 5), LocalDate.of(2020, 5, 10), 2, "3", "1092457610", "1");
+
 
             System.out.println(ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().size());
 
@@ -271,9 +271,9 @@ public class ControladorPrincipal {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1092457610", "1");
-            UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
-            usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
-        } catch (Exception ignored) {
+
+        */} catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

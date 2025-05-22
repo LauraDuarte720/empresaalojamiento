@@ -27,7 +27,7 @@ public class CrearResenaControlador {
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
-    private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    private  Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
 
 
     @FXML
@@ -42,6 +42,7 @@ public class CrearResenaControlador {
         try {
             controladorPrincipal.crearResena(txtValoracion.getText(),Calificacion.getCalificacion(cmbCalificacion.getValue()),sesion.getUsuario().getCedula(),alojamiento.getId());
             ControladorPrincipal.crearAlerta("Su reseña ha sido creada", Alert.AlertType.INFORMATION);
+            AlojamientoSingleton.getInstancia().setAlojamiento(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtValoracion, getClass());
         }catch (Exception e){
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
@@ -50,6 +51,7 @@ public class CrearResenaControlador {
 
     @FXML
     void regresar(ActionEvent event) {
+        AlojamientoSingleton.getInstancia().setAlojamiento(null);
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtValoracion, getClass());
     }
 }

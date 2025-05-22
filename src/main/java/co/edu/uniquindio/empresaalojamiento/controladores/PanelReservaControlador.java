@@ -37,10 +37,10 @@ public class PanelReservaControlador {
     @FXML
     private TableView<Reserva> tblReservas;
 
+    Alojamiento alojamiento;
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
-    private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
 
     @FXML
     private void initialize() {
@@ -60,6 +60,7 @@ public class PanelReservaControlador {
     void agregarResena(ActionEvent event) {
         Reserva reserva= onSeleccionarReserva(event);
         if (reserva.getFechaFinal().isBefore(LocalDate.now())){
+            AlojamientoSingleton.getInstancia().setAlojamiento(alojamiento);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/crearResena.fxml", "Crear Resena", tblReservas, getClass());
 
         }else{
@@ -75,7 +76,7 @@ public class PanelReservaControlador {
         if (reservaSeleccionada == null) {
             ControladorPrincipal.crearAlerta("Selecciona una reserva primero", Alert.AlertType.ERROR);
         }
-        Alojamiento alojamiento = controladorPrincipal.obtenerAlojamientoPorId(reservaSeleccionada.getIdAlojamiento());
+        alojamiento = controladorPrincipal.obtenerAlojamientoPorId(reservaSeleccionada.getIdAlojamiento());
         return reservaSeleccionada;
     }
 
