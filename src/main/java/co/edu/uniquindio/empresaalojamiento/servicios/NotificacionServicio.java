@@ -4,6 +4,8 @@ import co.edu.uniquindio.empresaalojamiento.modelo.enums.EstadoNotificacion;
 import co.edu.uniquindio.empresaalojamiento.modelo.vo.Notificacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.NotificacionRepositorio;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +17,7 @@ public class NotificacionServicio {
     }
 
     public void enviarNotificacion(String mensaje, String idCliente) {
-        Notificacion notificacion = Notificacion.builder().id(UUID.randomUUID()).mensaje(mensaje).idReceptor(idCliente).estadoNotificacion(EstadoNotificacion.PENDIENTE).build();
+        Notificacion notificacion = Notificacion.builder().id(UUID.randomUUID()).mensaje(mensaje).idReceptor(idCliente).estadoNotificacion(EstadoNotificacion.PENDIENTE).fecha(LocalDateTime.now()).build();
         repo.guardar(notificacion);
     }
 
