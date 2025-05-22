@@ -3,6 +3,7 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 import co.edu.uniquindio.empresaalojamiento.factory.FactoryAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.filtros.FiltroDinamico;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Oferta;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IAlojamientoRepositorio;
@@ -70,11 +71,12 @@ public class AlojamientoServicio {
 
     }
 
-    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax) throws Exception {
+    public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax, boolean ofertaAplicada, List<Oferta> ofertas) throws Exception {
         double precioMinD;
         double precioMaxD;
         try {
             precioMinD = Double.parseDouble(precioMin);
+            precioMaxD = Double.parseDouble(precioMax);
             precioMaxD = Double.parseDouble(precioMax);
 
         } catch (Exception e) {
@@ -86,7 +88,7 @@ public class AlojamientoServicio {
 
         if (precioMinD < 0) throw new Exception("El precio mínimo debe ser mayor que 0");
 
-        return FiltroDinamico.filtrar(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMinD, precioMaxD, alojamientoRepositorio.obtenerAlojamientos());
+        return FiltroDinamico.filtrar(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMinD, precioMaxD, alojamientoRepositorio.obtenerAlojamientos(), ofertaAplicada, ofertas);
     }
 
     public List<Alojamiento> obtenerAlojamientos() {

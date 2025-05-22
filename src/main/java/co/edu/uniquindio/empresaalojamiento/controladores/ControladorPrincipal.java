@@ -28,6 +28,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -146,24 +148,6 @@ public class ControladorPrincipal {
         return "imagenes/" + nombreArchivo;
     }
 
-    public static void seleccionarFoto(File archivoTemporalSeleccionado, ImageView imgFoto) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar imagen");
-
-        FileChooser.ExtensionFilter filtroImagenes = new FileChooser.ExtensionFilter(
-                "Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif"
-        );
-        fileChooser.getExtensionFilters().add(filtroImagenes);
-
-        File archivoSeleccionado = fileChooser.showOpenDialog(null);
-
-        if (archivoSeleccionado != null) {
-            archivoTemporalSeleccionado = archivoSeleccionado;
-
-            Image imagen = new Image(archivoSeleccionado.toURI().toString());
-            imgFoto.setImage(imagen);
-        }
-    }
 
     public static void cargarData() {
         try {
@@ -258,6 +242,9 @@ public class ControladorPrincipal {
                     build());
             ;
 
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "60", "2", "Oferta por navidad");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "40", "3", "Oferta por dia de la madre");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "10", "5", "Oferta por hallowen");
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("1", "30000", "4", "Hola", "1", "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarHabitacion("2", "40000", "4", "Adios", "1", "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg");
