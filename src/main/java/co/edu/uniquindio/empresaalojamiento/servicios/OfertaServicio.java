@@ -21,8 +21,15 @@ public class OfertaServicio {
         this.ofertaRepositorio = ofertaRepositorio;
     }
 
-    public Oferta crearOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception{
+    public Oferta crearOferta(LocalDate fechaInicio, LocalDate fechaFin, String ofertaValor, String idAlojamiento, String descripcion) throws Exception{
 
+        double ofertaValorD;
+        try{
+            ofertaValorD = Double.parseDouble(ofertaValor);
+        }
+        catch(Exception e){
+            throw new Exception("La oferta debe ser un número");
+        }
         if (fechaInicio==null||fechaFin==null){
             throw new Exception("Las fechas son obligatorias");
         }
@@ -33,7 +40,7 @@ public class OfertaServicio {
         if(fechaInicio.isBefore(LocalDate.now())){
             throw new Exception("La fecha ingresada debe ser posterior a la de hoy");
         }
-        if (ofertaValor<=0 || ofertaValor>100){
+        if (ofertaValorD<=0 || ofertaValorD>100){
             throw new Exception("La oferta debe ser mayor a 0 y menor a 100");
         }
         if (idAlojamiento==null||idAlojamiento.isEmpty()){
@@ -43,7 +50,7 @@ public class OfertaServicio {
             throw new Exception("La descripcion es obligatoria");
         }
 
-        double ofertaConversion=ofertaValor/100;
+        double ofertaConversion=ofertaValorD/100;
         Oferta oferta = Oferta.builder()
                 .id(UUID.randomUUID().toString())
                 .fechaInicio(fechaInicio).fechaFinal(fechaFin)

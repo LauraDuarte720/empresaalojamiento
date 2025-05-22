@@ -20,7 +20,7 @@ public class ReservaServicio {
         this.reservaRepositorio = reservaRepositorio;
     }
 
-    public Reserva crearReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception {
+    public Reserva crearReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario, String idHabitacion) throws Exception {
         if (fechaInicio==null || fechaFinal==null){
             throw new Exception("Las fechas son obligatorias");
         }
@@ -38,7 +38,18 @@ public class ReservaServicio {
 
         Factura factura = new Factura(0, 0, LocalDate.now(), UUID.randomUUID().toString());
 
-        Reserva reserva =  new Reserva(UUID.randomUUID().toString(), fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, factura, idUsuario);
+        Reserva reserva = Reserva.builder().id(UUID.randomUUID().
+                toString()).
+                fechaInicio(fechaInicio).
+                fechaFinal(fechaFinal).
+                numeroHuespedes(numeroHuespedes).
+                idAlojamiento(idAlojamiento).
+                idUsuario(idUsuario).
+                idHabitacion(idHabitacion).
+                factura(factura).
+                build();
+
+
         reservaRepositorio.agregarReserva(reserva);
         return reserva;
     }
@@ -57,6 +68,10 @@ public class ReservaServicio {
 
     public List<Reserva> obtenerReservasUsuario(String idUsuario)  {
         return reservaRepositorio.obtenerReservasUsuario(idUsuario);
+    }
+
+    public List<Reserva> obtenerReservarHabitacion(String idHabitacion)  {
+        return reservaRepositorio.obtenerReservasHabitacion(idHabitacion);
     }
 
     public List<Reserva> obtenerReservasAlojamiento(String idAlojamiento)  {

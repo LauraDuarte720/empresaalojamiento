@@ -2,7 +2,6 @@ package co.edu.uniquindio.empresaalojamiento.servicios;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.*;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
-import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.modelo.vo.Notificacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
@@ -38,7 +37,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     private final NotificacionRepositorio notificacionRepositorio;
 
 
-    public EmpresaAlojamientoServicio(){
+    public EmpresaAlojamientoServicio() {
 
         this.notificacionRepositorio = new NotificacionRepositorio();
         this.notificacionServicio = new NotificacionServicio(notificacionRepositorio);
@@ -90,9 +89,9 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
+    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, String ofertaValor, String idAlojamiento, String descripcion) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
-        System.out.println("Nombre del alojamiento al que se le hico la oferta" + alojamientoReserva.getNombre());
+        System.out.println("Nombre del alojamiento al que se le hisho la oferta" + alojamientoReserva.getNombre());
         return ofertaServicio.crearOferta(fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
     }
 
@@ -124,12 +123,29 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception {
+    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario, String idHabitacion) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
-        if (alojamientoReserva.getCapacidadMaximaHuespedes() < numeroHuespedes) {
+        Habitacion habitacionReserva = habitacionServicio.buscarHabitacion(idHabitacion);
+
+        int capacidadMaximaHuespedesReserva;
+        double precioNocheReserva;
+        List<Reserva> reservas;
+
+        if (habitacionReserva == null) {
+            capacidadMaximaHuespedesReserva = alojamientoReserva.getCapacidadMaximaHuespedes();
+            precioNocheReserva = alojamientoReserva.getPrecioPorNoche();
+            reservas = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+        } else {
+            capacidadMaximaHuespedesReserva = habitacionReserva.getCapacidadHuespedes();
+            precioNocheReserva = habitacionReserva.getPrecioPorNoche();
+            reservas = reservaServicio.obtenerReservarHabitacion(idHabitacion);
+        }
+
+
+        if (capacidadMaximaHuespedesReserva < numeroHuespedes) {
             throw new Exception("El numero de huespedes supera la capacidad maxima del alojamiento");
         }
-        for (Reserva reservaAlojamiento : reservaServicio.obtenerReservasAlojamiento(idAlojamiento)) {
+        for (Reserva reservaAlojamiento : reservas) {
             LocalDate existenteInicio = reservaAlojamiento.getFechaInicio();
             LocalDate existenteFin = reservaAlojamiento.getFechaFinal();
 
@@ -141,26 +157,28 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         }
 
         int diasReserva = (int) ChronoUnit.DAYS.between(fechaInicio, fechaFinal);
-        double subtotal = (alojamientoReserva.getPrecioPorNoche() * diasReserva) + alojamientoReserva.getCostoAdicional();
+        double subtotal = (precioNocheReserva * diasReserva) + alojamientoReserva.getCostoAdicional();
         double total = subtotal;
         for (Oferta oferta : ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento)) {
             if (oferta.getFechaInicio().isBefore(fechaInicio) && oferta.getFechaFinal().isAfter(fechaFinal)) {
                 total = subtotal - (subtotal * oferta.getValorPorcentaje());
             }
         }
+
         Usuario usuario = usuarioServicio.buscarUsuario(idUsuario);
         if (usuario.getBilletera().getSaldo() < total) {
             throw new Exception("No tiene saldo suficiente para realizar la reserva");
         }
+
         usuario.getBilletera().setSaldo(usuario.getBilletera().getSaldo() - total);
 
-        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario);
+        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario, idHabitacion);
         reserva.getFactura().setSubtotal(subtotal);
         reserva.getFactura().setTotal(total);
 
 
-        File factura = Utilidades.generarPdf("Factura" + reserva.getFactura().getCodigo(),  generarInfoFactura(reserva));
-        Utilidades.enviarCorreoQrPdf(usuario.getEmail(), "Reservación", "Hola " + usuario.getNombre() + "\nHas hecho una reservación en:\n\t " + alojamientoReserva.getNombre() + "\n\nPara ver su factura electrónica escaneé el siguiente código: \n\n", "imagenQr" + usuario.getCedula() + System.currentTimeMillis() +".png", factura);
+        File factura = Utilidades.generarPdf("Factura" + reserva.getFactura().getCodigo(), generarInfoFactura(reserva));
+        Utilidades.enviarCorreoQrPdf(usuario.getEmail(), "Reservación", "Hola " + usuario.getNombre() + "\nHas hecho una reservación en:\n\t " + alojamientoReserva.getNombre() + "\n\nPara ver su factura electrónica escaneé el siguiente código: \n\n", "imagenQr" + usuario.getCedula() + System.currentTimeMillis() + ".png", factura);
         return reserva;
     }
 
@@ -232,13 +250,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     public double obtenerCantidadReservasAlojamiento(String idAlojamiento) {
-        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
-        double cantidadReservas = 0;
-
-        for (Reserva reserva : reservasAlojamiento) {
-            cantidadReservas++;
-        }
-        return cantidadReservas;
+        return reservaServicio.obtenerReservasAlojamiento(idAlojamiento).size();
     }
 
     public List<Alojamiento> ordenarAlojamientosPopulares(List<Alojamiento> alojamientos) {
@@ -262,7 +274,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
-    public void enviarCodigo(String correo) throws Exception{
+    public void enviarCodigo(String correo) throws Exception {
         usuarioServicio.enviarCodigo(correo);
     }
 
@@ -375,50 +387,55 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         Usuario usuario = buscarUsuario(reserva.getIdUsuario());
         Factura factura = reserva.getFactura();
         Alojamiento alojamiento = alojamientoRepositorio.buscarAlojamiento(reserva.getIdAlojamiento());
+        Habitacion habitacion = habitacionRepositorio.buscarHabitacion(reserva.getIdHabitacion());
+        String numeroHabitacion = habitacion != null ? habitacion.getNumero() + "" : "No aplica";
+        Double precioNoche = habitacion != null ? habitacion.getPrecioPorNoche() : alojamiento.getPrecioPorNoche();
+
         return """
-============================================================
-                         FACTURA ELECTRÓNICA
-============================================================
-
-Factura #: %s
-Fecha      : %s
-
---------------------- DATOS DEL CLIENTE ---------------------
-
-Cliente    : %s %s
-Cédula     : %s
-Teléfono   : %s
-Email      : %s
-
---------------------- DETALLES DE LA RESERVA ----------------
-
-Reserva ID        : %s
-Fecha Entrada     : %s
-Fecha Salida      : %s
-Total de días     : %d
-Número Huéspedes  : %d
-
--------------------- DETALLES DEL ALOJAMIENTO ----------------
-
-Alojamiento       : %s
-Ciudad            : %s
-Tipo              : %s
-Precio por noche  : $%,.2f
-Servicios         : %s
-
------------------------ RESUMEN DE PAGO ----------------------
-
-Subtotal base     : $%,.2f
-Costo Adicional   : $%,.2f
-Subtotal          : $%,.2f
-Descuento         : $%,.2f
--------------------------------
-Total a Pagar     : $%,.2f
-
-Gracias por preferirnos. ¡Esperamos su pronta visita!
-
-============================================================
-""".formatted(
+                ============================================================
+                                         FACTURA ELECTRÓNICA
+                ============================================================
+                
+                Factura #: %s
+                Fecha      : %s
+                
+                --------------------- DATOS DEL CLIENTE ---------------------
+                
+                Cliente    : %s %s
+                Cédula     : %s
+                Teléfono   : %s
+                Email      : %s
+                
+                --------------------- DETALLES DE LA RESERVA ----------------
+                
+                Reserva ID        : %s
+                Fecha Entrada     : %s
+                Fecha Salida      : %s
+                Total de días     : %d
+                Número Huéspedes  : %d
+                
+                -------------------- DETALLES DEL ALOJAMIENTO ----------------
+                
+                Alojamiento       : %s
+                Habitación:       :%s
+                Ciudad            : %s
+                Tipo              : %s
+                Precio por noche  : $%,.2f
+                Servicios         : %s
+                
+                ----------------------- RESUMEN DE PAGO ----------------------
+                
+                Subtotal base     : $%,.2f
+                Costo Adicional   : $%,.2f
+                Subtotal          : $%,.2f
+                Descuento         : $%,.2f
+                -------------------------------
+                Total a Pagar     : $%,.2f
+                
+                Gracias por preferirnos. ¡Esperamos su pronta visita!
+                
+                ============================================================
+                """.formatted(
                 factura.getCodigo(),
                 factura.getFecha(),
                 usuario.getNombre(), usuario.getApellido(),
@@ -431,9 +448,10 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
                 (int) ChronoUnit.DAYS.between(reserva.getFechaInicio(), reserva.getFechaFinal()),
                 reserva.getNumeroHuespedes(),
                 alojamiento.getNombre(),
+                numeroHabitacion,
                 alojamiento.getCiudad().toString(),
                 alojamiento.getTipoAlojamiento().toString(),
-                alojamiento.getPrecioPorNoche(),
+                precioNoche,
                 obtenerServiciosIncluidosString(alojamiento),
                 factura.getSubtotal() - alojamiento.getCostoAdicional(),
                 alojamiento.getCostoAdicional(),
@@ -448,7 +466,7 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
         return servicios.isEmpty() ? "Ninguno" : String.join(", ", servicios);
     }
 
-    public List<Habitacion> obtenerHabitacionesHotel(String idHotel){
+    public List<Habitacion> obtenerHabitacionesHotel(String idHotel) {
         return habitacionServicio.obtenerHabitacionesHotel(idHotel);
     }
 
@@ -456,9 +474,9 @@ Gracias por preferirnos. ¡Esperamos su pronta visita!
         return ofertaServicio.obtenerOfertas();
     }
 
-    public List<Integer> obtenerNumerosHabitaciones(String idHotel){
+    public List<Integer> obtenerNumerosHabitaciones(String idHotel) {
         List<Integer> numerosHabitaciones = new ArrayList<>();
-        for(Habitacion habitacion: obtenerHabitacionesHotel(idHotel)){
+        for (Habitacion habitacion : obtenerHabitacionesHotel(idHotel)) {
             numerosHabitaciones.add(habitacion.getNumero());
         }
         return numerosHabitaciones;

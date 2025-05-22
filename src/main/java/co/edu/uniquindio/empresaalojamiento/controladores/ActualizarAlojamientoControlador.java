@@ -91,7 +91,7 @@ public class ActualizarAlojamientoControlador {
         if (alojamiento.getRuta() != null && !alojamiento.getRuta().isEmpty()) {
             File file = new File(alojamiento.getRuta());
             if (file.exists()) {
-                Image imagen = new Image(file.toURI().toString());
+                Image imagen = new Image(new File(alojamiento.getRuta()).toURI().toString());
                 imgFoto.setImage(imagen);
             } else {
                 System.out.println("No se encontró la imagen: " + alojamiento.getRuta());
@@ -117,12 +117,13 @@ public class ActualizarAlojamientoControlador {
         try{
             if (archivoTemporalSeleccionado != null) {
                 try {
-                    rutaFoto = guardarImagenEnDirectorio(archivoTemporalSeleccionado);
+                    rutaFoto = ControladorPrincipal.guardarImagenEnDirectorio(archivoTemporalSeleccionado);
                 } catch (IOException e) {
                     ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
                     return;
                 }
             }
+            System.out.println(rutaFoto);
             controladorPrincipal.actualizarAlojamiento(
                     alojamiento.getId(),
                     txtnombre.getText(),
@@ -167,19 +168,8 @@ public class ActualizarAlojamientoControlador {
     }
 
 
-    public String guardarImagenEnDirectorio(File archivoOrigen) throws IOException {
-        File directorioImagenes = new File("imagenes");
-        if (!directorioImagenes.exists()) {
-            directorioImagenes.mkdirs();
-        }
 
-        String nombreArchivo = archivoOrigen.getName();
-        File archivoDestino = new File(directorioImagenes, nombreArchivo);
 
-        Files.copy(archivoOrigen.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-        return archivoDestino.getAbsolutePath();
-    }
 
     private void actualizarVisibilidad(String seleccion) {
         boolean mostrar1 = "Casa".equals(seleccion) || "Apartamentos".equals(seleccion);

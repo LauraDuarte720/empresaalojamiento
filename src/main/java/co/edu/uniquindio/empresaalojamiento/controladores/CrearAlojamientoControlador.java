@@ -85,7 +85,7 @@ public class CrearAlojamientoControlador {
     void crearAlojamiento(ActionEvent event) {
         if (archivoTemporalSeleccionado != null) {
             try {
-                rutaFoto = guardarImagenEnDirectorio(archivoTemporalSeleccionado);
+                rutaFoto = ControladorPrincipal.guardarImagenEnDirectorio(archivoTemporalSeleccionado);
             } catch (IOException e) {
                 ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
                 return;
@@ -128,20 +128,6 @@ public class CrearAlojamientoControlador {
             Image imagen = new Image(archivoSeleccionado.toURI().toString());
             imgFoto.setImage(imagen);
         }
-    }
-
-    public String guardarImagenEnDirectorio(File archivoOrigen) throws IOException {
-        File directorioImagenes = new File("imagenes");
-        if (!directorioImagenes.exists()) {
-            directorioImagenes.mkdirs();
-        }
-
-        String nombreArchivo = archivoOrigen.getName();
-        File archivoDestino = new File(directorioImagenes, nombreArchivo);
-
-        Files.copy(archivoOrigen.toPath(), archivoDestino.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-        return archivoDestino.getAbsolutePath();
     }
 
     private void actualizarVisibilidad(String seleccion) {

@@ -25,7 +25,7 @@ public interface IEmpresaAlojamiento {
 
     public void actualizarUsuario(String cedulaAntigua, String cedulaNueva, String nombre, String apellido, String telefono, String email) throws Exception;
 
-    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception;
+    public Oferta registrarOferta(LocalDate fechaInicio, LocalDate fechaFin, String ofertaValor, String idAlojamiento, String descripcion) throws Exception;
 
     public void eliminarOferta(String idOferta) throws Exception;
 
@@ -37,7 +37,7 @@ public interface IEmpresaAlojamiento {
 
     public Resena crearResena(String valoracion, Integer calificacion, String idUsuario, String idAlojamiento) throws Exception;
 
-    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario) throws Exception;
+    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario,String idHabitacion) throws Exception;
 
     public void cancelarReserva(String idReserva) throws Exception;
 

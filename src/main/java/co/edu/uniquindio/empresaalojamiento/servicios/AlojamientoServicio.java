@@ -29,7 +29,7 @@ public class AlojamientoServicio {
             throw new Exception("La descripcion del alojamiento no puede ser vacia");
         if (ruta == null || ruta.isEmpty()) throw new Exception("La ruta del alojamiento no puede ser vacia");
 
-        if(tipoAlojamiento==TipoAlojamiento.APARTAMENTOS||tipoAlojamiento==TipoAlojamiento.CASA) {
+        if (tipoAlojamiento == TipoAlojamiento.APARTAMENTOS || tipoAlojamiento == TipoAlojamiento.CASA) {
             if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
             if (capacidadMaximaHuespede <= 0)
                 throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
@@ -59,8 +59,11 @@ public class AlojamientoServicio {
         if (descripcion == null || descripcion.isEmpty())
             throw new Exception("La descripcion del alojamiento no puede ser vacia");
         if (ruta == null || ruta.isEmpty()) throw new Exception("La ruta del alojamiento no puede ser vacia");
-        if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
-        if (capacidadMaximaHuespede <= 0) throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+        if (alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.APARTAMENTOS || alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.CASA) {
+            if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
+            if (capacidadMaximaHuespede <= 0)
+                throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+        }
 
         alojamientoRepositorio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina,
                 wifi, desayuno, costoAdicional);
@@ -74,13 +77,12 @@ public class AlojamientoServicio {
             precioMinD = Double.parseDouble(precioMin);
             precioMaxD = Double.parseDouble(precioMax);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             precioMinD = 0;
             precioMaxD = 0;
         }
 
-        if(precioMaxD < precioMinD) throw new Exception("El precio máximo debe ser mayor que el mínimo");
+        if (precioMaxD < precioMinD) throw new Exception("El precio máximo debe ser mayor que el mínimo");
 
         if (precioMinD < 0) throw new Exception("El precio mínimo debe ser mayor que 0");
 

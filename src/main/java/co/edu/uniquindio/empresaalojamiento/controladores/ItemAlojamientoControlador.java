@@ -86,7 +86,7 @@ public class ItemAlojamientoControlador {
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
-        imgAlojamiento.setImage(new Image(new File(alojamiento.getRuta().substring(1)).toURI().toString()));
+        imgAlojamiento.setImage(new Image(new File(alojamiento.getRuta()).toURI().toString()));
         llenarCamposAdicionales();
 
         if(alojamiento.getTipoAlojamiento().equals(TipoAlojamiento.HOTEL)){

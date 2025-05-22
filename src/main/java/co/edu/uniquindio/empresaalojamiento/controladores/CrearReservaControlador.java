@@ -1,8 +1,10 @@
 package co.edu.uniquindio.empresaalojamiento.controladores;
 
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Alojamiento;
+import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Habitacion;
 import co.edu.uniquindio.empresaalojamiento.servicios.EmpresaAlojamientoServicio;
 import co.edu.uniquindio.empresaalojamiento.singleton.AlojamientoSingleton;
+import co.edu.uniquindio.empresaalojamiento.singleton.HabitacionSingleton;
 import co.edu.uniquindio.empresaalojamiento.singleton.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,19 +35,16 @@ public class CrearReservaControlador {
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
-    private  Alojamiento alojamiento;
-
-    @FXML
-    void initialize(){
-        alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
-    }
+    private  final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    private final Habitacion habitacion = HabitacionSingleton.getInstancia().getHabitacion();
 
     @FXML
     void crearReserva(ActionEvent event) {
         try {
-            controladorPrincipal.registrarReserva(datePickFechaIngreso.getValue(),datePickFechaSalida.getValue(),Integer.parseInt(txtNumHuesped.getText()),alojamiento.getId(),sesion.getUsuario().getCedula());
+            controladorPrincipal.registrarReserva(datePickFechaIngreso.getValue(),datePickFechaSalida.getValue(),Integer.parseInt(txtNumHuesped.getText()),alojamiento.getId(),sesion.getUsuario().getCedula(), habitacion == null ? "" : habitacion.getId());
             ControladorPrincipal.crearAlerta("Se ha creado con exito la reserva", Alert.AlertType.INFORMATION);
             AlojamientoSingleton.getInstancia().setAlojamiento(null);
+            HabitacionSingleton.getInstancia().setHabitacion(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
             controladorPrincipal.enviarNotificacion("Tu reserva en " + alojamiento.getNombre()+" ha sido creada con exito",sesion.getUsuario().getCedula());
         }catch (Exception e){
@@ -57,6 +56,7 @@ public class CrearReservaControlador {
     void regresar(ActionEvent event) {
         ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
         AlojamientoSingleton.getInstancia().setAlojamiento(null);
+        HabitacionSingleton.getInstancia().setHabitacion(null);
     }
 
 }
