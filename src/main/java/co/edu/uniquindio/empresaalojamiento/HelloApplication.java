@@ -14,7 +14,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Font vollkorn = Font.loadFont(getClass().getResourceAsStream("/fuente/Vollkorn.ttf"), 14);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("PantallaBienvenida.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
@@ -24,7 +23,9 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        //ControladorPrincipal.cargarData();
+/*
+        ControladorPrincipal.cargarData();
+*/
         launch();
     }
 }

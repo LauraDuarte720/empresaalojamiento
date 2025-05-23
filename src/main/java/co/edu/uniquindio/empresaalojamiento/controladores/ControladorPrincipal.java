@@ -248,10 +248,10 @@ public class ControladorPrincipal {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("3", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Habitación sencilla ideal para descansar después de un día de paseo", "3"));
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("4", 1, 30000, 4, "imagenes/habitacion.jpg", "Cómoda habitación con decoración minimalista y acogedora", "3"));
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 5), LocalDate.of(2025, 6, 10), 2, "1", "1092457610", "1");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 20), LocalDate.of(2025, 6, 22), 3, "1", "1092457610", "2");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 25), LocalDate.of(2025, 6, 30), 2, "6", "1092457610", "");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10), 2, "3", "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 5), LocalDate.of(2025, 6, 10), "2", "1", "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 20), LocalDate.of(2025, 6, 22), "3", "1", "1092457610", "2");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2025, 6, 25), LocalDate.of(2025, 6, 30), "2", "6", "1092457610", "");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10), "2", "3", "1092457610", "1");
 
             System.out.println(ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().size());
 

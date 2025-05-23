@@ -93,7 +93,7 @@ public class Utilidades {
 
             String rutaQR = carpetaQR + nombreImagen + ".png";
 
-            String contenidoQR = "file:///E:/Archivos/Repositorios%20github/empresaalojamiento/facturas/Factura1747772240806.pdf";
+            String contenidoQR = "file:///E:/Archivos/Repositorios%20github/empresaalojamiento/facturas";
 
             Utilidades.crearQR(contenidoQR, rutaQR);
 
