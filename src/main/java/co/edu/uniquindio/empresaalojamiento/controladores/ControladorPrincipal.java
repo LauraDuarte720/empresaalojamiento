@@ -150,95 +150,89 @@ public class ControladorPrincipal {
         try {
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
-                    nombre("Hotel Estelar").
-                    descripcion("Un hotel moderno con vista a la ciudad.").
+                    nombre("Hotel Estelar Boutique").
+                    descripcion("Hotel moderno con habitaciones lujosas, spa y una vista panorámica de la ciudad. Ideal para viajes de negocios o descanso.").
                     ruta("imagenes/imagenHotel1.png").
                     piscina(true).
-                    desayuno(false).
+                    desayuno(true).
                     wifi(true).
-                    costoAdicional(300).
+                    costoAdicional(20000).
                     ciudad(Ciudad.ARAUCA).
                     id("1").
                     build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.CASA).
-                    nombre("Casa flores").
-                    descripcion("Casa muy bonita al norte de la ciudad").
+                    nombre("Villa Flores del Norte").
+                    descripcion("Hermosa casa rural con jardín, terraza privada y zona BBQ. Perfecta para familias grandes.").
                     ruta("imagenes/casa1.png").
                     piscina(true).
                     desayuno(false).
                     wifi(true).
-                    costoAdicional(500).
+                    costoAdicional(15000).
                     ciudad(Ciudad.ARAUCA).
                     id("2").
                     build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
-                    nombre("Hotel la paz").
-                    descripcion("Un hotel moderno con vista al monte.").
+                    nombre("Eco Hotel La Paz").
+                    descripcion("Alojamiento ecológico en medio de la naturaleza, con actividades al aire libre y senderos naturales.").
                     ruta("imagenes/imagenHotel2.png").
-                    piscina(true).
-                    desayuno(false).
+                    piscina(false).
+                    desayuno(true).
                     wifi(true).
-                    costoAdicional(300).
+                    costoAdicional(10000).
                     ciudad(Ciudad.ARAUCA).
                     id("3").
                     build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.APARTAMENTOS).
-                    nombre("Apartamentos la milagrosa").
-                    descripcion("Apartamentos muy bonitos al norte de la ciudad").
+                    nombre("Suites La Milagrosa").
+                    descripcion("Apartamentos amplios y modernos con cocina equipada, ideal para estancias largas o viajes en grupo.").
                     ruta("imagenes/apartamentos1.png").
-                    precioPorNoche(130000).
-                    capacidadMaximaHuespedes(6).
-                    piscina(true).
+                    precioPorNoche(135000).
+                    capacidadMaximaHuespedes(5).
+                    piscina(false).
                     desayuno(false).
                     wifi(true).
-                    costoAdicional(100).
+                    costoAdicional(0).
                     ciudad(Ciudad.ARMENIA).
                     id("4").
                     build());
 
-            /*ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarAlojamiento(TipoAlojamiento.HOTEL,
-                    "Hotel hola",
-                    "Hotel al borde del mar", "imagenes/imagenHotel3.png", 250000,
-                    4, true, true, true, 300, Ciudad.ARAUCA);
-*/
-
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.HOTEL).
-                    nombre("Hotel caribe").
-                    descripcion("Hotel al borde del mar").
+                    nombre("Hotel Caribe Sol").
+                    descripcion("Hotel de playa con acceso privado al mar, restaurante gourmet y entretenimiento nocturno.").
                     ruta("imagenes/imagenHotel3.png").
-                    precioPorNoche(110000).
-                    capacidadMaximaHuespedes(6).
+                    precioPorNoche(180000).
+                    capacidadMaximaHuespedes(4).
                     piscina(true).
-                    desayuno(false).
+                    desayuno(true).
                     wifi(true).
-                    costoAdicional(10000).
+                    costoAdicional(30000).
                     ciudad(Ciudad.ARAUCA).
                     id("5").
                     build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
                     tipoAlojamiento(TipoAlojamiento.CASA).
-                    nombre("Casa de las nieves").
-                    descripcion("Casa iglue en el nevado del ruiz").
+                    nombre("Casa Nieve Eterna").
+                    descripcion("Acogedora casa en la nieve, equipada con chimenea y vistas al Nevado del Ruiz. Experiencia única y cálida.").
                     ruta("imagenes/casa2.png").
-                    precioPorNoche(320000).
-                    capacidadMaximaHuespedes(3).
+                    precioPorNoche(350000).
+                    capacidadMaximaHuespedes(2).
                     piscina(false).
                     desayuno(true).
                     wifi(false).
-                    costoAdicional(30000).
+                    costoAdicional(20000).
                     ciudad(Ciudad.ARAUCA).
                     id("6").
                     build());
 
-
+            // Usuarios y demás datos igual que antes...
             UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
 
             Usuario usuario = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarUsuario("1092457610", "Joab novio de laura la mas linda del mundo", "De Duarte", "3014750404", "suarezjoab2706@gmail.com", "Joab2007*");
@@ -247,30 +241,26 @@ public class ControladorPrincipal {
 
             usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Laura mi amor").apellido("De Suarez").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
 
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "60", "2", "Descuento especial de Navidad");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "40", "3", "Promoción Día de la Madre");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "10", "5", "Oferta especial de Halloween");
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "60", "2", "Oferta por navidad");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "40", "3", "Oferta por dia de la madre");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "10", "5", "Oferta por hallowen");
-
-
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("1", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Hola", "1"));
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("2", 2, 40000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Adios", "1"));
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("3", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Hola", "3"));
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("4", 1, 30000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Hola de nuevo", "3"));
-
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("1", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Habitación con cama doble, muy iluminada y confortable", "1"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("2", 2, 40000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Amplia habitación familiar con vista al jardín", "1"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("3", 1, 30000, 4, "imagenes/interior-del-sitio-de-alojamiento-comodo.jpg", "Habitación sencilla ideal para descansar después de un día de paseo", "3"));
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getHabitacionRepositorio().agregarHabitacion(new Habitacion("4", 1, 30000, 4, "imagenes/casa-de-lujo-moderna-con-un-hermoso-cesped-y-un-cielo-soleado.jpg", "Cómoda habitación con decoración minimalista y acogedora", "3"));
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 5), LocalDate.of(2020, 6, 10), 2, "1", "1092457610", "1");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 20), LocalDate.of(2020, 6, 22), 3, "1", "1092457610", "2");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 6, 25), LocalDate.of(2020, 6, 30), 2, "6", "1092457610", "");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarReserva(LocalDate.of(2020, 5, 5), LocalDate.of(2020, 5, 10), 2, "3", "1092457610", "1");
 
-
             System.out.println(ControladorPrincipal.getInstancia().empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos().size());
 
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy bonito", 4, "1092457610", "1");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es muy feo bonito", 1, "1092457610", "1");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es hermoso", 5, "1092457610", "1");
-            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento es asqueroso", 1, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("Me encantó la atención del personal y la limpieza del lugar. Volveré pronto.", 4, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El alojamiento no cumplió con lo que prometía. Hay cosas por mejorar.", 2, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("Una estadía fantástica. Todo fue perfecto desde la llegada hasta el check-out.", 5, "1092457610", "1");
+            ControladorPrincipal.getInstancia().getEmpresaAlojamiento().crearResena("El lugar no era lo que esperaba. Las fotos eran engañosas.", 1, "1092457610", "1");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
