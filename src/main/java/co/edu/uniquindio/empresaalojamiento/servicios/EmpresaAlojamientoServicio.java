@@ -7,6 +7,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.vo.Notificacion;
 import co.edu.uniquindio.empresaalojamiento.repositorios.*;
 import co.edu.uniquindio.empresaalojamiento.servicios.interfaces.IEmpresaAlojamiento;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Utilidades;
+import javafx.fxml.FXML;
 import lombok.Getter;
 
 import java.io.File;
@@ -205,6 +206,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         }
     }
 
+    @Override
     public double calcularOcupacionPorcentual(int ano, String idAlojamiento) {
 
         LocalDate inicioAno = LocalDate.of(ano, 1, 1);
@@ -228,6 +230,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ((double) diasOcupados / diasTotales) * 100;
     }
 
+    @Override
     public double obtenerGananciasTotales(int ano, String idAlojamiento) {
         LocalDate inicioAno = LocalDate.of(ano, 1, 1);
         LocalDate finAno = LocalDate.of(ano, 12, 31);
@@ -249,10 +252,12 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return gananciasTotales;
     }
 
+    @Override
     public double obtenerCantidadReservasAlojamiento(String idAlojamiento) {
         return reservaServicio.obtenerReservasAlojamiento(idAlojamiento).size();
     }
 
+    @Override
     public List<Alojamiento> ordenarAlojamientosPopulares(List<Alojamiento> alojamientos) {
         alojamientos.sort((a1, a2) -> {
             double reservas1 = obtenerCantidadReservasAlojamiento(a1.getId());
@@ -262,6 +267,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return alojamientos;
     }
 
+    @Override
     public List<Alojamiento> ordenarAlojamientosPopularesCiudad(Ciudad ciudad) {
 
         List<Alojamiento> alojamientosCiudad = alojamientoServicio.obtenerAlojamientos().stream()
@@ -270,14 +276,17 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ordenarAlojamientosPopulares(alojamientosCiudad);
     }
 
+    @Override
     public void activarUsuario(String cedula, String codigo) throws Exception {
         usuarioServicio.activarUsuario(cedula, codigo);
     }
 
+    @Override
     public void enviarCodigo(String correo) throws Exception {
         usuarioServicio.enviarCodigo(correo);
     }
 
+    @Override
     public double obtenerGananciasTotales(String idAlojamiento) {
         double gananciasTotales = 0;
 
@@ -292,6 +301,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return gananciasTotales;
     }
 
+    @Override
     public List<Alojamiento> ordenarAlojamientosMasRentable(List<Alojamiento> alojamientos) {
         alojamientos.sort((a1, a2) -> {
             double ganancias1 = obtenerGananciasTotales(a1.getId());
@@ -301,6 +311,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return alojamientos;
     }
 
+    @Override
     public List<Alojamiento> ordenarAlojamientosMasRentableTipo(TipoAlojamiento tipo) {
         List<Alojamiento> alojamientosTipo = alojamientoServicio.obtenerAlojamientos().stream()
                 .filter(a -> a.getTipoAlojamiento().equals(tipo))
@@ -309,6 +320,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return ordenarAlojamientosMasRentable(alojamientosTipo);
     }
 
+    @Override
     public Usuario iniciarSesion(String correo, String contrasena) throws Exception {
         Usuario usuarioEncontrado = null;
         for (Usuario usuario : usuarioServicio.obtenerUsuarios()) {
@@ -326,42 +338,53 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return usuarioEncontrado;
     }
 
+
+    @Override
     public Usuario buscarUsuarioCorreo(String correo) {
         return usuarioServicio.buscarUsuarioCorreo(correo);
     }
 
+    @Override
     public Usuario buscarUsuario(String id) {
         return usuarioServicio.buscarUsuario(id);
     }
 
+    @Override
     public void validarCambioContrasena(String codigoIngresado, String contrasena) throws Exception {
         usuarioServicio.validarCambioContrasena(codigoIngresado, contrasena);
     }
 
+    @Override
     public void cambiarCodigoEnviado(String cedula, String codigoEnviado) {
         usuarioServicio.cambiarCodigoEnviado(cedula, codigoEnviado);
     }
 
+    @Override
     public void cambiarContrasena(Usuario usuario, String contrasena, String contrasenaConfirmar) throws Exception {
         usuarioServicio.cambiarContrasena(usuario, contrasena, contrasenaConfirmar);
     }
 
+    @Override
     public List<String> obtenerCamposOpcionales(String idAlojamiento) throws Exception {
         return alojamientoServicio.obtenerCamposOpcionales(idAlojamiento);
     }
 
+    @Override
     public List<Resena> obtenerResenasAlojamiento(String idAlojamiento) throws Exception {
         return resenaServicio.obtenerResenasAlojamiento(idAlojamiento);
     }
 
+    @Override
     public Alojamiento obtenerAlojamientoPorId(String idAlojamiento) {
         return alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
     }
 
+    @Override
     public List<Reserva> obtenerReservasUsuario(String idUsuario) {
         return reservaServicio.obtenerReservasUsuario(idUsuario);
     }
 
+    @Override
     public void promediarCalificaciones(String idAlojamiento) throws Exception {
         Alojamiento alojamiento = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
         float suma = 0;
@@ -374,6 +397,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         alojamiento.setCalificacionPromedio(Math.round((suma / contador) * 10.0) / 10.0f);
     }
 
+    @Override
     public List<Alojamiento> obtenerAlojamientosFiltrados(String nombreBuscado, TipoAlojamiento tipoSeleccionado, Ciudad ciudadSeleccionada, String precioMin, String precioMax, boolean ofertaAplicada) throws Exception {
         return alojamientoServicio.obtenerAlojamientosFiltrados(nombreBuscado, tipoSeleccionado, ciudadSeleccionada, precioMin, precioMax, ofertaAplicada, obtenerOfertas());
     }
@@ -382,7 +406,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return alojamientoServicio.obtenerAlojamientos();
     }
 
-
+    @Override
     public String generarInfoFactura(Reserva reserva) throws Exception {
         Usuario usuario = buscarUsuario(reserva.getIdUsuario());
         Factura factura = reserva.getFactura();
@@ -461,19 +485,23 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         );
     }
 
+    @Override
     public String obtenerServiciosIncluidosString(Alojamiento alojamiento) throws Exception {
         List<String> servicios = alojamientoRepositorio.obtenerCamposOpcionales(alojamiento);
         return servicios.isEmpty() ? "Ninguno" : String.join(", ", servicios);
     }
 
+    @Override
     public List<Habitacion> obtenerHabitacionesHotel(String idHotel) {
         return habitacionServicio.obtenerHabitacionesHotel(idHotel);
     }
 
+    @Override
     public List<Oferta> obtenerOfertas() {
         return ofertaServicio.obtenerOfertas();
     }
 
+    @Override
     public List<Integer> obtenerNumerosHabitaciones(String idHotel) {
         List<Integer> numerosHabitaciones = new ArrayList<>();
         for (Habitacion habitacion : obtenerHabitacionesHotel(idHotel)) {
@@ -482,21 +510,27 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         return numerosHabitaciones;
     }
 
+    @Override
     public void enviarNotificacion(String mensaje, String idCliente) {
         notificacionServicio.enviarNotificacion(mensaje, idCliente);
     }
 
+    @Override
     public List<Notificacion> obtenerNotificaciones(String idCliente) {
         return notificacionServicio.obtenerNotificaciones(idCliente);
     }
 
+    @Override
     public void marcarComoLeida(UUID id) {
         notificacionServicio.marcarComoLeida(id);
     }
+
+    @Override
     public List<Usuario> obtenerUsuarios(){
         return usuarioServicio.obtenerUsuarios();
     }
 
+    @Override
     public List<Oferta> obtenerOfertasAlojamiento(String idAlojamiento) {
         return ofertaServicio.obtenerOfertasAlojamiento(idAlojamiento);
     }
