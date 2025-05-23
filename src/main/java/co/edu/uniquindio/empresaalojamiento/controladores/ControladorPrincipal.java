@@ -233,11 +233,11 @@ public class ControladorPrincipal {
 
             UsuarioRepositorio usuarioRepositorio = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getUsuarioRepositorio();
 
-            Usuario usuario = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarUsuario("1092457610", "Joab", "Suarez", "3014750404", "suarezjoab2706@gmail.com", "Joab2007*");
+            Usuario usuario = ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarUsuario("1092457610", "Joab", "Suarez", "3014750404", "suarezjoab2706@gmail.com", "Contrasena123*");
             usuario.setActivo(true);
             usuario.getBilletera().setSaldo(2000000000);
 
-            usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Admin").apellido("Book your stay").email("joablsuarez@gmail.com").cedula("12345").contrasena("Joab2007*").build());
+            usuarioRepositorio.agregarUsuario(Usuario.builder().rol(Rol.ADMINISTRADOR).activo(true).nombre("Admin").apellido("Book your stay").email("joablsuarez@gmail.com").cedula("12345").contrasena("Contrasena123*").build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "60", "2", "Descuento especial de Navidad");
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().registrarOferta(LocalDate.now(), LocalDate.now().plusDays(1), "40", "3", "Promoción Día de la Madre");
