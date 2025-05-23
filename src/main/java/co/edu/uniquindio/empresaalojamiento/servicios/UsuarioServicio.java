@@ -102,17 +102,25 @@ public class UsuarioServicio {
 
     }
 
-    public void recargarBilletera(double monto, String cedulaUsuario) throws Exception {
+    public void recargarBilletera(String monto, String cedulaUsuario) throws Exception {
         Usuario usuarioRecargar = usuarioRepositorio.buscarUsuario(cedulaUsuario);
         if (usuarioRecargar == null) {
             throw new Exception("El usuario no existe");
         }
-        if (monto <= 0) {
+
+        double montoD;
+        try{
+            montoD = Double.parseDouble(monto);
+        }
+        catch(Exception e){
+            throw new Exception("Monto invalido");
+        }
+        if (montoD <= 0) {
             throw new Exception("El monto debe ser mayor a 0");
         }
 
         double saldoActual = usuarioRecargar.getBilletera().getSaldo();
-        usuarioRecargar.getBilletera().setSaldo(saldoActual + monto);
+        usuarioRecargar.getBilletera().setSaldo(saldoActual + montoD);
     }
 
     public void enviarCodigo(String correo) throws Exception {

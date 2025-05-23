@@ -43,7 +43,7 @@ public class CrearReservaControlador {
 
     private final EmpresaAlojamientoServicio controladorPrincipal = ControladorPrincipal.getInstancia().getEmpresaAlojamiento();
     private final Sesion sesion = Sesion.getInstancia();
-    private  final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
+    private final Alojamiento alojamiento = AlojamientoSingleton.getInstancia().getAlojamiento();
     private final Habitacion habitacion = HabitacionSingleton.getInstancia().getHabitacion();
 
     @FXML
@@ -53,16 +53,17 @@ public class CrearReservaControlador {
         datePickFechaIngreso.valueProperty().addListener(calcularPrecioListener);
         datePickFechaSalida.valueProperty().addListener(calcularPrecioListener);
     }
+
     @FXML
     void crearReserva(ActionEvent event) {
         try {
-            controladorPrincipal.registrarReserva(datePickFechaIngreso.getValue(),datePickFechaSalida.getValue(),Integer.parseInt(txtNumHuesped.getText()),alojamiento.getId(),sesion.getUsuario().getCedula(), habitacion == null ? "" : habitacion.getId());
+            controladorPrincipal.registrarReserva(datePickFechaIngreso.getValue(), datePickFechaSalida.getValue(), txtNumHuesped.getText(), alojamiento.getId(), sesion.getUsuario().getCedula(), habitacion == null ? "" : habitacion.getId());
             ControladorPrincipal.crearAlerta("Se ha creado con exito la reserva", Alert.AlertType.INFORMATION);
             AlojamientoSingleton.getInstancia().setAlojamiento(null);
             HabitacionSingleton.getInstancia().setHabitacion(null);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuCliente.fxml", "Usuario", txtNumHuesped, getClass());
-            controladorPrincipal.enviarNotificacion("Tu reserva en " + alojamiento.getNombre()+" ha sido creada con exito",sesion.getUsuario().getCedula());
-        }catch (Exception e){
+            controladorPrincipal.enviarNotificacion("Tu reserva en " + alojamiento.getNombre() + " ha sido creada con exito", sesion.getUsuario().getCedula());
+        } catch (Exception e) {
             ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -80,10 +81,10 @@ public class CrearReservaControlador {
 
         if (inicio != null && fin != null && !fin.isBefore(inicio)) {
             long noches = ChronoUnit.DAYS.between(inicio, fin);
-            if (alojamiento.getPrecioPorNoche()==0){
+            if (alojamiento.getPrecioPorNoche() == 0) {
                 double precio = noches * habitacion.getPrecioPorNoche();
                 lblPrecio.setText(String.format("$%.2f", precio));
-            }else{
+            } else {
                 double precio = noches * alojamiento.getPrecioPorNoche() + alojamiento.getCostoAdicional();
                 lblPrecio.setText(String.format("$%.2f", precio));
             }

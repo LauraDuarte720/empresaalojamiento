@@ -59,7 +59,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public Alojamiento registrarAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                            double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+                                            String precioPorNoche, String capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, String costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
         return alojamientoServicio.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad, parqueadro, mascotasPermitidas, gym);
     }
 
@@ -70,7 +70,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
     @Override
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional,Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+                                      String precioPorNoche, String capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, String costoAdicional,Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
         alojamientoServicio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional,ciudad,parqueadro,mascotasPermitidas,gym);
     }
 
@@ -102,8 +102,8 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void actualizarOferta(String idOferta, LocalDate fechaInicio, LocalDate fechaFin, double ofertaValor, String idAlojamiento, String descripcion) throws Exception {
-        ofertaServicio.modificarOferta(idOferta, fechaInicio, fechaFin, ofertaValor, idAlojamiento, descripcion);
+    public void actualizarOferta(String idOferta, LocalDate fechaInicio, LocalDate fechaFin, String ofertaValor, String descripcion) throws Exception {
+        ofertaServicio.modificarOferta(idOferta, fechaInicio, fechaFin, ofertaValor, descripcion);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, int numeroHuespedes, String idAlojamiento, String idUsuario, String idHabitacion) throws Exception {
+    public Reserva registrarReserva(LocalDate fechaInicio, LocalDate fechaFinal, String numeroHuespedes, String idAlojamiento, String idUsuario, String idHabitacion) throws Exception {
         Alojamiento alojamientoReserva = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
         Habitacion habitacionReserva = habitacionServicio.buscarHabitacion(idHabitacion);
 
@@ -142,8 +142,17 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
             reservas = reservaServicio.obtenerReservarHabitacion(idHabitacion);
         }
 
+        int numeroHuespedesI = 0;
 
-        if (capacidadMaximaHuespedesReserva < numeroHuespedes) {
+        try{
+            numeroHuespedesI = Integer.parseInt(numeroHuespedes);
+        }
+        catch(Exception e){
+            throw new Exception("Numero de huespedes no valido");
+        }
+
+
+        if (capacidadMaximaHuespedesReserva < numeroHuespedesI) {
             throw new Exception("El numero de huespedes supera la capacidad maxima del alojamiento");
         }
         for (Reserva reservaAlojamiento : reservas) {
@@ -173,7 +182,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
 
         usuario.getBilletera().setSaldo(usuario.getBilletera().getSaldo() - total);
 
-        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedes, idAlojamiento, idUsuario, idHabitacion);
+        Reserva reserva = reservaServicio.crearReserva(fechaInicio, fechaFinal, numeroHuespedesI, idAlojamiento, idUsuario, idHabitacion);
         reserva.getFactura().setSubtotal(subtotal);
         reserva.getFactura().setTotal(total);
 
@@ -190,7 +199,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void recargarBilletera(double monto, String cedulaUsuario) throws Exception {
+    public void recargarBilletera(String monto, String cedulaUsuario) throws Exception {
         usuarioServicio.recargarBilletera(monto, cedulaUsuario);
     }
 

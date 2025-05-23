@@ -33,7 +33,7 @@ public class RecargarBilleteraControlador {
     @FXML
     void recargarBilletera(ActionEvent event) {
         try {
-            empresaAlojamientoServicio.recargarBilletera(Double.parseDouble(txtMontoRecargar.getText()), sesion.getUsuario().getCedula());
+            empresaAlojamientoServicio.recargarBilletera(txtMontoRecargar.getText(), sesion.getUsuario().getCedula());
             ControladorPrincipal.crearAlerta("Ha recargado su billetera con exito", Alert.AlertType.INFORMATION);
             txtMontoRecargar.clear();
             txtSaldo.setText("Su saldo actual es: " + Utilidades.obtenerValorCadena(sesion.getUsuario().getBilletera().getSaldo()));

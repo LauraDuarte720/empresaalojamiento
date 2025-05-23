@@ -22,7 +22,7 @@ public class AlojamientoServicio {
     }
 
     public Alojamiento crearAlojamiento(TipoAlojamiento tipoAlojamiento, String nombre, String descripcion, String ruta,
-                                        double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+                                        String precioPorNoche, String capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, String costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
 
         if (tipoAlojamiento == null) throw new Exception("Debe ingresar un tipo de alojamiento");
         if (nombre == null || nombre.isEmpty()) throw new Exception("El nombre del alojamiento no puede ser vacio");
@@ -30,15 +30,41 @@ public class AlojamientoServicio {
             throw new Exception("La descripcion del alojamiento no puede ser vacia");
         if (ruta == null || ruta.isEmpty()) throw new Exception("La ruta del alojamiento no puede ser vacia");
 
+
+        double precioPorNocheD = 0;
+        int capacidadMaximaHuespedesD = 0;
+        double costoAdicionalD = 0;
         if (tipoAlojamiento == TipoAlojamiento.APARTAMENTOS || tipoAlojamiento == TipoAlojamiento.CASA) {
-            if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
-            if (capacidadMaximaHuespede <= 0)
+            try {
+                precioPorNocheD = Double.parseDouble(precioPorNoche);
+            } catch (Exception e) {
+                throw new Exception("El precio por noche debe ser un número");
+            }
+
+            try {
+                capacidadMaximaHuespedesD = Integer.parseInt(capacidadMaximaHuespedes);
+            } catch (Exception e) {
+                throw new Exception("La capacidad máxima de huespedes debe ser un número");
+            }
+
+            try {
+                costoAdicionalD = Double.parseDouble(costoAdicional);
+            } catch (Exception e) {
+                throw new Exception("El costo adicional debe ser un número");
+            }
+
+
+            if (precioPorNocheD <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
+            if (capacidadMaximaHuespedesD <= 0)
                 throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+            if (costoAdicionalD < 0)
+                throw new Exception("El costo adicional debe ser mayor o igual a 0");
         }
+
         if (ciudad == null) throw new Exception("Debe ingresar una ciudad");
 
         Alojamiento alojamiento = FactoryAlojamiento.crearAlojamiento(tipoAlojamiento, nombre, descripcion, ruta,
-                precioPorNoche, capacidadMaximaHuespede, piscina, wifi, desayuno, costoAdicional, ciudad, parqueadro, mascotasPermitidas, gym);
+                precioPorNocheD, capacidadMaximaHuespedesD, piscina, wifi, desayuno, costoAdicionalD, ciudad, parqueadro, mascotasPermitidas, gym);
 
         alojamientoRepositorio.agregarAlojamiento(alojamiento);
         return alojamiento;
@@ -52,7 +78,7 @@ public class AlojamientoServicio {
     }
 
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
-                                      double precioPorNoche, int capacidadMaximaHuespede, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
+                                      String precioPorNoche, String capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, String costoAdicional, Ciudad ciudad, boolean parqueadro, boolean mascotasPermitidas, boolean gym) throws Exception {
 
         Alojamiento alojamientoActualizar = alojamientoRepositorio.buscarAlojamiento(idAlojamiento);
         if (alojamientoActualizar == null) throw new Exception("El alojamiento no existe");
@@ -60,15 +86,40 @@ public class AlojamientoServicio {
         if (descripcion == null || descripcion.isEmpty())
             throw new Exception("La descripcion del alojamiento no puede ser vacia");
         if (ruta == null || ruta.isEmpty()) throw new Exception("La ruta del alojamiento no puede ser vacia");
+
+        double precioPorNocheD = 0;
+        int capacidadMaximaHuespedesD = 0;
+        double costoAdicionalD = 0;
         if (alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.APARTAMENTOS || alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.CASA) {
-            if (precioPorNoche <= 0) throw new Exception("El precio por noche debe ser mayor a 0");
-            if (capacidadMaximaHuespede <= 0)
+            try {
+                precioPorNocheD = Double.parseDouble(precioPorNoche);
+            } catch (Exception e) {
+                throw new Exception("El precio por noche debe ser un número");
+            }
+
+            try {
+                capacidadMaximaHuespedesD = Integer.parseInt(capacidadMaximaHuespedes);
+            } catch (Exception e) {
+                throw new Exception("La capacidad máxima de huespedes debe ser un número");
+            }
+
+            try {
+                costoAdicionalD = Double.parseDouble(costoAdicional);
+            } catch (Exception e) {
+                throw new Exception("El costo adicional debe ser un número");
+            }
+
+
+            if (precioPorNocheD < 0) throw new Exception("El precio por noche debe ser mayor a 0");
+            if (capacidadMaximaHuespedesD < 0)
                 throw new Exception("La capacidad maxima de huespedes debe ser mayor a 0");
+            if (costoAdicionalD < 0)
+                throw new Exception("El costo adicional debe ser mayor o igual a 0");
         }
         if (ciudad == null) throw new Exception("Debe ingresar una ciudad");
 
-        alojamientoRepositorio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNoche, capacidadMaximaHuespede, piscina,
-                wifi, desayuno, costoAdicional,ciudad, parqueadro, mascotasPermitidas, gym);
+        alojamientoRepositorio.actualizarAlojamiento(idAlojamiento, nombre, descripcion, ruta, precioPorNocheD, capacidadMaximaHuespedesD, piscina,
+                wifi, desayuno, costoAdicionalD, ciudad, parqueadro, mascotasPermitidas, gym);
 
     }
 
@@ -77,7 +128,6 @@ public class AlojamientoServicio {
         double precioMaxD;
         try {
             precioMinD = Double.parseDouble(precioMin);
-            precioMaxD = Double.parseDouble(precioMax);
             precioMaxD = Double.parseDouble(precioMax);
 
         } catch (Exception e) {

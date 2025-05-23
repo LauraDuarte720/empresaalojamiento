@@ -103,8 +103,8 @@ public class CrearAlojamientoControlador {
         }
         try{
             controladorPrincipal.registrarAlojamiento(TipoAlojamiento.getTipoAlojamientoDesdeNombre(cmbTipoAlojamiento.getValue()),txtnombre.getText(),txtDescripcion.getText(),
-                    rutaFoto,Double.parseDouble(txtPrecioNoche.getText()),Integer.parseInt(txtCapacidadHuespedes.getText()),
-                    checkPiscina.isSelected(),checkWifi.isSelected(),checkDesayuno.isSelected(),Double.parseDouble(txtCostoadicional.getText()),
+                    rutaFoto,txtPrecioNoche.getText(),txtCapacidadHuespedes.getText(),
+                    checkPiscina.isSelected(),checkWifi.isSelected(),checkDesayuno.isSelected(),txtCostoadicional.getText(),
                     Ciudad.getCiudadDesdeNombre(cmbCiudad.getValue()),checkParqueaderos.isSelected(),checkMascotas.isSelected(),checkGym.isSelected());
             ControladorPrincipal.crearAlerta("Se ha creado con exito el alojamiento", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Menu Administrador", txtnombre, getClass());

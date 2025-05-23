@@ -27,7 +27,7 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="226.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Actualizar Alojamiento" textFill="#421404">
+      <Label alignment="CENTER" prefHeight="45.0" prefWidth="277.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Actualizar Alojamiento" textFill="#421404">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>

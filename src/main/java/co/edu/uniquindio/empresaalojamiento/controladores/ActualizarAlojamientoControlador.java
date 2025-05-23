@@ -135,17 +135,20 @@ public class ActualizarAlojamientoControlador {
                     return;
                 }
             }
+            else {
+                rutaFoto = alojamiento.getRuta();
+            }
             System.out.println(rutaFoto);
             controladorPrincipal.actualizarAlojamiento(
                     alojamiento.getId(),
                     txtnombre.getText(),
                     txtDescripcion.getText(),
-                    rutaFoto,Double.parseDouble(txtPrecioNoche.getText()),
-                    Integer.parseInt(txtCapacidadHuespedes.getText()),
+                    rutaFoto,txtPrecioNoche.getText(),
+                    txtCapacidadHuespedes.getText(),
                     checkPiscina.isSelected(),
                     checkWifi.isSelected(),
                     checkDesayuno.isSelected(),
-                    Double.parseDouble(txtCostoadicional.getText()),
+                    txtCostoadicional.getText(),
                     Ciudad.getCiudadDesdeNombre(cmbCiudad.getValue()),
                     checkParqueaderos.isSelected(),
                     checkMascotas.isSelected(),

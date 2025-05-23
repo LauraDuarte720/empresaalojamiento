@@ -40,7 +40,7 @@ public class ActualizarOfertaControlador {
     @FXML
     void actualizarOferta(ActionEvent event) {
         try {
-            controladorPrincipal.actualizarOferta(oferta.getId(),dateFechaInicio.getValue(),dateFechaFinal.getValue(),Double.parseDouble(txtDescuento.getText()),oferta.getIdAlojamiento(),txtDescripcion.getText());
+            controladorPrincipal.actualizarOferta(oferta.getId(),dateFechaInicio.getValue(),dateFechaFinal.getValue(),txtDescuento.getText(),txtDescripcion.getText());
             ControladorPrincipal.crearAlerta("Se ha actualizado con exito la oferta", Alert.AlertType.INFORMATION);
             ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/menuAdministrador.fxml", "Administrador", txtDescripcion, getClass());
         }catch (Exception e){
