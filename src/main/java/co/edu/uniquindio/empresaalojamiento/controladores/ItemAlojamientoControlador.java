@@ -24,11 +24,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.lang.StringBuilder;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+
 
 public class ItemAlojamientoControlador {
 
@@ -89,9 +91,21 @@ public class ItemAlojamientoControlador {
         lblDescripcion.setText(alojamiento.getDescripcion());
         lblCalificacion.setText(alojamiento.getCalificacionPromedio() + " estrellas");
         lblPrecioPorNoche.setText("$" + Utilidades.obtenerValorCadena(alojamiento.getPrecioPorNoche()) + "por noche");
-        for(Oferta ofertaAlojamiento : empresaAlojamientoServicio.obtenerOfertasAlojamiento(alojamiento.getId())){
-            lblOferta.setText("Ofertas:\n" + ofertaAlojamiento.getDescripcion() +" en las fechas: "+ ofertaAlojamiento.getFechaInicio() + " - " + ofertaAlojamiento.getFechaFinal() + " con valor de "+ ofertaAlojamiento.getValorPorcentaje()*100 );
+        StringBuilder ofertasTexto = new StringBuilder("Ofertas:\n");
+        for (Oferta ofertaAlojamiento : empresaAlojamientoServicio.obtenerOfertasAlojamiento(alojamiento.getId())) {
+             ofertasTexto.append("- ")
+                    .append(ofertaAlojamiento.getDescripcion())
+                    .append(" (")
+                    .append(ofertaAlojamiento.getFechaInicio())
+                    .append(" - ")
+                    .append(ofertaAlojamiento.getFechaFinal())
+                    .append(") ")
+                    .append("→ Descuento: ")
+                    .append(ofertaAlojamiento.getValorPorcentaje() * 100)
+                    .append("%\n");
         }
+
+        lblOferta.setText(ofertasTexto.toString());
         imgAlojamiento.setImage(new Image(new File(alojamiento.getRuta()).toURI().toString()));
         llenarCamposAdicionales();
 
