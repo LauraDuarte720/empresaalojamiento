@@ -213,17 +213,34 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
         LocalDate finAno = LocalDate.of(ano, 12, 31);
         long diasTotales = ChronoUnit.DAYS.between(inicioAno, finAno.plusDays(1));
         int diasOcupados = 0;
-        List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
 
-        for (Reserva reserva : reservasAlojamiento) {
-            LocalDate inicioReserva = reserva.getFechaInicio();
-            LocalDate finReserva = reserva.getFechaFinal();
+        Alojamiento alojamiento = alojamientoServicio.obtenerAlojamientoPorId(idAlojamiento);
+        if (alojamiento.getPrecioPorNoche()==0){
+            List<Habitacion> habitacionesHotel=obtenerHabitacionesHotel(idAlojamiento);
+            for (Habitacion habitacion : habitacionesHotel) {
+                List<Reserva> reservasAHabitacion = reservaServicio.obtenerReservasAlojamiento(habitacion.getId());
+                for (Reserva reserva : reservasAHabitacion) {
+                    LocalDate inicioReserva = reserva.getFechaInicio();
+                    LocalDate finReserva = reserva.getFechaFinal();
+                    LocalDate inicio = inicioReserva.isBefore(inicioAno) ? inicioAno : inicioReserva;
+                    LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
+                    if (!inicio.isAfter(fin)) {
+                        diasOcupados += (int) ChronoUnit.DAYS.between(inicio, fin.plusDays(1));
+                    }
+                }
+            }
+        }else{
+            List<Reserva> reservasAlojamiento = reservaServicio.obtenerReservasAlojamiento(idAlojamiento);
+            for (Reserva reserva : reservasAlojamiento) {
+                LocalDate inicioReserva = reserva.getFechaInicio();
+                LocalDate finReserva = reserva.getFechaFinal();
 
-            LocalDate inicio = inicioReserva.isBefore(inicioAno) ? inicioAno : inicioReserva;
-            LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
+                LocalDate inicio = inicioReserva.isBefore(inicioAno) ? inicioAno : inicioReserva;
+                LocalDate fin = finReserva.isAfter(finAno) ? finAno : finReserva;
 
-            if (!inicio.isAfter(fin)) {
-                diasOcupados += (int) ChronoUnit.DAYS.between(inicio, fin.plusDays(1));
+                if (!inicio.isAfter(fin)) {
+                    diasOcupados += (int) ChronoUnit.DAYS.between(inicio, fin.plusDays(1));
+                }
             }
         }
 

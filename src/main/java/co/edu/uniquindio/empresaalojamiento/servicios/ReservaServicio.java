@@ -28,11 +28,10 @@ public class ReservaServicio {
             throw new Exception("La fecha final debe ser posterior a la de inicio");
         }
 
-/*
         if(fechaInicio.isBefore(LocalDate.now())){
             throw new Exception("La fecha ingresada debe ser posterior a la de hoy");
         }
-*/
+
 
         if(numeroHuespedes <= 0){
             throw new Exception("El numero de huespedes debe ser mayor que 0");
