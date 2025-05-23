@@ -306,4 +306,5 @@ public class EmpresaAlojamientoServicioTest {
         // Validar con un delta pequeño porque es double
         assertEquals(esperado, ocupacion, 0.001);
     }
+
 }
