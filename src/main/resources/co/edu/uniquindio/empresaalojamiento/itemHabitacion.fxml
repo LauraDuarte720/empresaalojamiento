@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="310.0" prefWidth="560.0" spacing="15.0" style="-fx-padding: 20px; -fx-background-color: #421404;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.ItemHabitacionControlador">
+<HBox prefHeight="307.0" prefWidth="530.0" spacing="15.0" style="-fx-padding: 20px; -fx-background-color: #421404;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.ItemHabitacionControlador">
     <VBox alignment="CENTER" spacing="10.0" />
     <VBox alignment="CENTER" prefHeight="291.0" prefWidth="309.0" spacing="20.0" style="-fx-background-color: #D3B49F; -fx-border-color: #F3E9DC;">
       <Label fx:id="lblNumeroHabitacion" text="Numero habitacion" textFill="WHITE" />

@@ -60,7 +60,7 @@
          </StackPane>
       </children>
    </VBox>
-    <VBox alignment="CENTER" prefHeight="291.0" prefWidth="309.0" spacing="20.0" style="-fx-background-color: #C08552; -fx-border-color: #F3E9DC;">
+    <VBox alignment="CENTER" prefHeight="291.0" prefWidth="309.0" spacing="20.0" style="-fx-background-color: #C08552; -fx-border-color: #F3E9DC; -fx-padding: 5;">
       <HBox alignment="CENTER" prefHeight="245.0" prefWidth="252.0" spacing="20.0">
          <children>
             <VBox>
@@ -73,7 +73,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="vBoxCamposOpcionales" alignment="CENTER" prefHeight="210.0" prefWidth="105.0" spacing="10.0" />
+            <VBox fx:id="vBoxCamposOpcionales" alignment="CENTER" prefHeight="210.0" prefWidth="105.0" spacing="10.0" style="-fx-border-color: #421404; -fx-border-width: 2;" />
          </children>
       </HBox>
       <HBox alignment="CENTER" spacing="10.0">

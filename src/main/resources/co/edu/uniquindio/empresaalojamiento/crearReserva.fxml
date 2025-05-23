@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,6 +23,12 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Pane prefHeight="25.0" prefWidth="113.0" />
+            <Label fx:id="lblPrecio" text="Precio parcial: ">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
       <Label alignment="CENTER" prefHeight="40.0" prefWidth="205.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Crear Reserva" textFill="#421404">

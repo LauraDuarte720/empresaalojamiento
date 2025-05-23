@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="900.0" style="-fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1019.0" style="-fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.MenuClienteControlador">
    <children>
-      <HBox alignment="TOP_CENTER" prefHeight="618.0" prefWidth="802.0" style="-fx-background-color: #D3B49F;">
+      <HBox alignment="TOP_CENTER" prefHeight="618.0" prefWidth="953.0" style="-fx-background-color: #D3B49F;">
          <children>
             <VBox alignment="TOP_CENTER" spacing="30.0" style="-fx-background-color: #8C522D;">
                <children>
@@ -39,15 +39,18 @@
                   <Button mnemonicParsing="false" onAction="#verAlojamientos" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver alojamientos" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#verReservas" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Ver reservas" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#recargarBilletera" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Recargar Billetera" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <MenuButton mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" style="-fx-background-color: #421404;" text="Gestionar datos de la cuenta" textFill="WHITE">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#actualizarDatos" text="Actualizar datos" />
@@ -75,7 +78,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <StackPane fx:id="panelPrincipal" prefHeight="603.0" prefWidth="634.0" />
+            <StackPane fx:id="panelPrincipal" prefHeight="603.0" prefWidth="739.0" />
          </children>
       </HBox>
    </children>

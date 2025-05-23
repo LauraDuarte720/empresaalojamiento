@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="337.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.NotificacionControlador">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="581.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #D3B49F; -fx-border-color: #421404; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.empresaalojamiento.controladores.NotificacionControlador">
    <children>
       <HBox>
          <children>
@@ -18,13 +18,13 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <AnchorPane prefHeight="26.0" prefWidth="67.0" />
+            <AnchorPane prefHeight="27.0" prefWidth="293.0" />
             <ComboBox fx:id="cmbTipoNotificacion" onAction="#filtrarNotificaciones" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: #9e8576;" />
          </children>
       </HBox>
-      <Label style="-fx-border-color: #421404; -fx-padding: 5;" text="Notificaciones" textFill="#421404">
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="217.0" style="-fx-border-color: #421404; -fx-padding: 5;" text="Notificaciones" textFill="#421404">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
       <ListView fx:id="listViewNotificaciones" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F3E9DC;" />
