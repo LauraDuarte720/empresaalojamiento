@@ -1,5 +1,6 @@
 package co.edu.uniquindio.empresaalojamiento;
 
+import co.edu.uniquindio.empresaalojamiento.conexion.ConexionDB;
 import co.edu.uniquindio.empresaalojamiento.controladores.ControladorPrincipal;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.Ciudad;
 import co.edu.uniquindio.empresaalojamiento.modelo.enums.TipoAlojamiento;
@@ -24,6 +25,7 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         /*ControladorPrincipal.cargarData();*/
+        ConexionDB.getConexion();
         launch();
     }
 }

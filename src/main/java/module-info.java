@@ -9,6 +9,7 @@ module co.edu.uniquindio.empresaalojamiento {
     requires jakarta.activation;
     requires org.apache.pdfbox;
     requires java.desktop;
+    requires java.sql;
 
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;

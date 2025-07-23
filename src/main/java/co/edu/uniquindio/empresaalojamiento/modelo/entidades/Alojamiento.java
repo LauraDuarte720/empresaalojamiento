@@ -22,10 +22,10 @@ public class Alojamiento implements Serializable {
     private double precioPorNoche;
     private int capacidadMaximaHuespedes;
     private float calificacionPromedio;
+    private double costoAdicional;
     private boolean piscina;
     private boolean wifi;
     private boolean desayuno;
-    private double costoAdicional;
     private boolean parqueadro;
     private boolean mascotasPermitidas;
     private boolean gym;
