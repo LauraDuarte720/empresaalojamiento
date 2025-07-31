@@ -34,7 +34,7 @@ public class AlojamientoServicio {
         double precioPorNocheD = 0;
         int capacidadMaximaHuespedesD = 0;
         double costoAdicionalD = 0;
-        if (tipoAlojamiento == TipoAlojamiento.APARTAMENTOS || tipoAlojamiento == TipoAlojamiento.CASA) {
+        if (tipoAlojamiento == TipoAlojamiento.APARTAMENTO || tipoAlojamiento == TipoAlojamiento.CASA) {
             try {
                 precioPorNocheD = Double.parseDouble(precioPorNoche);
             } catch (Exception e) {
@@ -90,7 +90,7 @@ public class AlojamientoServicio {
         double precioPorNocheD = 0;
         int capacidadMaximaHuespedesD = 0;
         double costoAdicionalD = 0;
-        if (alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.APARTAMENTOS || alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.CASA) {
+        if (alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.APARTAMENTO || alojamientoActualizar.getTipoAlojamiento() == TipoAlojamiento.CASA) {
             try {
                 precioPorNocheD = Double.parseDouble(precioPorNoche);
             } catch (Exception e) {

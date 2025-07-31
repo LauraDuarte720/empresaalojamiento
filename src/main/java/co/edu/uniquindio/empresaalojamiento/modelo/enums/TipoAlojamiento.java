@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 public enum TipoAlojamiento {
-    APARTAMENTOS("Apartamentos"), CASA("Casa"), HOTEL("Hotel");
+    APARTAMENTO("Apartamentos"), CASA("Casa"), HOTEL("Hotel");
 
     private final String nombre;
     TipoAlojamiento(String nombre){
@@ -29,7 +29,7 @@ public enum TipoAlojamiento {
 
     public static TipoAlojamiento getTipoAlojamientoDesdeNombre(String nombreLegible) {
         return switch (nombreLegible) {
-            case "Apartamentos" -> TipoAlojamiento.APARTAMENTOS;
+            case "Apartamentos" -> TipoAlojamiento.APARTAMENTO;
             case "Casa" -> TipoAlojamiento.CASA;
             case "Hotel" -> TipoAlojamiento.HOTEL;
             default -> null;

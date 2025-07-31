@@ -13,7 +13,7 @@ public class FactoryAlojamiento {
 
         Alojamiento alojamiento= null;
         switch (tipoAlojamiento) {
-            case TipoAlojamiento.CASA, TipoAlojamiento.APARTAMENTOS -> alojamiento=Alojamiento.builder()
+            case TipoAlojamiento.CASA, TipoAlojamiento.APARTAMENTO -> alojamiento=Alojamiento.builder()
                     .id(UUID.randomUUID().toString())
                     .tipoAlojamiento(tipoAlojamiento)
                     .nombre(nombre)

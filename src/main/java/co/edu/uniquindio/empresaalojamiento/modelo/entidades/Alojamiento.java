@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-public class Alojamiento implements Serializable {
+public class Alojamiento{
     private TipoAlojamiento tipoAlojamiento;
     private String id;
     private String nombre;

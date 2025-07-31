@@ -114,7 +114,7 @@ public class PanelAlojamientoControlador {
             }
         });
 
-        if (empresaAlojamientoServicio.obtenerAlojamientos().size() > 0) {
+        if (!empresaAlojamientoServicio.obtenerAlojamientos().isEmpty()) {
             listAlojamientos.setItems(FXCollections.observableArrayList(
                     empresaAlojamientoServicio.obtenerAlojamientosAleatorios()));
             vBoxAlojamientos.setVisible(true);

@@ -70,7 +70,7 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         try {
             Persistencia.serializarObjeto(Constantes.RUTA_USUARIOS, usuarios);
         } catch (IOException e) {
-            System.err.println("Error guardando pacientes: " + e.getMessage());
+            System.err.println("Error guardando usuarios: " + e.getMessage());
         }
     }
 }

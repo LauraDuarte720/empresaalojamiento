@@ -67,7 +67,7 @@ public class GestionalojamientoControlador {
             ControladorPrincipal.crearAlerta("Se ha eliminado con exito el alojamiento", Alert.AlertType.INFORMATION);
             setAlojamiento(observableList(controladorPrincipal.obtenerAlojamientos()));
         }catch (Exception e){
-            ControladorPrincipal.crearAlerta(e.getMessage(), Alert.AlertType.ERROR);
+            ControladorPrincipal.crearAlerta("Selecciona un alojamiento primero antes de eliminarlo", Alert.AlertType.ERROR);
         }
     }
 

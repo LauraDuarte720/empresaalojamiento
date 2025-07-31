@@ -42,7 +42,6 @@ public class ControladorPrincipal {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             empresaAlojamiento.getUsuarioRepositorio().guardarDatos(empresaAlojamiento.getUsuarioRepositorio().listarUsuarios());
-            empresaAlojamiento.getAlojamientoRepositorio().guardarDatos(empresaAlojamiento.getAlojamientoRepositorio().obtenerAlojamientos());
             empresaAlojamiento.getOfertaRepositorio().guardarDatos(empresaAlojamiento.getOfertaRepositorio().obtenerOfertas());
             empresaAlojamiento.getHabitacionRepositorio().guardarDatos(empresaAlojamiento.getHabitacionRepositorio().obtenerHabitaciones());
             empresaAlojamiento.getReservaRepositorio().guardarDatos(empresaAlojamiento.getReservaRepositorio().obtenerReservas());
@@ -188,7 +187,7 @@ public class ControladorPrincipal {
                     build());
 
             ControladorPrincipal.getInstancia().getEmpresaAlojamiento().getAlojamientoRepositorio().agregarAlojamiento(Alojamiento.builder().
-                    tipoAlojamiento(TipoAlojamiento.APARTAMENTOS).
+                    tipoAlojamiento(TipoAlojamiento.APARTAMENTO).
                     nombre("Suites La Milagrosa").
                     descripcion("Apartamentos amplios y modernos con cocina equipada, ideal para estancias largas o viajes en grupo.").
                     ruta("imagenes/apartamentos1.png").

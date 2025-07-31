@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     @Override
@@ -23,8 +24,8 @@ public class HelloApplication extends Application {
 
     }
 
-    public static void main(String[] args) {
-        /*ControladorPrincipal.cargarData();*/
+    public static void main(String[] args) throws SQLException {
+        ControladorPrincipal.cargarData();
         ConexionDB.getConexion();
         launch();
     }

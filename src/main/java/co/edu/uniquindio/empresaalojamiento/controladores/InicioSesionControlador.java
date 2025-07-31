@@ -9,22 +9,22 @@ public class InicioSesionControlador {
 
 
     @FXML
-    private StackPane panleReservas;
+    private StackPane panelReservas;
 
     @FXML
     void initialize() {
         Parent node = ControladorPrincipal.cargarPanel("/co/edu/uniquindio/empresaalojamiento/panelAlojamiento.fxml", getClass());
-        panleReservas.getChildren().setAll(node);
+        panelReservas.getChildren().setAll(node);
     }
 
     @FXML
     void irIniciarSesion(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Iniciar Sesion", panleReservas, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/iniciarSesion.fxml", "Iniciar Sesion", panelReservas, getClass());
     }
 
     @FXML
     void irRegistrarse(ActionEvent event) {
-        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/registrarUsuario.fxml", "Registrar Usuario", panleReservas, getClass());
+        ControladorPrincipal.navegarVentana("/co/edu/uniquindio/empresaalojamiento/registrarUsuario.fxml", "Registrar Usuario", panelReservas, getClass());
 
     }
 

@@ -10,6 +10,7 @@ module co.edu.uniquindio.empresaalojamiento {
     requires org.apache.pdfbox;
     requires java.desktop;
     requires java.sql;
+    requires jdk.compiler;
 
 
     opens co.edu.uniquindio.empresaalojamiento to javafx.fxml;
