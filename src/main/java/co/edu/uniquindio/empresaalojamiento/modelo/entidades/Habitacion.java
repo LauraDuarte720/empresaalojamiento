@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Builder
 @AllArgsConstructor
-public class Habitacion implements Serializable {
+public class Habitacion{
     private String id;
     private int numero;
     private double precioPorNoche;

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Builder
 @Setter
 @AllArgsConstructor
-public class Oferta implements Serializable {
+public class Oferta {
     private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;

@@ -18,10 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class AlojamientoRepositorio implements IAlojamientoRepositorio {
-    private final HashSet<Alojamiento> alojamientos;
 
     public AlojamientoRepositorio() {
-        this.alojamientos = new HashSet<>();
     }
 
 
@@ -117,6 +115,7 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
     public List<Alojamiento> obtenerAlojamientos() {
         String sql = "SELECT * FROM alojamientos;";
         Alojamiento alojamiento;
+        ArrayList<Alojamiento> alojamientos = new ArrayList<>();
 
         try (Connection con = ConexionDB.getConexion();
              PreparedStatement stmt = con.prepareStatement(sql)
@@ -141,10 +140,11 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
                         .gym(rs.getBoolean("gym")).build();
                 alojamientos.add(alojamiento);
             }
-            return new ArrayList<>(alojamientos);
+
         } catch (SQLException e) {
             throw new RuntimeException("Error al obtener los alojamientos: " + e.getMessage());
         }
+        return alojamientos;
     }
 
 

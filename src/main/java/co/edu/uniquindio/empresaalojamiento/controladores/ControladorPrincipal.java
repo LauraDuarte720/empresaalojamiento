@@ -42,8 +42,6 @@ public class ControladorPrincipal {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             empresaAlojamiento.getUsuarioRepositorio().guardarDatos(empresaAlojamiento.getUsuarioRepositorio().listarUsuarios());
-            empresaAlojamiento.getOfertaRepositorio().guardarDatos(empresaAlojamiento.getOfertaRepositorio().obtenerOfertas());
-            empresaAlojamiento.getHabitacionRepositorio().guardarDatos(empresaAlojamiento.getHabitacionRepositorio().obtenerHabitaciones());
             empresaAlojamiento.getReservaRepositorio().guardarDatos(empresaAlojamiento.getReservaRepositorio().obtenerReservas());
             empresaAlojamiento.getResenaRepositorio().guardarDatos(empresaAlojamiento.getResenaRepositorio().obtenerResenas());
             System.out.println("Datos guardados automáticamente al cerrar el programa.");
