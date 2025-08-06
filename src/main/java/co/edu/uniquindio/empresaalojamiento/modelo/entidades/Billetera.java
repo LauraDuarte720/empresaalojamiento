@@ -12,4 +12,5 @@ import java.io.Serializable;
 public class Billetera implements Serializable {
     private double saldo;
     private String id;
+    private String idUsuario;
 }

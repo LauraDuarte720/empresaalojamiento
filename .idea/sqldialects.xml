@@ -2,10 +2,12 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/AlojamientoRepositorio.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/BilleteraRepositorio.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/FacturaRespositorio.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/HabitacionRepositorio.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/OfertaRepositorio.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/ResenaRepositorio.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/ReservaRepositorio.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/empresaalojamiento/repositorios/UsuarioRepositorio.java" dialect="MySQL" />
   </component>
 </project>

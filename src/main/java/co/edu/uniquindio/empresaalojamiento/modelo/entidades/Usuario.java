@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Builder
 
 public class Usuario implements Serializable {
+    private String id;
     private String cedula;
     private String nombre;
     private String apellido;

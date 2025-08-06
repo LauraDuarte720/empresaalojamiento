@@ -1,11 +1,16 @@
 package co.edu.uniquindio.empresaalojamiento.repositorios;
 
+import co.edu.uniquindio.empresaalojamiento.conexion.ConexionDB;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IUsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Constantes;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Persistencia;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +24,71 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
 
     @Override
     public void agregarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
+        String sql = """
+                INSERT into usuarios(id, cedula, nombre, apellido, telefono, email, contrasena, rol, activo, codigo_enviado) VALUES (?,?,?,?,?,?,?,?,?,?);
+                """;
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getId());
+            stmt.setString(2, usuario.getCedula());
+            stmt.setString(3, usuario.getNombre());
+            stmt.setString(4, usuario.getApellido());
+            stmt.setString(5, usuario.getTelefono());
+            stmt.setString(6, usuario.getEmail());
+            stmt.setString(7, usuario.getContrasena());
+            stmt.setString(8, usuario.getRol().getNombre());
+            stmt.setBoolean(9, usuario.getActivo());
+            stmt.setString(10, usuario.getCodigoEnviado());
+            BilleteraRepositorio.agregarBilletera(usuario.getBilletera());
+            stmt.executeUpdate();
+            System.out.println("Usuario agregado exitosamente");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("El usuario con cédula " + usuario.getCedula() + " no se pudo agregar correctamente: " + e.getMessage());
+        }
     }
 
     @Override
     public void eliminarUsuario(Usuario usuario) {
-        usuarios.remove(usuario);
+        String sql = "DELETE FROM usuarios WHERE id = ?;";
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, usuario.getId());
+            stmt.executeUpdate();
+            System.out.println("Usuario eliminado exitosamente");
+            BilleteraRepositorio.eliminarBilletera(usuario.getBilletera());
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar el usuario con cedula " + usuario.getCedula() + ": "  + e.getMessage());
+        }
+
     }
 
     @Override
     public Usuario buscarUsuario(String id) {
-        return usuarios.stream().filter(c -> id.equalsIgnoreCase(c.getCedula())).findFirst().orElse(null);
+        String sql = "SELECT * FROM usuarios WHERE id = ?;";
+        Usuario usuario = null;
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                usuario = Usuario.builder()
+                        .id(rs.getString("id"))
+                        .cedula(rs.getString("cedula"))
+                        .nombre(rs.getString("nombre"))
+                        .apellido(rs.getString("apellido"))
+                        .telefono(rs.getString("telefono"))
+                        .email(rs.getString("email"))
+                        .contrasena(rs.getString("contrasena"))
+                        // Falta terminar el build
+                        .build();
+            }
+            return usuario;
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Error al buscar el usuario con id " + id + ": "  + e.getMessage());
+        }
     }
 
     @Override
