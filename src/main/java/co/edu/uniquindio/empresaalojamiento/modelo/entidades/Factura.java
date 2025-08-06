@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 
-public class Factura implements Serializable {
+public class Factura {
     private double total;
     private double subtotal;
     private LocalDate fecha;

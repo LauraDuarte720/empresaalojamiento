@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class Reserva implements Serializable {
+public class Reserva {
     private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;

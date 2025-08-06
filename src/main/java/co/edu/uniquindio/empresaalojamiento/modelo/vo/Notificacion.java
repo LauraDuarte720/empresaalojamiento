@@ -13,10 +13,10 @@ import java.util.UUID;
 @Setter
 @Builder
 public class Notificacion {
-    private UUID id;
+    private String id;
     private String mensaje;
     private LocalDateTime fecha;
     private EstadoNotificacion estadoNotificacion;
-    private String idReceptor;
+    private String idCliente;
 
 }

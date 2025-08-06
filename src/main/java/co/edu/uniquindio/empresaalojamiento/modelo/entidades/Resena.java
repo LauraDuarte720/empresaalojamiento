@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Resena implements Serializable {
+public class Resena {
     private String id;
     private String valoracion;
     private int calificacion;

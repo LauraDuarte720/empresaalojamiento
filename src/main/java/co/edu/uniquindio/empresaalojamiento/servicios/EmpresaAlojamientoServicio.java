@@ -547,7 +547,7 @@ public class EmpresaAlojamientoServicio implements IEmpresaAlojamiento {
     }
 
     @Override
-    public void marcarComoLeida(UUID id) {
+    public void marcarComoLeida(String id) {
         notificacionServicio.marcarComoLeida(id);
     }
 

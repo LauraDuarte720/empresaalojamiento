@@ -17,11 +17,11 @@ public class NotificacionRepositorio {
 
     public List<Notificacion> obtenerPorCliente(String idCliente) {
         return notificaciones.stream()
-                .filter(n -> n.getIdReceptor().equals(idCliente))
+                .filter(n -> n.getIdCliente().equals(idCliente))
                 .collect(Collectors.toList());
     }
 
-    public void marcarComoLeida(UUID id) {
+    public void marcarComoLeida(String id) {
         notificaciones.stream()
                 .filter(n -> n.getId().equals(id))
                 .findFirst()

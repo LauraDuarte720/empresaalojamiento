@@ -43,6 +43,7 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
         return usuarios;
     }
 
+
     public void actualizarUsuario(String cedulaAntiguo, String cedulaNueva, String nombre, String apellido, String telefono, String email) {
         Usuario usuario = buscarUsuario(cedulaAntiguo);
         usuario.setNombre(nombre);

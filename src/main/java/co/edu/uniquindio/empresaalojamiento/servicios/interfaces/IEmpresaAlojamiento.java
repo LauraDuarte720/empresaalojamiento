@@ -105,7 +105,7 @@ public interface IEmpresaAlojamiento {
 
     public List<Notificacion> obtenerNotificaciones(String idCliente);
 
-    public void marcarComoLeida(UUID id);
+    public void marcarComoLeida(String id);
 
     public List<Usuario> obtenerUsuarios();
 

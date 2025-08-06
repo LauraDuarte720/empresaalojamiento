@@ -187,10 +187,10 @@ public class AlojamientoRepositorio implements IAlojamientoRepositorio {
     public void actualizarAlojamiento(String idAlojamiento, String nombre, String descripcion, String ruta,
                                       double precioPorNoche, int capacidadMaximaHuespedes, boolean piscina, boolean wifi, boolean desayuno, double costoAdicional, Ciudad ciudad, boolean parqueadero, boolean mascotasPermitidas, boolean gym) {
         String sql = """
-                UPDATE alojamientos SET nombre = ?, descripcion = ?, ruta = ?, precioPorNoche = ?, 
-                                        capacidadMaximaHuespedes = ?, piscina = ?, wifi = ?,
-                                        desayuno = ?, costoAdicional = ?, ciudad = ?, parqueadero = ?,
-                                        mascotasPermitidas = ?, gym = ? WHERE id = ?;
+                UPDATE alojamientos SET nombre = ?, descripcion = ?, ruta = ?, precio_por_noche = ?, 
+                                        capacidad_maxima_huespedes = ?, piscina = ?, wifi = ?,
+                                        desayuno = ?, costo_adicional = ?, ciudad = ?, parqueadero = ?,
+                                        mascotas_permitidas = ?, gym = ? WHERE id = ?;
                 """;
 
         try (Connection con = ConexionDB.getConexion();

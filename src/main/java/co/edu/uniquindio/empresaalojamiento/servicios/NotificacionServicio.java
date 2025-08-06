@@ -17,7 +17,7 @@ public class NotificacionServicio {
     }
 
     public void enviarNotificacion(String mensaje, String idCliente) {
-        Notificacion notificacion = Notificacion.builder().id(UUID.randomUUID()).mensaje(mensaje).idReceptor(idCliente).estadoNotificacion(EstadoNotificacion.PENDIENTE).fecha(LocalDateTime.now()).build();
+        Notificacion notificacion = Notificacion.builder().id(UUID.randomUUID().toString()).mensaje(mensaje).idCliente(idCliente).estadoNotificacion(EstadoNotificacion.PENDIENTE).fecha(LocalDateTime.now()).build();
         repo.guardar(notificacion);
     }
 
@@ -25,7 +25,7 @@ public class NotificacionServicio {
         return repo.obtenerPorCliente(idCliente);
     }
 
-    public void marcarComoLeida(UUID id) {
+    public void marcarComoLeida(String id) {
         repo.marcarComoLeida(id);
     }
 }
