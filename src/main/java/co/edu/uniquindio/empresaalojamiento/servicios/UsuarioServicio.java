@@ -54,8 +54,9 @@ public class UsuarioServicio {
 
         }
 
-        Billetera billetera = new Billetera(0, UUID.randomUUID().toString());
+        Billetera billetera = new Billetera(0, UUID.randomUUID().toString(), "");
         Usuario usuario = Usuario.builder().
+                id(UUID.randomUUID().toString()).
                 cedula(cedula).
                 nombre(nombre).
                 apellido(apellido).
@@ -66,7 +67,7 @@ public class UsuarioServicio {
                 rol(Rol.CLIENTE).
                 activo(false).
                 build();
-
+        billetera.setId(usuario.getId());
         usuarioRepositorio.agregarUsuario(usuario);
         return usuario;
     }

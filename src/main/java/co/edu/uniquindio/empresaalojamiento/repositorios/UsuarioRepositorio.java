@@ -2,6 +2,7 @@ package co.edu.uniquindio.empresaalojamiento.repositorios;
 
 import co.edu.uniquindio.empresaalojamiento.conexion.ConexionDB;
 import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Usuario;
+import co.edu.uniquindio.empresaalojamiento.modelo.enums.Rol;
 import co.edu.uniquindio.empresaalojamiento.repositorios.interfaces.IUsuarioRepositorio;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Constantes;
 import co.edu.uniquindio.empresaalojamiento.utilidades.Persistencia;
@@ -57,9 +58,8 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
             stmt.executeUpdate();
             System.out.println("Usuario eliminado exitosamente");
             BilleteraRepositorio.eliminarBilletera(usuario.getBilletera());
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Error al eliminar el usuario con cedula " + usuario.getCedula() + ": "  + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar el usuario con cedula " + usuario.getCedula() + ": " + e.getMessage());
         }
 
     }
@@ -72,7 +72,7 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 usuario = Usuario.builder()
                         .id(rs.getString("id"))
                         .cedula(rs.getString("cedula"))
@@ -81,35 +81,95 @@ public class UsuarioRepositorio implements IUsuarioRepositorio {
                         .telefono(rs.getString("telefono"))
                         .email(rs.getString("email"))
                         .contrasena(rs.getString("contrasena"))
-                        // Falta terminar el build
+                        .billetera(BilleteraRepositorio.buscarBilletera(id))
                         .build();
             }
             return usuario;
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Error al buscar el usuario con id " + id + ": "  + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al buscar el usuario con id " + id + ": " + e.getMessage());
         }
     }
 
     @Override
     public Usuario buscarUsuarioCorreo(String correo) {
-        return usuarios.stream().filter(c -> correo.equalsIgnoreCase(c.getEmail())).findFirst().orElse(null);
+        String sql = "SELECT * FROM usuarios WHERE email = ?;";
+        Usuario usuario = null;
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, correo);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                usuario = Usuario.builder()
+                        .id(rs.getString("id"))
+                        .cedula(rs.getString("cedula"))
+                        .nombre(rs.getString("nombre"))
+                        .apellido(rs.getString("apellido"))
+                        .telefono(rs.getString("telefono"))
+                        .email(rs.getString("email"))
+                        .contrasena(rs.getString("contrasena"))
+                        .billetera(BilleteraRepositorio.buscarBilletera(rs.getString("id")))
+                        .rol(Rol.valueOf(rs.getString("rol")))
+                        .activo(rs.getBoolean("activo"))
+                        .codigoEnviado(rs.getString("codigoEnviado"))
+                        .build();
+            }
+            return usuario;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al buscar el usuario con email " + correo + ": " + e.getMessage());
+        }
     }
 
 
     @Override
     public List<Usuario> listarUsuarios() {
-        return usuarios;
+        String sql = "SELECT * FROM usuarios;";
+        List<Usuario> usuarios = new ArrayList<>();
+        Usuario usuario = null;
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                usuario = Usuario.builder()
+                        .id(rs.getString("id"))
+                        .cedula(rs.getString("cedula"))
+                        .nombre(rs.getString("nombre"))
+                        .apellido(rs.getString("apellido"))
+                        .telefono(rs.getString("telefono"))
+                        .email(rs.getString("email"))
+                        .contrasena(rs.getString("contrasena"))
+                        .billetera(BilleteraRepositorio.buscarBilletera(rs.getString("id")))
+                        .rol(Rol.valueOf(rs.getString("rol")))
+                        .activo(rs.getBoolean("activo"))
+                        .codigoEnviado(rs.getString("codigoEnviado"))
+                        .build();
+                usuarios.add(usuario);
+            }
+            return usuarios;
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Error al listar el usuarios: " + e.getMessage());
+        }
     }
 
 
     public void actualizarUsuario(String cedulaAntiguo, String cedulaNueva, String nombre, String apellido, String telefono, String email) {
-        Usuario usuario = buscarUsuario(cedulaAntiguo);
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setTelefono(telefono);
-        usuario.setEmail(email);
-        usuario.setCedula(cedulaNueva);
+        String sql = """
+                UPDATE usuarios SET cedula = ?, nombre = ?, apellido = ?, telefono = ?, 
+                                        email = ?, contrasena = ?, rol = ?,
+                                        activo = ?, codigo_enviado = ? WHERE id = ?;
+                """;
+
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, cedulaAntiguo);
+            // Falta arreglar la logica del id del usuario para poder actualizarlo correctamente
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al actualizar el alojamiento: " + e.getMessage());
+        }
     }
 
 

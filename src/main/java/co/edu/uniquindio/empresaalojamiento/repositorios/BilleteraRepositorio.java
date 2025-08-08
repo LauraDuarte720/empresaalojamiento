@@ -5,6 +5,7 @@ import co.edu.uniquindio.empresaalojamiento.modelo.entidades.Billetera;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BilleteraRepositorio {
@@ -37,5 +38,22 @@ public class BilleteraRepositorio {
             throw new RuntimeException("Error al eliminar la billetera con id " + billetera.getId() + ": " + e.getMessage());
         }
 
+    }
+
+    public static Billetera buscarBilletera(String idUsuario) {
+        String sql = "SELECT * FROM billeteras WHERE usuario_id = ?;";
+        Billetera billetera = null;
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idUsuario);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                billetera = new Billetera(rs.getDouble("saldo"), rs.getString("id"), rs.getString("usuario_id"));
+            }
+            return billetera;
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Error al buscar la billetera del usuario con id " + idUsuario + ": " + e.getMessage());
+        }
     }
 }
